@@ -15,12 +15,13 @@ module.exports = {
       'Products',
       [
         {
+          title: 'Kol',
           category_id: 1,
-          price: 'Rp. 20.000',
+          price: 2000,
           stock: 5,
           unit: '1x buah',
-          promo: '10 %',
-          max_promo: 'beli 3',
+          promo: 2,
+          max_promo: 3,
           info: 'Kul segar',
           thumbnail: 'https://ik.imagekit.io/1y88cfgc5/kul_IboP2NDGW.jpg',
           createdAt: new Date(),
