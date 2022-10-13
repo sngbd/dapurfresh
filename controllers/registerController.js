@@ -21,7 +21,7 @@ const postUser = async (req, res) => {
     const response = { id, ...body, ref_code, ref_code_friend, thumbnail };
     res.respondCreated(response, 'user successfully registered');
   } catch (err) {
-    return res.respondServerError(null, err);
+    return res.respondServerError(err);
   }
 };
 
