@@ -15,6 +15,6 @@ app.use(express.json());
 app.use(helper);
 app.use(`${process.env.BASE_URL}`, route);
 
-app.listen(PORT, async () => {
+app.listen(PORT, () => {
   console.log(`App run on port ${PORT}`);
 });

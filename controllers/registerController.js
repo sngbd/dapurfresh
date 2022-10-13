@@ -1,3 +1,4 @@
+const { customAlphabet } = require('nanoid');
 const bcrypt = require('bcrypt');
 const registerRepository = require('../repository/registerRepository');
 
@@ -9,13 +10,18 @@ const postUser = async (req, res) => {
     delete req.body.password;
     req.body.password_hash = password_hash;
 
+    const nanoid = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 8);
+    req.body.ref_code = nanoid();
+
     const { id } = await registerRepository.createUser(req.body);
     
     delete req.body.password_hash;
-    
-    res.respondCreated({ id, ...req.body }, 'user successfully registered');
+    const { ref_code, ref_code_friend, thumbnail, ...body } = req.body;
+
+    const response = { id, ...body, ref_code, ref_code_friend, thumbnail };
+    res.respondCreated(response, 'user successfully registered');
   } catch (err) {
-    return res.respondServerError(null, err);
+    return res.respondServerError(err);
   }
 };
 

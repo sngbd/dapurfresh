@@ -26,6 +26,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       ref_code: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       ref_code_friend: {
