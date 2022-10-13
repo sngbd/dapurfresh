@@ -7,8 +7,11 @@ router.get('/', (req, res) => {
   res.respondGet(null, 'welcome to new app');
 });
 
+// Authentication
+router.post('/register', register.postUser);
+
 // product
 router.get('/product', product.getProduct);
-router.post('/register', register.postUser);
+router.get('/product/:id', product.getByIdProduct);
 
 module.exports = router;
