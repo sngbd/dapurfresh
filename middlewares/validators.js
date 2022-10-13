@@ -12,7 +12,7 @@ const registerUser = async (req, res, next) => {
   });
 
   try {
-    return await schema.validateAsync(req.body);
+    await schema.validateAsync(req.body);
   } catch (err) {
     return res.respondBadRequest(err.details.map((e) => e.message));
   }
