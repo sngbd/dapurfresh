@@ -17,7 +17,7 @@ module.exports = {
 
       const getByID = await productRepository.getByIdProduct(product_id);
 
-      if (!getByID) return res.respondNotFound(null, `not found data with product_id =  ${product_id}`);
+      if (!getByID) return res.respondNotFound(`not found data with product_id =  ${product_id}`);
 
       return res.respondGet(getByID, `Success get data by ${product_id}`);
     } catch (err) {
