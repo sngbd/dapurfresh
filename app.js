@@ -18,3 +18,5 @@ app.use(`${process.env.BASE_URL}`, route);
 app.listen(PORT, () => {
   console.log(`App run on port ${PORT}`);
 });
+
+module.exports = app
