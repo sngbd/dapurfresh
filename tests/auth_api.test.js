@@ -2,7 +2,6 @@ const supertest = require('supertest');
 const helper = require('./auth_test_helper');
 const app = require('../app');
 const { User } = require('../models');
-const { validUser } = require('./auth_test_helper');
 
 const api = supertest(app);
 
@@ -21,10 +20,10 @@ describe('valid users are created', () => {
       .send(helper.friend)
       .expect(201);
 
-    const ref_code = resFriend.body.ref_code;
-    expect(ref_code).toBeDefined;
-
-    validUser.ref_code = ref_code;
+    const ref_code = resFriend.body.data.ref_code;
+    expect(ref_code).toBeDefined();
+ 
+    helper.validUser.ref_code_friend = ref_code;
 
     await api
       .post('/api/v1/auth/register')
