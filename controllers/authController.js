@@ -17,11 +17,11 @@ const postUser = async (req, res) => {
 
     delete req.body.password_hash;
     const { ref_code, ref_code_friend, thumbnail, ...body } = req.body;
-
     const response = { id, ...body, ref_code, ref_code_friend, thumbnail };
+
     return res.respondCreated(response, 'user successfully registered');
   } catch (err) {
-    return res.respondServerError(err);
+    return res.respond(null, err.message, err.code);
   }
 };
 

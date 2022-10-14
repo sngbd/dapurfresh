@@ -1,24 +1,30 @@
 const { User } = require('../models');
 const { Op } = require('sequelize');
 
+let error = new Error();
+
 const createUser = async (user) => {
+  error.code =  400;
+
   if (user.ref_code_friend) {
     const refCodeFriend = await User.findOne({
       where: { ref_code: user.ref_code_friend }
     });
     
     if (!refCodeFriend) {
-      throw 'friend\'s referral code is invalid';
+      error.message = 'friend\'s referral code is invalid';
+      throw error;
     }
   }
 
   const [newUser, created] = await User.findOrCreate({
-    where: { username: user.username},
+    where: { username: user.username },
     defaults: user,
   });
   
   if (created) return newUser;
-  throw 'username already exists';
+  error.message = 'username already exists';
+  throw error;
 };
 
 module.exports = {
