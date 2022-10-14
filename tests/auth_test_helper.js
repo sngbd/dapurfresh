@@ -51,7 +51,7 @@ module.exports = {
   },
   invalidPhoneNumber: {
     username,
-    password: 'ABC123',
-    phone_numbere: '08123123123a'
+    password: "Kelompok1@",
+    phone_number: '08123123123a'
   },
 }
