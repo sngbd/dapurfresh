@@ -1,7 +1,6 @@
 const { User } = require('../models');
-const { Op } = require('sequelize');
 
-let error = new Error();
+const error = new Error();
 
 const createUser = async (user) => {
   error.code =  400;
