@@ -3,6 +3,7 @@ const router = express.Router();
 const product = require('../controllers/productController');
 
 const authRouter = require('./auth');
+const productRouter = require('./product');
 
 // welcome
 router.get('/', (req, res) => {
@@ -13,7 +14,6 @@ router.get('/', (req, res) => {
 router.use('/auth', authRouter);
 
 // product
-router.get('/product', product.getProduct);
-router.get('/product/:id', product.getByIdProduct);
+router.use('/product', productRouter);
 
 module.exports = router;
