@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 });
 
 // Authentication
-router.post('/register', validator.registerUser, register.postUser);
+router.post('/auth/register', validator.registerUser, register.postUser);
 
 // product
 router.get('/product', product.getProduct);

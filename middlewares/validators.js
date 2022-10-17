@@ -14,7 +14,7 @@ const registerUser = async (req, res, next) => {
   try {
     await schema.validateAsync(req.body);
   } catch (err) {
-    return res.respondBadRequest(err.details.map((e) => e.message));
+    return res.respondBadRequest(err.details[0].message);
   }
   next();
 };
