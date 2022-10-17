@@ -26,6 +26,18 @@ const createUser = async (user) => {
   throw error;
 };
 
+const find = async (json) => {
+  try {
+    const rows = await User.findAll({
+      where: json,
+    });
+    return rows;
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports = {
   createUser,
+  find,
 };
