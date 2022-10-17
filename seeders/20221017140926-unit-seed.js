@@ -12,19 +12,20 @@ module.exports = {
      * }], {});
      */
     await queryInterface.bulkInsert(
-      'Products',
+      'Units',
       [
         {
-          title: 'Kol',
-          category_id: 1,
-          price: 2000,
-          stock: 5,
-          qty_unit: 1,
-          unit_id: 2,
-          promo: 2,
-          max_promo: 3,
-          info: '1 buah kol setara 500 kg',
-          thumbnail: 'https://ik.imagekit.io/1y88cfgc5/kul_IboP2NDGW.jpg',
+          title: 'Ikat',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          title: 'kg',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          title: 'gr',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
