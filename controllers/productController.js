@@ -1,7 +1,17 @@
 const productRepository = require('../repository/productRepository');
+const { Product, Unit } = require('../models');
 
 const getProduct = async (req, res) => {
   try {
+    // const get = await Product.findAll({
+    //   include: [
+    //     {
+    //       model: Unit,
+    //       as: 'unit',
+    //       attributes: ['title'],
+    //     },
+    //   ],
+    // });
     const get = await productRepository.getProduct();
 
     return res.respondGet(get);
