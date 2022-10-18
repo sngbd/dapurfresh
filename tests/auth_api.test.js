@@ -3,6 +3,7 @@ const helper = require('./auth_test_helper');
 const app = require('../app');
 const { User } = require('../models');
 
+const bcrypt = require('bcrypt');
 const api = supertest(app);
 
 beforeEach(async () => {
@@ -10,7 +11,13 @@ beforeEach(async () => {
     where: {}
   });
 
-  User.create(helper.initialUser)
+  const password = "Test123#";
+  const password_hash = await bcrypt.hash(password, 10);
+
+  helper.initialUser.password_hash = password_hash;
+  User.create(helper.initialUser);
+  helper.initialUser.password = password;
+  delete helper.initialUser.password_hash;
 });
 
 describe('valid users are created', () => {
@@ -90,6 +97,62 @@ describe('invalid users are not created', () => {
     await api
       .post('/api/v1/auth/register')
       .send(helper.invalidPhoneNumber)
+      .expect(400)
+  });
+});
+
+describe('login valid', () => {
+  test('success', async () => {
+    await api
+      .post('/api/v1/auth/login')
+      .send({
+        username: helper.initialUser.username,
+        password: helper.initialUser.password
+      })
+      .expect(200)
+  });
+});
+
+describe('login not valid', () => {
+  test('username and password doesn\'t match 1', async () => {
+    await api
+      .post('/api/v1/auth/login')
+      .send(helper.usernameAndPassDoesntMatch1)
+      .expect(401)
+  });
+
+  test('username and password doesn\'t match 2', async () => {
+    await api
+      .post('/api/v1/auth/login')
+      .send(helper.usernameAndPassDoesntMatch2UsernameCorrect)
+      .expect(401)
+  });
+
+  test('username is missing', async () => {
+    await api
+      .post('/api/v1/auth/login')
+      .send(helper.missingUsernameLogin)
+      .expect(400)
+  });
+
+  test('password is missing', async () => {
+    await api
+      .post('/api/v1/auth/login')
+      .send(helper.missingPasswordLogin)
+      .expect(400)
+  });
+
+  test('username is not a string', async () => {
+    await api
+      .post('/api/v1/auth/login')
+      .send(helper.usernameIsNotAString)
+      .expect(400)
+  });
+
+  test('password is not a string', async () => {
+    await api
+      .post('/api/v1/auth/login')
+      .send(helper.passwordIsNotAString)
       .expect(400)
   });
 });
