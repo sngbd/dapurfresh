@@ -11,7 +11,7 @@ router.route('/login').post(
     authController.getTokenAfterLogin
 );
 
-router.route('/register').post(validator.registerUser, authController.postUser);
+router.route('/register').post(validator.registerUser, authController.registerUser);
 router.route('/token').post(authController.getAccessToken);
 
 module.exports = router;
