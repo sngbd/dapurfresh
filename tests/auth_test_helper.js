@@ -16,7 +16,6 @@ module.exports = {
   },
   initialUser: {
     username: "kel1be",
-    password_hash: "password_hash",
     ref_code,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -53,5 +52,32 @@ module.exports = {
     username,
     password: "Kelompok1@",
     phone_number: '08123123123a'
+  },
+  // login
+  validUserLogin: {
+    username: "kel1be",
+    password: "Test1#"
+  },
+  missingUsernameLogin: {
+    password: "anyPassword",
+  },
+  missingPasswordLogin: {
+    username: "anyUser"
+  },
+  usernameIsNotAString: {
+    username: 4234,
+    password: "12435678"
+  },
+  passwordIsNotAString: {
+    username: "anyUser",
+    password: 14355556
+  },
+  usernameAndPassDoesntMatch1: {
+    username: 'anyUsername',
+    password: "12345678",
+  },
+  usernameAndPassDoesntMatch2UsernameCorrect: {
+    username: 'kel1be',
+    password: "12345678",
   },
 }
