@@ -4,6 +4,7 @@ const product = require('../controllers/productController');
 
 const authRouter = require('./auth');
 const productRouter = require('./product');
+const validateToken = require('../middlewares/validateToken');
 const helpRouter = require('./help');
 
 // welcome
@@ -13,6 +14,9 @@ router.get('/', (req, res) => {
 
 // Authentication
 router.use('/auth', authRouter);
+
+// protected
+router.use(validateToken);
 
 // product
 router.use('/product', productRouter);

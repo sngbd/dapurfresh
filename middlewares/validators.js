@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 const registerUser = async (req, res, next) => {
   const schema = Joi.object({
-    username: Joi.string().alphanum().required(),
+    username: Joi.string().required(),
     name: Joi.string(),
     password: Joi.string().min(6).regex(/[A-Z]/, 'uppercase').regex(/[a-z]/, 'lowercase').regex(/[^\w]/, 'special character').required(),
     phone_number: Joi.string().regex(/^\d+$/, 'number'),

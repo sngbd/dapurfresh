@@ -10,6 +10,16 @@ const getHelp = async () => {
   }
 };
 
+const createHelp = async (input) => {
+  try {
+    const created = await Help.create(input);
+
+    return created;
+  } catch (err) {
+    throw err;
+  }
+};
 module.exports = {
   getHelp,
+  createHelp,
 };

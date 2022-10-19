@@ -2,12 +2,10 @@ require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const { customAlphabet } = require('nanoid');
-
 // repository
 const userRepository = require('../repository/authRepository');
 
-const postUser = async (req, res) => {
+const registerUser = async (req, res) => {
   try {
     const saltRounds = 10;
     const password_hash = await bcrypt.hash(req.body.password, saltRounds);
@@ -15,13 +13,10 @@ const postUser = async (req, res) => {
     delete req.body.password;
     req.body.password_hash = password_hash;
 
-    const nanoid = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 8);
-    req.body.ref_code = nanoid();
-
-    const { id } = await userRepository.createUser(req.body);
+    const { id, ref_code } = await userRepository.createUser(req.body);
 
     delete req.body.password_hash;
-    const { ref_code, ref_code_friend, thumbnail, ...body } = req.body;
+    const { ref_code_friend, thumbnail, ...body } = req.body;
     const response = { id, ...body, ref_code, ref_code_friend, thumbnail };
 
     return res.respondCreated(response, 'user successfully registered');
@@ -68,10 +63,10 @@ const login = async (req, res, next) => {
     }
 
     const user = rows[0];
-    // const isSame = await bcrypt.compare(password, user.password_hash);
-    // if (isSame === false) {
-    //     return res.notAuthorized("username and password doesn't match");
-    // }
+    const isSame = await bcrypt.compare(password, user.password_hash);
+    if (isSame === false) {
+        return res.notAuthorized("username and password doesn't match");
+    }
 
     req.user = user;
   } catch (error) {
@@ -131,7 +126,7 @@ const getAccessToken = async (req, res) => {
 }
 
 module.exports = {
-  postUser,
+  registerUser,
   login,
   getTokenAfterLogin,
   getAccessToken,
