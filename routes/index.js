@@ -5,6 +5,7 @@ const product = require('../controllers/productController');
 const authRouter = require('./auth');
 const productRouter = require('./product');
 const validateToken = require('../middlewares/validateToken');
+const helpRouter = require('./help');
 
 // welcome
 router.get('/', (req, res) => {
@@ -19,5 +20,8 @@ router.use(validateToken);
 
 // product
 router.use('/product', productRouter);
+
+// help
+router.use('/help', helpRouter);
 
 module.exports = router;

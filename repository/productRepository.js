@@ -1,11 +1,21 @@
-const { Product } = require('../models');
+const { Product, Unit } = require('../models');
+const respondHelper = require('../helpers/response');
 
 const getProduct = async (req, res) => {
   try {
-    const get = await Product.findAll();
+    const get = await Product.findAll({
+      include: [
+        {
+          model: Unit,
+          as: 'unit',
+          attributes: ['title'],
+        },
+      ],
+    });
+
     return get;
   } catch (err) {
-    return res.respondServerError(err.message);
+    throw err;
   }
 };
 
@@ -15,9 +25,10 @@ const getByIdProduct = async (id) => {
 
     return getId;
   } catch (err) {
-    return res.respondServerError(err.message);
+    throw err;
   }
 };
+
 module.exports = {
   getProduct,
   getByIdProduct,
