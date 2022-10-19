@@ -458,7 +458,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"kelompok1\",\r\n    \"password\": \"kelompok1#\"\r\n}",
+							"raw": "{\r\n    \"username\": \"kel1\",\r\n    \"password\": \"Kelompok1#$2222\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -473,6 +473,89 @@
 							"path": [
 								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJrZWwxIiwiaWF0IjoxNjY2MDIwMjk5LCJleHAiOjE2NjYxMDY2OTl9.z-J-zBvliJQFJMYxCl44vmHJe-GcQvz5wKIe4pAQWng",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/auth/token",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"auth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "help",
+			"item": [
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/help",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"help"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/help",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"help"
 							]
 						}
 					},
@@ -504,7 +587,7 @@
 	"variable": [
 		{
 			"key": "baseurl",
-			"value": "http://localhost:8000/api/v1/",
+			"value": "http://localhost:8000/api/v1",
 			"type": "string"
 		}
 	]
