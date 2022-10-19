@@ -1,18 +1,27 @@
 const express = require('express');
 const router = express.Router();
 const product = require('../controllers/productController');
-const register = require('../controllers/authController');
-const validator = require('../middlewares/validators');
+
+const authRouter = require('./auth');
+const productRouter = require('./product');
+const validateToken = require('../middlewares/validateToken');
+const helpRouter = require('./help');
+
 // welcome
 router.get('/', (req, res) => {
   res.respondGet(null, 'welcome to new app');
 });
 
 // Authentication
-router.post('/auth/register', validator.registerUser, register.postUser);
+router.use('/auth', authRouter);
+
+// protected
+router.use(validateToken);
 
 // product
-router.get('/product', product.getProduct);
-router.get('/product/:id', product.getByIdProduct);
+router.use('/product', productRouter);
+
+// help
+router.use('/help', helpRouter);
 
 module.exports = router;

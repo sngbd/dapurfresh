@@ -1,0 +1,594 @@
+{
+	"info": {
+		"_postman_id": "872c6cc5-7204-4d58-b78e-6836ca66378c",
+		"name": "dapurfresh",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13146980"
+	},
+	"item": [
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product?category_id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product"
+							],
+							"query": [
+								{
+									"key": "category_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/product",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"product"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "323"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"143-8O1GANcP8M0YjPyXgB+fY1k12xo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Oct 2022 13:53:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"success get All data!\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"Kol\",\n            \"category_id\": 1,\n            \"price\": 2000,\n            \"stock\": 5,\n            \"unit\": \"1x buah\",\n            \"promo\": 2,\n            \"max_promo\": 3,\n            \"info\": \"Kul segar\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/kul_IboP2NDGW.jpg\",\n            \"createdAt\": \"2022-10-14T07:38:22.486Z\",\n            \"updatedAt\": \"2022-10-14T07:38:22.486Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/product/10",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"product",
+								"10"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/product/1",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"product",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "321"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"141-J0VXBluSWfRUKBTWcEGALFdG6PE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Oct 2022 13:53:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success get data by 1\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"Kol\",\n        \"category_id\": 1,\n        \"price\": 2000,\n        \"stock\": 5,\n        \"unit\": \"1x buah\",\n        \"promo\": 2,\n        \"max_promo\": 3,\n        \"info\": \"Kul segar\",\n        \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/kul_IboP2NDGW.jpg\",\n        \"createdAt\": \"2022-10-14T07:38:22.486Z\",\n        \"updatedAt\": \"2022-10-14T07:38:22.486Z\"\n    }\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/product/10",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"product",
+										"10"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "77"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4d-yiVqrVP3HoVXb1jQUW5oBMEeeW8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Oct 2022 13:54:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"not found data with product_id =  10\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompok1@\",\r\n    \"ref_code_friend\": \"PHXSEIQZ\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/auth/register",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompok1@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/auth/register",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "118"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"76-MN4ccWSFqAmQxqYcco8nNSypURU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Oct 2022 15:09:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"user successfully registered\",\n    \"data\": {\n        \"id\": 3,\n        \"username\": \"BEKEL12211\",\n        \"ref_code\": \"MNREOQYD\"\n    }\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n    \"password\": \"Bekelompok1@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/auth/register",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-P/G6jVzYYrHdZ+dV68ZXDaCpcJE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Oct 2022 15:09:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"\\\"username\\\" is required\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "400 password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/auth/register",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "123"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7b-oBUWyVE2Z1+H7CipGlymLVcAPY8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Oct 2022 15:10:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"\\\"password\\\" with value \\\"Bekelompo\\\" fails to match the special character pattern\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"kel1\",\r\n    \"password\": \"Kelompok1#$2222\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/auth/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJrZWwxIiwiaWF0IjoxNjY2MDIwMjk5LCJleHAiOjE2NjYxMDY2OTl9.z-J-zBvliJQFJMYxCl44vmHJe-GcQvz5wKIe4pAQWng",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/auth/token",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"auth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "help",
+			"item": [
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/help",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"help"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/help",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"help"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseurl",
+			"value": "http://localhost:8000/api/v1",
+			"type": "string"
+		}
+	]
+}
