@@ -1,26 +1,30 @@
-
+'use strict';
 const { Model } = require('sequelize');
-
-module.exports = (sequelize, DataTypes)=>{
+module.exports = (sequelize, DataTypes) => {
   class Category extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
     static associate(models) {
-      //define association here
+      // define association here
       Category.hasMany(models.Product, {
-        foreignKey : "category_id",
-        onDelete : 'setNull'
-      })
+        foreignKey: 'category_id',
+        onDelete: 'setNull',
+      });
     }
   }
   Category.init(
     {
       title: {
         type: DataTypes.STRING(100),
-        allowNull: false
+        allowNull: false,
       },
       thumbnail: {
         type: DataTypes.STRING,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       sequelize,
@@ -28,4 +32,4 @@ module.exports = (sequelize, DataTypes)=>{
     }
   );
   return Category;
-}
+};
