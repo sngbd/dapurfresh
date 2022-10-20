@@ -32,7 +32,7 @@ const createHelp = async (input) => {
 
 const updateHelp = async (input, id) => {
   try {
-    const update = await Help.update({ where: { id: id } });
+    const update = await Help.update(input, { where: { id: id } });
 
     return update;
   } catch (err) {
@@ -53,6 +53,7 @@ const deleteHelp = async (id) => {
 module.exports = {
   getHelp,
   getById,
+  updateHelp,
   createHelp,
   deleteHelp,
 };

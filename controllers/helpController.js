@@ -13,6 +13,8 @@ const getHelp = async (req, res) => {
 
 const getHelpById = async (req, res) => {
   try {
+    const help_id = req.params.id;
+
     const getByID = await helpRepo.getById(help_id);
     if (!getByID) return res.respondNotFound(`not found data with help_id =  ${help_id}`);
 

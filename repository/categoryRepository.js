@@ -1,12 +1,12 @@
-const { Category } = require('../models');
-const { Product } = require ('../models');
+const { Category, Product } = require('../models');
+
 module.exports = {
   getCategory: async (req, res) => {
     try {
       const get = await Category.findAll();
       return get;
     } catch (err) {
-      return res.respondServerError(err.message);
+      throw err;
     }
   },
 
@@ -16,18 +16,16 @@ module.exports = {
 
       return getId;
     } catch (err) {
-      return res.respondServerError(err.message);
+      throw err;
     }
   },
 
-  getProductByCategory: async(id)=> {
+  getProductByCategory: async (id) => {
     try {
-        const get = Product.findAll({where : {category_id : id}});
-        return get;
+      const get = Product.findAll({ where: { category_id: id } });
+      return get;
+    } catch (err) {
+      throw err;
     }
-    catch (err){
-        return res.respondServerError(err.message);
-    }
-    
-  }
+  },
 };
