@@ -15,22 +15,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/v1/product?category_id=1",
-							"protocol": "http",
+							"raw": "{{baseurl}}/product",
 							"host": [
-								"localhost"
+								"{{baseurl}}"
 							],
-							"port": "8000",
 							"path": [
-								"api",
-								"v1",
 								"product"
-							],
-							"query": [
-								{
-									"key": "category_id",
-									"value": "1"
-								}
 							]
 						}
 					},
@@ -524,16 +514,212 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseurl}}/help",
+							"raw": "{{baseurl}}/help/:id",
 							"host": [
 								"{{baseurl}}"
 							],
 							"path": [
-								"help"
+								"help",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/help",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"help"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "219"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"db-Cp6mzQbbhVeW411oTSUfRHZTn1o\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Oct 2022 01:13:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"success get All data!\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"pemensan\",\n            \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\",\n            \"createdAt\": \"2022-10-20T01:13:52.466Z\",\n            \"updatedAt\": \"2022-10-20T01:13:52.466Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/help/:id",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"help",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "217"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d9-fwENDHEApfhEBC0T4vqD8c+4c8A\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Oct 2022 01:14:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"success get All data!\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"pemensan\",\n        \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\",\n        \"createdAt\": \"2022-10-20T01:13:52.466Z\",\n        \"updatedAt\": \"2022-10-20T01:13:52.466Z\"\n    }\n}"
+						},
+						{
+							"name": "get id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/help/:id",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"help",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-mOgN7tYLy2EvCQ2kKFmWkUd2/38\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Oct 2022 01:15:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"not found data with help_id =  2\",\n    \"data\": null\n}"
+						}
+					]
 				},
 				{
 					"name": "create",
@@ -542,7 +728,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\r\n    \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
+							"raw": "{\r\n    \"title\": \"pemensan\",\r\n    \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -559,7 +745,425 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"pemensan\",\r\n    \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/help",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"help"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "211"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d3-QzDJi+dydDNXnrvuZGRc9xbnpps\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Oct 2022 01:04:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success created\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"pemensan\",\n        \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\",\n        \"updatedAt\": \"2022-10-20T01:04:02.056Z\",\n        \"createdAt\": \"2022-10-20T01:04:02.056Z\"\n    }\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/help",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"help"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-5hZA2saNK3EGbNdxMV7PGKp4fNM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Oct 2022 01:13:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"\\\"title\\\" is required\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"pemensan1\",\r\n    \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/help/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"help",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"pemensan1\",\r\n    \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/help/1",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"help",
+										"1"
+									]
+								}
+							},
+							"status": "Updated",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"40-3jpK2UYDHjHxKkTY14Epac+ahnA\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Oct 2022 01:09:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"successfully updated help\",\n    \"data\": [\n        1\n    ]\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"pemensan1\",\r\n    \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/help/2",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"help",
+										"2"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-A/+BLQqQTWT4L7XHPFbVQiacScw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Oct 2022 01:13:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"not found data with help_id =  2\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/help/1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"help",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/help/1",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"help",
+										"1"
+									]
+								}
+							},
+							"status": "Deleted",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-GqJIdU/ic/BJIw9FbIoA+NOj57U\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Oct 2022 01:11:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"successfully deleted help_id = 1\",\n    \"data\": 1\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/help/2",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"help",
+										"2"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-A/+BLQqQTWT4L7XHPFbVQiacScw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Oct 2022 01:12:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"not found data with help_id =  2\",\n    \"data\": null\n}"
+						}
+					]
 				}
 			]
 		}
