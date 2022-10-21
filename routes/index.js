@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 router.use('/auth', authRouter);
 
 // protected
-router.use(validateToken);
+// router.use(validateToken);
 
 // product
 router.use('/product', productRouter);
