@@ -22,7 +22,7 @@ module.exports = (req, res, next) => {
   };
 
   res.respondDeleted = (data = null, message = 'success delete data!') => {
-    res.respond(data, message, 201);
+    res.respond(data, message, 200);
   };
 
   res.respondNotFound = (message = "data is doesn't exist!", data = null) => {
