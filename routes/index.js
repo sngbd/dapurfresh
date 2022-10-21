@@ -5,8 +5,9 @@ const authRouter = require('./auth');
 const productRouter = require('./product');
 const helpRouter = require('./help');
 const categoryRouter = require('./category');
+const unitRouter = require('./unit');
 
-const validateToken = require('../middlewares/validateToken');
+const validateToken = require('../middlewares/validation/validateToken');
 
 // welcome
 router.get('/', (req, res) => {
@@ -17,7 +18,7 @@ router.get('/', (req, res) => {
 router.use('/auth', authRouter);
 
 // protected
-// router.use(validateToken);
+router.use(validateToken);
 
 // product
 router.use('/product', productRouter);
@@ -27,5 +28,8 @@ router.use('/category', categoryRouter);
 
 // help
 router.use('/help', helpRouter);
+
+// unit
+router.use('unit', unitRouter);
 
 module.exports = router;
