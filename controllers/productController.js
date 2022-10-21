@@ -1,5 +1,4 @@
 const productRepository = require('../repository/productRepository');
-const { Product, Unit } = require('../models');
 
 const getProduct = async (req, res) => {
   try {

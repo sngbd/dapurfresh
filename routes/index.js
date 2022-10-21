@@ -6,6 +6,7 @@ const productRouter = require('./product');
 const helpRouter = require('./help');
 const categoryRouter = require('./category');
 const unitRouter = require('./unit');
+const cartRouter = require('./cart');
 
 const validateToken = require('../middlewares/validation/validateToken');
 
@@ -30,6 +31,9 @@ router.use('/category', categoryRouter);
 router.use('/help', helpRouter);
 
 // unit
-router.use('unit', unitRouter);
+router.use('/unit', unitRouter);
+
+// cart
+router.use('/cart', cartRouter);
 
 module.exports = router;
