@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const validator = require('../middlewares/validateHelp');
+const validator = require('../middlewares/validation/validateHelp');
 
 const helpController = require('../controllers/helpController');
 
