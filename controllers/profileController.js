@@ -1,9 +1,11 @@
 const { imagekit } = require('../helpers/imagekit');
+const { User } = require('../models');
 const bcrypt = require('bcrypt');
+const userRepository = require('../repository/profileRepository');
 
 const updateProfile = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.user;
 
     let query = {
       where: {
@@ -21,7 +23,7 @@ const updateProfile = async (req, res) => {
       fileName: namaFile,
     });
 
-    let updated = await User.update(
+    let updated = await userRepository.updateUser(
       {
         thumbnail: upload.url,
         name,
@@ -30,7 +32,8 @@ const updateProfile = async (req, res) => {
       },
       query
     );
-    return res.respondUpdated({ updated }, 'Success Update Data');
+
+    return res.respondUpdated(updated, 'Success Update Data');
   } catch (err) {
     return res.respondServerError(err.message);
   }
@@ -39,7 +42,8 @@ const getMyProfile = async (req, res) => {
   try {
     const myProfile = req.user;
 
-    const findMyProfile = await User.findOne({ where: { id: myProfile.id } });
+    const findMyProfile = await userRepository.getMyProfile(myProfile.id);
+
     return res.respondGet(findMyProfile, 'success get my profile');
   } catch (err) {
     return res.respondServerError(err.message);
