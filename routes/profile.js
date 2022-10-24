@@ -5,7 +5,7 @@ const upload = require('../middlewares/middlewareUpload');
 const validator = require('../middlewares/validation/validateUser');
 
 // profile
-router.route('/:id').put(upload, validator.created, profile.updateProfile);
+router.route('/').put(upload, validator.created, profile.updateProfile);
 router.route('/').get(profile.getMyProfile);
 
 module.exports = router;
