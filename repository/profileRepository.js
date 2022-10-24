@@ -2,7 +2,7 @@ const { User } = require('../models');
 
 const updateUser = async (input, id) => {
   try {
-    const update = await User.findOne(input, { where: { id: id } });
+    const update = await User.update(input, { where: { id: id } });
 
     return update;
   } catch (err) {

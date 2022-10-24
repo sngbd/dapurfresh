@@ -1,17 +1,9 @@
 const { imagekit } = require('../helpers/imagekit');
-const { User } = require('../models');
-const bcrypt = require('bcrypt');
 const userRepository = require('../repository/profileRepository');
 
 const updateProfile = async (req, res) => {
   try {
-    const userId = req.user;
-
-    let query = {
-      where: {
-        id: userId,
-      },
-    };
+    const userId = req.params.id;
 
     const { name, phone_number, address } = req.body;
 
@@ -30,21 +22,44 @@ const updateProfile = async (req, res) => {
         phone_number,
         address,
       },
-      query
+      userId
     );
 
-    return res.respondUpdated(updated, 'Success Update Data');
+    let get = await userRepository.getMyProfile(userId);
+
+    const data = {
+      username: get.username,
+      name: get.name,
+      phone_number: get.phone_number,
+      address: get.address,
+      ref_code: get.ref_code,
+      ref_code_friend: get.ref_code_friend,
+      thumbnail: get.thumbnail,
+    };
+
+    return res.respondUpdated(data, 'Success Update Data');
   } catch (err) {
     return res.respondServerError(err.message);
   }
 };
+
 const getMyProfile = async (req, res) => {
   try {
     const myProfile = req.user;
 
     const findMyProfile = await userRepository.getMyProfile(myProfile.id);
 
-    return res.respondGet(findMyProfile, 'success get my profile');
+    const data = {
+      username: findMyProfile.username,
+      name: findMyProfile.name,
+      phone_number: findMyProfile.phone_number,
+      address: findMyProfile.address,
+      ref_code: findMyProfile.ref_code,
+      ref_code_friend: findMyProfile.ref_code_friend,
+      thumbnail: findMyProfile.thumbnail,
+    };
+
+    return res.respondGet(data, 'success get my profile');
   } catch (err) {
     return res.respondServerError(err.message);
   }

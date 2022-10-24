@@ -3,7 +3,7 @@ const Joi = require('joi');
 const created = async (req, res, next) => {
   const schema = Joi.object({
     name: Joi.string().required(),
-    phone_number: Joi.number().required(),
+    phone_number: Joi.string().required(),
     address: Joi.string().required(),
   });
   try {
