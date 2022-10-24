@@ -3,7 +3,7 @@ const userRepository = require('../repository/profileRepository');
 
 const updateProfile = async (req, res) => {
   try {
-    const userId = req.params.id;
+    const userId = req.user;
 
     const { name, phone_number, address } = req.body;
 
@@ -22,22 +22,22 @@ const updateProfile = async (req, res) => {
         phone_number,
         address,
       },
-      userId
+      userId.id
     );
 
-    let get = await userRepository.getMyProfile(userId);
+    // let get = await userRepository.getMyProfile(userId);
 
-    const data = {
-      username: get.username,
-      name: get.name,
-      phone_number: get.phone_number,
-      address: get.address,
-      ref_code: get.ref_code,
-      ref_code_friend: get.ref_code_friend,
-      thumbnail: get.thumbnail,
-    };
+    // const data = {
+    //   username: get.username,
+    //   name: get.name,
+    //   phone_number: get.phone_number,
+    //   address: get.address,
+    //   ref_code: get.ref_code,
+    //   ref_code_friend: get.ref_code_friend,
+    //   thumbnail: get.thumbnail,
+    // };
 
-    return res.respondUpdated(data, 'Success Update Data');
+    return res.respondUpdated(updated, 'Success Update Data');
   } catch (err) {
     return res.respondServerError(err.message);
   }
