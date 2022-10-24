@@ -1,17 +1,20 @@
 const { CartItem, Product } = require('../models');
 
 const error = new Error();
-error.code = 400;
 
 const addItemToCart = (async (item) => {
+  error.code = 400;
   const product = await Product.findOne({
     where: { id: item.product_id },
   });
   
   if (!product) {
     error.message = 'invalid product_id';
+    error.code = 404;
     throw error
-  } else if (item.qty > product.stock) {
+  }
+
+  if (item.qty > product.stock) {
     error.message = 'qty exceeds product\'s stock';
     throw error
   }
@@ -36,6 +39,7 @@ const getCart = (async (user_id) => {
 
   if (allItem.length) return allItem;
   error.message = 'cart not found'
+  error.code = 404;
   throw error;
 });
 
@@ -49,6 +53,7 @@ const updateItem = (async (item) => {
   
   if (!cartItem) {
     error.message = 'product_id not found on cart';
+    error.code = 404;
     throw error
   } 
 
@@ -58,6 +63,7 @@ const updateItem = (async (item) => {
   
   if (item.qty > product.stock) {
     error.message = 'qty exceeds product\'s stock';
+    error.code = 400;
     throw error
   }
 
@@ -84,6 +90,7 @@ const deleteItem = (async (item) => {
   
   if (!cartItem) {
     error.message = 'product_id not found on cart';
+    error.code = 404;
     throw error
   }
 
@@ -94,7 +101,7 @@ const deleteItem = (async (item) => {
     } 
   });
   
-  return {};
+  return null;
 });
 
 module.exports = {

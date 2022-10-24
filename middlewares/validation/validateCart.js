@@ -3,7 +3,7 @@ const Joi = require('joi');
 const addUpdateItem = async (req, res, next) => {
   const schema = Joi.object({
     product_id: Joi.number().required(),
-    qty: Joi.number().required(),
+    qty: Joi.number().positive().required(),
   });
 
   try {
@@ -16,7 +16,7 @@ const addUpdateItem = async (req, res, next) => {
 
 const deleteItem = async (req, res, next) => {
   const schema = Joi.object({
-    product_id: Joi.number().required(),
+    product_id: Joi.number().positive().required(),
   });
 
   try {
