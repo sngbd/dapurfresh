@@ -25,7 +25,7 @@ const updateProfile = async (req, res) => {
       userId.id
     );
 
-    let get = await userRepository.getMyProfile(userId);
+    let get = await userRepository.getMyProfile(userId.id);
 
     const data = {
       username: get.username,
