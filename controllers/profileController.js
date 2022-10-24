@@ -25,19 +25,19 @@ const updateProfile = async (req, res) => {
       userId.id
     );
 
-    // let get = await userRepository.getMyProfile(userId);
+    let get = await userRepository.getMyProfile(userId);
 
-    // const data = {
-    //   username: get.username,
-    //   name: get.name,
-    //   phone_number: get.phone_number,
-    //   address: get.address,
-    //   ref_code: get.ref_code,
-    //   ref_code_friend: get.ref_code_friend,
-    //   thumbnail: get.thumbnail,
-    // };
+    const data = {
+      username: get.username,
+      name: get.name,
+      phone_number: get.phone_number,
+      address: get.address,
+      ref_code: get.ref_code,
+      ref_code_friend: get.ref_code_friend,
+      thumbnail: get.thumbnail,
+    };
 
-    return res.respondUpdated(updated, 'Success Update Data');
+    return res.respondUpdated(data, 'Success Update Data');
   } catch (err) {
     return res.respondServerError(err.message);
   }
