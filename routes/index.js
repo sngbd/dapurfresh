@@ -7,6 +7,7 @@ const helpRouter = require('./help');
 const categoryRouter = require('./category');
 const unitRouter = require('./unit');
 const cartRouter = require('./cart');
+const profileRouter = require('./profile');
 
 const validateToken = require('../middlewares/validation/validateToken');
 
@@ -35,5 +36,8 @@ router.use('/unit', unitRouter);
 
 // cart
 router.use('/cart', cartRouter);
+
+// profile
+router.use('/profile', profileRouter);
 
 module.exports = router;

@@ -1,5 +1,4 @@
 const helpRepo = require('../repository/helpRepository');
-const { Help } = require('../models');
 
 const getHelp = async (req, res) => {
   try {
@@ -28,7 +27,10 @@ const createHelp = async (req, res) => {
   try {
     const { title, deskription } = req.body;
 
-    const create = await helpRepo.createHelp(req.body);
+    const create = await helpRepo.createHelp({
+      title: title,
+      deskription: deskription,
+    });
 
     return res.respondCreated(create, 'Success created');
   } catch (err) {
@@ -43,7 +45,15 @@ const updateHelp = async (req, res) => {
     const getByID = await helpRepo.getById(help_id);
     if (!getByID) return res.respondNotFound(`not found data with help_id =  ${help_id}`);
 
-    const updated = await helpRepo.updateHelp(req.body, help_id);
+    const { title, deskription } = req.body;
+
+    const updated = await helpRepo.updateHelp(
+      {
+        title: title,
+        deskription: deskription,
+      },
+      help_id
+    );
 
     return res.respondUpdated(updated, 'successfully updated help');
   } catch (err) {

@@ -24,7 +24,10 @@ const getUnitById = async (req, res) => {
 
 const createUnit = async (req, res) => {
   try {
-    const create = await unitRepo.createUnit(req.body);
+    const { title } = req.body;
+    const create = await unitRepo.createUnit({
+      title: title,
+    });
 
     return res.respondCreated(create, 'Success created');
   } catch (err) {
