@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 const profile = require('../controllers/profileController');
 const upload = require('../middlewares/middlewareUpload');

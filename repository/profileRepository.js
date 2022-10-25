@@ -1,23 +1,15 @@
 const { User } = require('../models');
 
 const updateUser = async (input, id) => {
-  try {
-    const update = await User.update(input, { where: { id: id } });
+  const update = await User.update(input, { where: { id } });
 
-    return update;
-  } catch (err) {
-    throw err;
-  }
+  return update;
 };
 
 const getMyProfile = async (id) => {
-  try {
-    const getProfile = await User.findOne({ where: { id: id } });
+  const getProfile = await User.findOne({ where: { id } });
 
-    return getProfile;
-  } catch (err) {
-    throw err;
-  }
+  return getProfile;
 };
 
 module.exports = {

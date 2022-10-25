@@ -9,7 +9,7 @@ const created = async (req, res, next) => {
   } catch (err) {
     return res.respondBadRequest(err.details[0].message);
   }
-  next();
+  return next();
 };
 
 module.exports = {

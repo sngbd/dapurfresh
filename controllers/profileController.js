@@ -8,24 +8,24 @@ const updateProfile = async (req, res) => {
     const { name, phone_number, address } = req.body;
 
     const file = req.file.buffer.toString('base64');
-    const namaFile = Date.now() + '-' + req.file.originalname;
+    const namaFile = `${Date.now()}-${req.file.originalname}`;
 
     const upload = await imagekit.upload({
-      file: file,
+      file,
       fileName: namaFile,
     });
 
-    let updated = await userRepository.updateUser(
+    await userRepository.updateUser(
       {
         thumbnail: upload.url,
         name,
         phone_number,
         address,
       },
-      userId.id
+      userId.id,
     );
 
-    let get = await userRepository.getMyProfile(userId.id);
+    const get = await userRepository.getMyProfile(userId.id);
 
     const data = {
       username: get.username,

@@ -17,7 +17,9 @@ const registerUser = async (req, res) => {
 
     delete req.body.password_hash;
     const { ref_code_friend, thumbnail, ...body } = req.body;
-    const response = { id, ...body, ref_code, ref_code_friend, thumbnail };
+    const response = {
+      id, ...body, ref_code, ref_code_friend, thumbnail,
+    };
 
     return res.respondCreated(response, 'user successfully registered');
   } catch (err) {
@@ -30,7 +32,7 @@ function createAccessToken(id, username) {
   return jwt.sign(
     payload,
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: process.env.ACCESS_TOKEN_EXPIRESIN }
+    { expiresIn: process.env.ACCESS_TOKEN_EXPIRESIN },
   );
 }
 
@@ -39,15 +41,15 @@ function createRefreshToken(id, username) {
   return jwt.sign(
     payload,
     process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: process.env.REFRESH_TOKEN_EXPIRESIN }
+    { expiresIn: process.env.REFRESH_TOKEN_EXPIRESIN },
   );
 }
 
 function accessTokenJSON(accessToken) {
   return {
     accessToken,
-    token_type: "Bearer",
-    expiresIn: process.env.ACCESS_TOKEN_EXPIRESIN
+    token_type: 'Bearer',
+    expiresIn: process.env.ACCESS_TOKEN_EXPIRESIN,
   };
 }
 
@@ -65,41 +67,45 @@ const login = async (req, res, next) => {
     const user = rows[0];
     const isSame = await bcrypt.compare(password, user.password_hash);
     if (isSame === false) {
-        return res.notAuthorized("username and password doesn't match");
+      return res.notAuthorized("username and password doesn't match");
     }
 
     req.user = user;
   } catch (error) {
-    console.log(error);
     return res.respondServerError();
   }
 
   return next();
-}
+};
 
 const getTokenAfterLogin = async (req, res) => {
-  const { id, username, name, phone_number, address, thumbnail } = req.user;
+  const {
+    id, username, name, phone_number, address, thumbnail,
+  } = req.user;
 
   try {
     const accessToken = createAccessToken(id, username);
     const refreshToken = createRefreshToken(id, username);
 
     res.cookie('jwt', refreshToken, {
-      httpOnly: true, sameSite: 'None',
-      secure: true, maxAge: 24 * 60 * 60 * 1000
+      httpOnly: true,
+      sameSite: 'None',
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
     });
     return res.respondSuccess({
-      user: { id, username, name, phone_number, address, thumbnail },
+      user: {
+        id, username, name, phone_number, address, thumbnail,
+      },
       accessToken: accessTokenJSON(accessToken),
       refreshToken: {
-        expiresIn: process.env.REFRESH_TOKEN_EXPIRESIN
-      }
+        expiresIn: process.env.REFRESH_TOKEN_EXPIRESIN,
+      },
     });
   } catch (error) {
-    console.log(error);
     return res.respondServerError();
   }
-}
+};
 
 const getAccessToken = async (req, res) => {
   if (!req.cookies?.jwt) return res.notAcceptable('Unauthorized');
@@ -109,21 +115,15 @@ const getAccessToken = async (req, res) => {
     return res.notAcceptable('Unauthorized');
   }
 
-  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, async (err, user) => {
-    if (err) {
-      console.log(err);
-      return res.forbidden();
-    }
+  const accessToken = async (err, user) => {
+    if (err) return res.forbidden(err.message);
+    return createAccessToken(user.id, user.username);
+  };
 
-    try {
-      const accessToken = createAccessToken(user.id, user.username);
-      return res.respondSuccess(accessTokenJSON(accessToken));
-    } catch (error) {
-      console.log(error);
-      return res.respondServerError();
-    }
-  });
-}
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, accessToken);
+
+  return res.respondSuccess(accessTokenJSON(accessToken));
+};
 
 module.exports = {
   registerUser,

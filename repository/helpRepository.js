@@ -1,53 +1,33 @@
 const { Help } = require('../models');
 
 const getHelp = async () => {
-  try {
-    const get = await Help.findAll();
+  const get = await Help.findAll();
 
-    return get;
-  } catch (err) {
-    throw err;
-  }
+  return get;
 };
 
 const getById = async (id) => {
-  try {
-    const getId = await Help.findOne({ where: { id: id } });
+  const getId = await Help.findOne({ where: { id } });
 
-    return getId;
-  } catch (err) {
-    throw err;
-  }
+  return getId;
 };
 
 const createHelp = async (input) => {
-  try {
-    const created = await Help.create(input);
+  const created = await Help.create(input);
 
-    return created;
-  } catch (err) {
-    throw err;
-  }
+  return created;
 };
 
 const updateHelp = async (input, id) => {
-  try {
-    const update = await Help.update(input, { where: { id: id } });
+  const update = await Help.update(input, { where: { id } });
 
-    return update;
-  } catch (err) {
-    throw err;
-  }
+  return update;
 };
 
 const deleteHelp = async (id) => {
-  try {
-    const deleted = await Help.destroy({ where: { id: id } });
+  const deleted = await Help.destroy({ where: { id } });
 
-    return deleted;
-  } catch (err) {
-    throw err;
-  }
+  return deleted;
 };
 
 module.exports = {

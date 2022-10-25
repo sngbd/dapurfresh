@@ -11,7 +11,7 @@ const addUpdateItem = async (req, res, next) => {
   } catch (err) {
     return res.respondBadRequest(err.details[0].message);
   }
-  next();
+  return next();
 };
 
 const deleteItem = async (req, res, next) => {
@@ -24,11 +24,10 @@ const deleteItem = async (req, res, next) => {
   } catch (err) {
     return res.respondBadRequest(err.details[0].message);
   }
-  next();
-}
+  return next();
+};
 
 module.exports = {
   addUpdateItem,
   deleteItem,
 };
-
