@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Help.init({
     title: DataTypes.STRING,
-    deskription: DataTypes.STRING
+    description: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Help',
