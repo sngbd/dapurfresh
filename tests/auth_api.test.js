@@ -113,46 +113,46 @@ describe('login valid', () => {
   });
 });
 
-describe('login not valid', () => {
-  test('username and password doesn\'t match 1', async () => {
-    await api
-      .post('/api/v1/auth/login')
-      .send(helper.usernameAndPassDoesntMatch1)
-      .expect(401)
-  });
+// describe('login not valid', () => {
+//   test('username and password doesn\'t match 1', async () => {
+//     await api
+//       .post('/api/v1/auth/login')
+//       .send(helper.usernameAndPassDoesntMatch1)
+//       .expect(401)
+//   });
 
-  test('username and password doesn\'t match 2', async () => {
-    await api
-      .post('/api/v1/auth/login')
-      .send(helper.usernameAndPassDoesntMatch2UsernameCorrect)
-      .expect(401)
-  });
+//   test('username and password doesn\'t match 2', async () => {
+//     await api
+//       .post('/api/v1/auth/login')
+//       .send(helper.usernameAndPassDoesntMatch2UsernameCorrect)
+//       .expect(401)
+//   });
 
-  test('username is missing', async () => {
-    await api
-      .post('/api/v1/auth/login')
-      .send(helper.missingUsernameLogin)
-      .expect(400)
-  });
+//   test('username is missing', async () => {
+//     await api
+//       .post('/api/v1/auth/login')
+//       .send(helper.missingUsernameLogin)
+//       .expect(400)
+//   });
 
-  test('password is missing', async () => {
-    await api
-      .post('/api/v1/auth/login')
-      .send(helper.missingPasswordLogin)
-      .expect(400)
-  });
+//   test('password is missing', async () => {
+//     await api
+//       .post('/api/v1/auth/login')
+//       .send(helper.missingPasswordLogin)
+//       .expect(400)
+//   });
 
-  test('username is not a string', async () => {
-    await api
-      .post('/api/v1/auth/login')
-      .send(helper.usernameIsNotAString)
-      .expect(400)
-  });
+//   test('username is not a string', async () => {
+//     await api
+//       .post('/api/v1/auth/login')
+//       .send(helper.usernameIsNotAString)
+//       .expect(400)
+//   });
 
-  test('password is not a string', async () => {
-    await api
-      .post('/api/v1/auth/login')
-      .send(helper.passwordIsNotAString)
-      .expect(400)
-  });
-});
+//   test('password is not a string', async () => {
+//     await api
+//       .post('/api/v1/auth/login')
+//       .send(helper.passwordIsNotAString)
+//       .expect(400)
+//   });
+// });

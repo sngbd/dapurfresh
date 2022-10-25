@@ -2,9 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 const helper = require('./helpers/response');
 const route = require('./routes');
-const cookieParser = require('cookie-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,7 +18,8 @@ app.use(helper);
 app.use(`${process.env.BASE_URL}`, route);
 
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`App run on port ${PORT}`);
 });
 
-module.exports = app
+module.exports = app;

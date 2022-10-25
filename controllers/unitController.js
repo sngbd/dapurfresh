@@ -1,4 +1,5 @@
 const unitRepo = require('../repository/unitRepository');
+
 const getUnit = async (req, res) => {
   try {
     const get = await unitRepo.getUnit();
@@ -26,7 +27,7 @@ const createUnit = async (req, res) => {
   try {
     const { title } = req.body;
     const create = await unitRepo.createUnit({
-      title: title,
+      title,
     });
 
     return res.respondCreated(create, 'Success created');
@@ -57,9 +58,9 @@ const deleteUnit = async (req, res) => {
     const getByID = await unitRepo.getById(unit_id);
     if (!getByID) return res.respondNotFound(`not found data with unit_id =  ${unit_id}`);
 
-    const deleteUnit = await unitRepo.deleteUnit(unit_id);
+    const delUnit = await unitRepo.deleteUnit(unit_id);
 
-    return res.respondDeleted(deleteUnit, `successfully deleted unit_id = ${unit_id}`);
+    return res.respondDeleted(delUnit, `successfully deleted unit_id = ${unit_id}`);
   } catch (err) {
     return res.respondServerError(err.message);
   }

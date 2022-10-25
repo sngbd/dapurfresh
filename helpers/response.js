@@ -49,13 +49,13 @@ module.exports = (req, res, next) => {
     res.respond(data, message, 401);
   };
 
-  res.forbidden = (message = "FORBIDDEN", data = undefined) => {
+  res.forbidden = (message = 'FORBIDDEN', data = undefined) => {
     res.respond(data, message, 403);
-  }
+  };
 
-  res.notAcceptable = (message = "NOT ACCEPTABLE", data = undefined) => {
+  res.notAcceptable = (message = 'NOT ACCEPTABLE', data = undefined) => {
     res.respond(data, message, 406);
-  }
+  };
 
   res.notOTP = (message = 'youre not otp!', data = null) => {
     res.respond(data, message, 401);

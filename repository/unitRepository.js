@@ -1,53 +1,33 @@
 const { Unit } = require('../models');
 
 const getUnit = async () => {
-  try {
-    const get = await Unit.findAll();
+  const get = await Unit.findAll();
 
-    return get;
-  } catch (err) {
-    throw err;
-  }
+  return get;
 };
 
 const getById = async (id) => {
-  try {
-    const getId = await Unit.findOne({ where: { id: id } });
+  const getId = await Unit.findOne({ where: { id } });
 
-    return getId;
-  } catch (err) {
-    throw err;
-  }
+  return getId;
 };
 
 const createUnit = async (input) => {
-  try {
-    const created = await Unit.create(input);
+  const created = await Unit.create(input);
 
-    return created;
-  } catch (err) {
-    throw err;
-  }
+  return created;
 };
 
 const updateUnit = async (input, id) => {
-  try {
-    const update = await Unit.update(input, { where: { id: id } });
+  const update = await Unit.update(input, { where: { id } });
 
-    return update;
-  } catch (err) {
-    throw err;
-  }
+  return update;
 };
 
 const deleteUnit = async (id) => {
-  try {
-    const deleted = await Unit.destroy({ where: { id: id } });
+  const deleted = await Unit.destroy({ where: { id } });
 
-    return deleted;
-  } catch (err) {
-    throw err;
-  }
+  return deleted;
 };
 
 module.exports = {

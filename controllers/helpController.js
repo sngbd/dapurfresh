@@ -28,8 +28,8 @@ const createHelp = async (req, res) => {
     const { title, deskription } = req.body;
 
     const create = await helpRepo.createHelp({
-      title: title,
-      deskription: deskription,
+      title,
+      deskription,
     });
 
     return res.respondCreated(create, 'Success created');
@@ -49,10 +49,10 @@ const updateHelp = async (req, res) => {
 
     const updated = await helpRepo.updateHelp(
       {
-        title: title,
-        deskription: deskription,
+        title,
+        deskription,
       },
-      help_id
+      help_id,
     );
 
     return res.respondUpdated(updated, 'successfully updated help');
@@ -68,9 +68,9 @@ const deleteHelp = async (req, res) => {
     const getByID = await helpRepo.getById(help_id);
     if (!getByID) return res.respondNotFound(`not found data with help_id =  ${help_id}`);
 
-    const deleteHelp = await helpRepo.deleteHelp(help_id);
+    const delHelp = await helpRepo.deleteHelp(help_id);
 
-    return res.respondDeleted(deleteHelp, `successfully deleted help_id = ${help_id}`);
+    return res.respondDeleted(delHelp, `successfully deleted help_id = ${help_id}`);
   } catch (err) {
     return res.respondServerError(err.message);
   }

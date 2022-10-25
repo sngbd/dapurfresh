@@ -3,6 +3,13 @@ const { User } = require('../models');
 
 const error = new Error();
 
+const find = async (json) => {
+  const rows = await User.findAll({
+    where: json,
+  });
+  return rows;
+};
+
 const generateRefCode = async () => {
   const nanoid = customAlphabet(
     'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
@@ -10,11 +17,11 @@ const generateRefCode = async () => {
   );
   const refCode = nanoid();
 
-  const user = await find({ ref_code: refCode })
+  const user = await find({ ref_code: refCode });
   if (user[0]) return generateRefCode();
 
   return refCode;
-}
+};
 
 const createUser = async (user) => {
   error.code = 400;
@@ -30,27 +37,17 @@ const createUser = async (user) => {
     }
   }
 
-  user.ref_code = await generateRefCode();
+  const newUser = user;
+  newUser.ref_code = await generateRefCode();
 
-  const [newUser, created] = await User.findOrCreate({
+  const [createdUser, created] = await User.findOrCreate({
     where: { username: user.username },
-    defaults: user,
+    defaults: newUser,
   });
 
-  if (created) return newUser;
+  if (created) return createdUser;
   error.message = 'username already exists';
   throw error;
-};
-
-const find = async (json) => {
-  try {
-    const rows = await User.findAll({
-      where: json,
-    });
-    return rows;
-  } catch (err) {
-    throw err;
-  }
 };
 
 module.exports = {
