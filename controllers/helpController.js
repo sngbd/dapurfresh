@@ -25,11 +25,11 @@ const getHelpById = async (req, res) => {
 
 const createHelp = async (req, res) => {
   try {
-    const { title, deskription } = req.body;
+    const { title, description } = req.body;
 
     const create = await helpRepo.createHelp({
       title,
-      deskription,
+      description,
     });
 
     return res.respondCreated(create, 'Success created');
@@ -45,12 +45,12 @@ const updateHelp = async (req, res) => {
     const getByID = await helpRepo.getById(help_id);
     if (!getByID) return res.respondNotFound(`not found data with help_id =  ${help_id}`);
 
-    const { title, deskription } = req.body;
+    const { title, description } = req.body;
 
     const updated = await helpRepo.updateHelp(
       {
         title,
-        deskription,
+        description,
       },
       help_id,
     );
