@@ -43,8 +43,7 @@ const createOrder = async (Orderjson) => {
     });
 
     // id of order
-    Orderjson.id = resultOrder.id;
-    Orderjson.no_order = resultOrder.no_order;
+    Orderjson = resultOrder.dataValues;
 
     // assign again from undefined
     Orderjson.order_items = order_itemsJson;
@@ -62,7 +61,8 @@ const getUserOrderLast7Days = async (user_id) => {
   date7DaysAgo.setUTCDate(dateNow.getUTCDate() - 7);
 
   const orders = await Order.findAll({
-    where: { 
+    attributes: ['id', 'transaction_date'],
+    where: {
       user_id: user_id,
       transaction_date: {
         [Op.lt]: dateNow,
@@ -70,6 +70,16 @@ const getUserOrderLast7Days = async (user_id) => {
       }
     }
   });
+
+  for (const order of orders) {
+    const orderItems = await Order_Item.findAll({
+      attributes: ['id', 'product_id'],
+      where: {
+        order_id: order.id
+      }
+    });
+    order.dataValues.orderItems = orderItems;
+  }
 
   return orders;
 }
