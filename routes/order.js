@@ -10,7 +10,7 @@ router.route('/').post(
 );
 
 // Order By User Id 
-// router.route('/user').get(orderController.getUserOrderLast7Days);
+router.route('/user').get(orderController.getUserOrderLast7Days);
 // router.route('/:id/details/user').get();
 
 // Update route status

@@ -1,5 +1,5 @@
 const { Order, Order_Item, CartItem, sequelize } = require('../models'); 
-const { Transaction, QueryTypes } = require('sequelize');
+const { Transaction, Op } = require('sequelize');
 
 const createOrder = async (Orderjson) => {
   const order_itemsJson = Orderjson.order_items;
@@ -18,7 +18,7 @@ const createOrder = async (Orderjson) => {
 
       const id = resultOrder.id;
       const no_order = Orderjson.no_order + id;
-      const resultOrderUpdated = await Order.update({ no_order }, {
+      await Order.update({ no_order }, {
         where: { id },
         transaction: tr
       });
@@ -56,21 +56,25 @@ const createOrder = async (Orderjson) => {
   }
 }
 
-// const getUserOrderLast7Days = async (user_id) => {
-//   const orders = await Order.findAll({
-//     where: { 
-//       user_id: user_id,
-//       transaction_date: {
-//         [Op.lt]: new Date(),
-//         [Op.gt]: new Date() - "0-0-7 0:0:0"
-//       }
-//     }
-//   });
+const getUserOrderLast7Days = async (user_id) => {
+  const dateNow = new Date();
+  var date7DaysAgo = new Date();
+  date7DaysAgo.setUTCDate(dateNow.getUTCDate() - 7);
 
-//   return orders;
-// }
+  const orders = await Order.findAll({
+    where: { 
+      user_id: user_id,
+      transaction_date: {
+        [Op.lt]: dateNow,
+        [Op.gt]: date7DaysAgo
+      }
+    }
+  });
+
+  return orders;
+}
 
 module.exports = {
   createOrder, 
-  // getUserOrderLast7Days
+  getUserOrderLast7Days
 };
