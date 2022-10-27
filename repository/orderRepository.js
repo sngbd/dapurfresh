@@ -60,46 +60,82 @@ const getUserOrderLast7Days = async (user_id) => {
   var date7DaysAgo = new Date();
   date7DaysAgo.setUTCDate(dateNow.getUTCDate() - 7);
 
-  const orders = await Order.findAll({
-    attributes: ['id', 'transaction_date', "no_order"],
-    where: {
-      user_id,
-      transaction_date: {
-        [Op.lt]: dateNow,
-        [Op.gt]: date7DaysAgo
-      }
-    }
-  });
-
-  for (const order of orders) {
-    const orderItems = await Order_Item.findAll({
-      attributes: ['id', 'product_id'],
+  try {
+    const orders = await Order.findAll({
+      attributes: ['id', 'transaction_date', "no_order"],
       where: {
-        order_id: order.id
+        user_id,
+        transaction_date: {
+          [Op.lt]: dateNow,
+          [Op.gt]: date7DaysAgo
+        }
       }
     });
-    order.dataValues.orderItems = orderItems;
+  
+    for (const order of orders) {
+      const orderItems = await Order_Item.findAll({
+        attributes: ['id', 'product_id'],
+        where: {
+          order_id: order.id
+        }
+      });
+      order.dataValues.orderItems = orderItems;
+    }  
+    return orders;
+  } catch (error) {
+    throw error;
   }
-
-  return orders;
 }
 
-const getUserOrderDetails = async (id, user_id) => {
-  const order = await Order.findOne({
-    where: { id, user_id }
-  });
-
-  const orderItems = await Order_Item.findAll({
-    where: {
-      order_id: id,
+const getUserOrderDetail = async (id, user_id) => {
+  try {
+    const order = await Order.findOne({
+      where: { id, user_id }
+    });
+  
+    const orderItems = await Order_Item.findAll({
+      where: {
+        order_id: id,
+      }
+    });
+    if (order !== null) {
+      order.dataValues.orderItems = orderItems;
     }
-  });
-  order.dataValues.orderItems = orderItems;
-  return order;
+    return order;
+  } catch (error) {
+    throw error;
+  }
+}
+
+const updateUserOrderStatus = async (id, user_id, orderUpdateJson) => {
+  try {
+    const [updatedRowsCount] = await Order.update(
+      orderUpdateJson, {
+        where: { id, user_id }
+      }
+    );
+    if (updatedRowsCount <= 0) {
+      return null;
+    }
+    
+    const updatedRows = await Order.findByPk(id);
+    const orderItems = await Order_Item.findAll({
+      where: {
+        order_id: id,
+      }
+    });
+    if (updatedRows !== null) {
+      updatedRows.dataValues.orderItems = orderItems;
+    }
+    return updatedRows;
+  } catch (error) {
+    throw error;
+  }
 }
 
 module.exports = {
   createOrder, 
   getUserOrderLast7Days,
-  getUserOrderDetails
+  getUserOrderDetail,
+  updateUserOrderStatus
 };
