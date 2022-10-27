@@ -6,25 +6,28 @@ const createOrder = async (Orderjson) => {
   // to create order, set to undefined
   Orderjson.order_items = undefined;
 
-  // Orderjson.no_order += order_id;
-
-  // for (const order_item of order_itemsJson) {
-  //   // set order_id in every order item
-  //   order_item.order_id = order_id;
-  // }
-
   try {
     // Make a transaction
-    const resultOrder = await sequelize.transaction({
-      isolationLevel: Transaction.ISOLATION_LEVELS.READ_UNCOMMITTED
+    var resultOrder = await sequelize.transaction({
+      isolationLevel: Transaction.ISOLATION_LEVELS.READ_COMMITTED
     }, async (tr) => {
       // create tuple order in orders table
-      const resultOrder = await Order.create(Orderjson, {
+      var resultOrder = await Order.create(Orderjson, {
         transaction: tr
       });
 
+      const id = resultOrder.id;
+      const no_order = Orderjson.no_order + id;
+      const resultOrderUpdated = await Order.update({ no_order }, {
+        where: { id },
+        transaction: tr
+      });
+      resultOrder.no_order = no_order;
+
       // create tuple item order in order_items table
       for (const order_item of order_itemsJson) {
+        // set order_id in every order item
+        order_item.order_id = id;
         await Order_Item.create(order_item, {
           transaction: tr
         });
@@ -41,32 +44,33 @@ const createOrder = async (Orderjson) => {
 
     // id of order
     Orderjson.id = resultOrder.id;
+    Orderjson.no_order = resultOrder.no_order;
 
     // assign again from undefined
     Orderjson.order_items = order_itemsJson;
+
 
     return Orderjson;
   } catch (err) {
     throw err;
   }
-};
-
-const idOrderAfterInserted = async () => {
-  const seq = await sequelize.query("SELECT last_value, is_called FROM \"Orders_id_seq\"", { type: QueryTypes.SELECT });
-
-  seq[0].last_value = parseInt(seq[0].last_value);
-
-  if (seq[0].last_value === 1) {
-    if (seq[0].is_called === false) {
-      return 1;
-    } else {
-      return 2
-    }
-  }
-
-  return seq[0].last_value + 1;
 }
 
+// const getUserOrderLast7Days = async (user_id) => {
+//   const orders = await Order.findAll({
+//     where: { 
+//       user_id: user_id,
+//       transaction_date: {
+//         [Op.lt]: new Date(),
+//         [Op.gt]: new Date() - "0-0-7 0:0:0"
+//       }
+//     }
+//   });
+
+//   return orders;
+// }
+
 module.exports = {
-  createOrder, idOrderAfterInserted
+  createOrder, 
+  // getUserOrderLast7Days
 };
