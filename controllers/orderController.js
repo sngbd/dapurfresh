@@ -32,8 +32,21 @@ const createOrder = async (req, res) => {
 }
 const getUserOrderLast7Days = async (req, res) => {
     try {
-        const Order = await orderRepository.getUserOrderLast7Days(req.user.id);
-        return res.respondGet(Order);
+        const orders = await orderRepository.getUserOrderLast7Days(req.user.id);
+        return res.respondGet(orders);
+    } catch (error) {
+        return res.respondServerError(error.message);
+    }
+}
+
+const getUserOrderDetails = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const order = await orderRepository.getUserOrderDetails(id, req.user.id);
+        if (order === null) {
+            return res.respondNotFound(`Order with id '${id}' and user id '${req.user.id}' not found`);
+        }
+        return res.respondGet(order);
     } catch (error) {
         return res.respondServerError(error.message);
     }
@@ -41,5 +54,6 @@ const getUserOrderLast7Days = async (req, res) => {
 
 module.exports = {
     createOrder,
-    getUserOrderLast7Days
+    getUserOrderLast7Days,
+    getUserOrderDetails
 }

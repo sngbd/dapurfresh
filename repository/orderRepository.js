@@ -61,9 +61,9 @@ const getUserOrderLast7Days = async (user_id) => {
   date7DaysAgo.setUTCDate(dateNow.getUTCDate() - 7);
 
   const orders = await Order.findAll({
-    attributes: ['id', 'transaction_date'],
+    attributes: ['id', 'transaction_date', "no_order"],
     where: {
-      user_id: user_id,
+      user_id,
       transaction_date: {
         [Op.lt]: dateNow,
         [Op.gt]: date7DaysAgo
@@ -84,7 +84,22 @@ const getUserOrderLast7Days = async (user_id) => {
   return orders;
 }
 
+const getUserOrderDetails = async (id, user_id) => {
+  const order = await Order.findOne({
+    where: { id, user_id }
+  });
+
+  const orderItems = await Order_Item.findAll({
+    where: {
+      order_id: id,
+    }
+  });
+  order.dataValues.orderItems = orderItems;
+  return order;
+}
+
 module.exports = {
   createOrder, 
-  getUserOrderLast7Days
+  getUserOrderLast7Days,
+  getUserOrderDetails
 };
