@@ -15,7 +15,7 @@ module.exports = {
       'Units',
       [
         {
-          title: 'Ikat',
+          title: 'ikat',
           createdAt: new Date(),
           updatedAt: new Date(),
         },

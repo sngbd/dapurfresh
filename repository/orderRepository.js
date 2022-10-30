@@ -64,23 +64,19 @@ const getUserOrderLast7Days = async (user_id) => {
     const orders = await Order.findAll({
       attributes: ['id', 'transaction_date', "no_order"],
       where: {
-        user_id,
+        user_id:1,
         transaction_date: {
           [Op.lt]: dateNow,
           [Op.gt]: date7DaysAgo
         }
-      }
+      },
+      include: [{
+        model: Order_Item,
+        attributes: ['id', 'product_id', 'product_name'],
+        required: false,
+      }]
     });
-  
-    for (const order of orders) {
-      const orderItems = await Order_Item.findAll({
-        attributes: ['id', 'product_id'],
-        where: {
-          order_id: order.id
-        }
-      });
-      order.dataValues.orderItems = orderItems;
-    }  
+
     return orders;
   } catch (error) {
     throw error;
@@ -89,19 +85,33 @@ const getUserOrderLast7Days = async (user_id) => {
 
 const getUserOrderDetail = async (id, user_id) => {
   try {
-    const order = await Order.findOne({
-      where: { id, user_id }
-    });
-  
-    const orderItems = await Order_Item.findAll({
+    const orders = await Order.findOne({
+      attributes: [
+        'id', 
+        'name', 
+        'phone_number',
+        'address',
+        'transaction_date', 
+        'sub_total',
+        'delivery_cost',
+        'total',
+        'note',
+        'user_id',
+        'status',
+        'no_order',
+        'createdAt',
+        'updatedAt'
+      ],
       where: {
-        order_id: id,
-      }
+        id,
+        user_id,
+      },
+      include: [{
+        model: Order_Item,
+        required: false,
+      }]
     });
-    if (order !== null) {
-      order.dataValues.orderItems = orderItems;
-    }
-    return order;
+    return orders;
   } catch (error) {
     throw error;
   }
@@ -117,16 +127,34 @@ const updateUserOrderStatus = async (id, user_id, orderUpdateJson) => {
     if (updatedRowsCount <= 0) {
       return null;
     }
-    
-    const updatedRows = await Order.findByPk(id);
-    const orderItems = await Order_Item.findAll({
+
+    const updatedRows = await Order.findOne({
+      attributes: [
+        'id', 
+        'name', 
+        'phone_number',
+        'address',
+        'transaction_date', 
+        'sub_total',
+        'delivery_cost',
+        'total',
+        'note',
+        'user_id',
+        'status',
+        'no_order',
+        'createdAt',
+        'updatedAt'
+      ],
       where: {
-        order_id: id,
-      }
+        id,
+        user_id,
+      },
+      include: [{
+        model: Order_Item,
+        required: false,
+      }]
     });
-    if (updatedRows !== null) {
-      updatedRows.dataValues.orderItems = orderItems;
-    }
+
     return updatedRows;
   } catch (error) {
     throw error;

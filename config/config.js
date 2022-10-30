@@ -12,6 +12,15 @@ module.exports = {
     database: DB_NAME,
     host: DB_HOST,
     dialect: DB_DIALECT,
+    // Use a different storage. Default: none
+    seederStorage: 'json',
+    // Use a different file name. Default: sequelize-data.json
+    seederStoragePath: 'sequelize-data.json',
+
+    // Use a different storage type. Default: sequelize
+    migrationStorage: 'json',
+    // Use a different file name. Default: sequelize-meta.json
+    migrationStoragePath: 'sequelize-meta.json',
   },
   test: {
     username: DB_TEST_USERNAME,
@@ -19,6 +28,15 @@ module.exports = {
     database: DB_TEST_NAME,
     host: DB_TEST_HOST,
     dialect: DB_TEST_DIALECT,
+    // Use a different storage. Default: none
+    seederStorage: 'json',
+    // Use a different file name. Default: sequelize-data.json
+    seederStoragePath: 'sequelize-data.json',
+
+    // Use a different storage type. Default: sequelize
+    "migrationStorage": "json",
+    // Use a different file name. Default: sequelize-meta.json
+    "migrationStoragePath": "sequelize-meta.json",
   },
   production: {
     use_env_variable: 'DATABASE_URL',
