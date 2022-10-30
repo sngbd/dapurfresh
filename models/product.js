@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
         as: 'unit',
       });
       Product.belongsTo(Category, {
-        foreignKey: 'category_id'
+        foreignKey: 'category_id',
+        targetKey : 'id'
       })
       this.belongsToMany(User, { through: 'Cart_Item' });
     }
@@ -38,4 +39,5 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   return Product;
+
 };

@@ -12,6 +12,10 @@ const getResult = () => {
       }
     }
   )
+  return get
+}
+module.exports = {
+  getResult
 }
 /* Querynya :
   SELECT p.product_id, title
@@ -20,8 +24,11 @@ const getResult = () => {
  
 ATAU 
 
-  SELECT * from "Products" where "Products".id in (	SELECT product_id from "Order_Items" as oi JOIN "Orders" as o ON o.id = oi.order_id
-  WHERE Status = 'Proses' OR Status = 'Selesai'
-  GROUP BY product_id
-  ORDER By COUNT(product_id) desc);
+  SELECT * from "Products" where "Products".id in 
+  (	
+    SELECT product_id from "Order_Items" as oi JOIN "Orders" as o ON o.id = oi.order_id)
+    WHERE Status = 'Proses' OR Status = 'Selesai'
+    GROUP BY product_id
+    ORDER By COUNT(product_id) desc
+  );
  */
