@@ -4,14 +4,7 @@ const orderRepository = require('../repository/orderRepository');
 
 const createOrder = async (req, res) => {
   try {
-    // calculate sub_total and total cost
-    const order_items = req.body.order_items;
-    var sub_total = 0;
-    for (const order_item of order_items) {
-      sub_total += order_item.price;
-    }
-    req.body.total = sub_total + req.body.delivery_cost;
-    req.body.sub_total = sub_total;
+
 
     // assign no_order
     const tr_date = new Date(req.body.transaction_date);
