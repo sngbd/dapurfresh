@@ -23,8 +23,30 @@ const getByIdProduct = async (req, res) => {
     return res.respondServerError(err.message);
   }
 };
-
+const UpdateProduct = async (req, res)=> {
+  try {
+    const product_id = req.params.id || req.body.product_id;
+    const product = await productRepository.getByIdProduct(product_id);
+    if (!product) return res.respondNotFound(`not found data with product_id = ${product_id}`);
+    const update = await productRepository.updateProduct(product_id, req.body);
+    return res.respondCreated(req.body, 'Product updated successfully')
+  }
+  catch (err){
+    return res.respondServerError(err.message);
+  }
+}
+const InsertProduct = async (req, res)=> {
+  try {
+    const insert = await productRepository.newProduct(req.body);
+    return insert.dataValues;
+  }
+  catch {
+    return res.respondServerError(err.message)
+  }
+}
 module.exports = {
   getProduct,
   getByIdProduct,
+  UpdateProduct,
+  InsertProduct
 };

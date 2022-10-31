@@ -38,12 +38,7 @@ const getByIdProduct = async (id) => {
 //   thumbnail
 //}
 const updateProduct = async (product_id, newItem) => {
-  const product = await Product.findOne({
-    where: {
-      id: product_id
-    }
-  })
-  console.log(product)
+
   try {
     const update = await Product.update(
       {
@@ -104,22 +99,22 @@ const newProduct = async (item)=> {
     console.log(err);
   }
 }
-const test = async ()=> {
-  const item = {
-    title: 'Kangkung',
-    category_id : 1,
-    price : 5000,
-    stock : 5,
-    qty_unit: 1,
-    unit_id : 1,
-    promo : 5,
-    max_promo : 3,
-    info : '1 wortel setara kurang lebih 500 gram'
-  }
-  const newprod = await newProduct(item)
-  console.log(newprod)
-}
-test()
+// const test = async ()=> {
+//   const item = {
+//     title: 'Kangkung',
+//     category_id : 1,
+//     price : 5000,
+//     stock : 5,
+//     qty_unit: 1,
+//     unit_id : 1,
+//     promo : 5,
+//     max_promo : 3,
+//     info : '1 wortel setara kurang lebih 500 gram'
+//   }
+//   const newprod = await newProduct(item)
+//   console.log(newprod)
+// }
+// test()
 module.exports = {
   getProduct,
   getByIdProduct,
