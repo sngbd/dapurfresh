@@ -247,6 +247,227 @@
 			]
 		},
 		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "updated profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Pictures/05007000-photo-logo-php-elephpant.png"
+								},
+								{
+									"key": "name",
+									"value": "Syaiful",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "0821451",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Kudus",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}/profile",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/ASUS/Pictures/8f2c5f3fdde03deee6c3caf623908fc2.jpg"
+										},
+										{
+											"key": "name",
+											"value": "Syaiful",
+											"type": "text"
+										},
+										{
+											"key": "phone_number",
+											"value": "0821451",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Kudus",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseurl}}/profile",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "293"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"125-4pkw65Nfa2pOzF6HvvNNCPTwG0k\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:27:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success Update Data\",\n    \"data\": {\n        \"username\": \"BEKEL12211\",\n        \"name\": \"Syaiful\",\n        \"phone_number\": \"0821451\",\n        \"address\": \"Kudus\",\n        \"ref_code\": \"CQ0W9OE7\",\n        \"ref_code_friend\": null,\n        \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/1667204831365-8f2c5f3fdde03deee6c3caf623908fc2_Fds-tD00t.jpg\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/profile",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/profile",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "296"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"128-F/nutqg83Do2cDtHod0cD4fKVEE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:27:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"success get my profile\",\n    \"data\": {\n        \"username\": \"BEKEL12211\",\n        \"name\": \"Syaiful\",\n        \"phone_number\": \"0821451\",\n        \"address\": \"Kudus\",\n        \"ref_code\": \"CQ0W9OE7\",\n        \"ref_code_friend\": null,\n        \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/1667204831365-8f2c5f3fdde03deee6c3caf623908fc2_Fds-tD00t.jpg\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Authentication",
 			"item": [
 				{
