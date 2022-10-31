@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
         as: 'unit',
       });
       Product.belongsTo(Category, {
-        foreignKey: 'category_id'
+        foreignKey: 'category_id',
+        targetKey : 'id'
       });
       Product.hasMany(Order_Item, {
         foreignKey: 'order_id',
@@ -41,4 +42,5 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   return Product;
+
 };

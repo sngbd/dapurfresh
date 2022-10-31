@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "00014171-120c-433d-b163-fdd249814a89",
+		"_postman_id": "d608ddd8-a46b-42f4-ae5a-7bb0be1ec566",
 		"name": "DapurFresh",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23878865"
@@ -17,7 +17,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJCRUtFTDEyMjExIiwiaWF0IjoxNjY2NjgyNTE5LCJleHAiOjE2NjY2OTMzMTl9.OhIMTFucMJ7MNlTx06bG_OUHSGUphP9cxhr-_qtZHo8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJCRUtFTDEyMjExIiwiaWF0IjoxNjY2NjAzNDYwLCJleHAiOjE2NjY2MTQyNjB9.m65S3YSDOBxWJpFAB-pLJ4BLxvyX_Ew4fg3jhHdXySw",
 									"type": "string"
 								}
 							]
@@ -41,12 +41,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/api/v1/product",
-									"protocol": "http",
+									"raw": "https://dapurfresh-kel1.herokuapp.com/api/v1/product",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"dapurfresh-kel1",
+										"herokuapp",
+										"com"
 									],
-									"port": "3000",
 									"path": [
 										"api",
 										"v1",
@@ -99,16 +100,6 @@
 				{
 					"name": "Get by ID",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -129,12 +120,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/api/v1/product/1",
-									"protocol": "http",
+									"raw": "https://dapurfresh-kel1.herokuapp.com/api/v1/product/1",
+									"protocol": "https",
 									"host": [
-										"localhost"
+										"dapurfresh-kel1",
+										"herokuapp",
+										"com"
 									],
-									"port": "3000",
 									"path": [
 										"api",
 										"v1",
@@ -240,6 +232,238 @@
 							"body": "{\n    \"status\": false,\n    \"message\": \"not found data with product_id =  10\",\n    \"data\": null\n}"
 						}
 					]
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "updated profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Pictures/05007000-photo-logo-php-elephpant.png"
+								},
+								{
+									"key": "name",
+									"value": "Syaiful",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "0821451",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Kudus",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}/profile",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/ASUS/Pictures/8f2c5f3fdde03deee6c3caf623908fc2.jpg"
+										},
+										{
+											"key": "name",
+											"value": "Syaiful",
+											"type": "text"
+										},
+										{
+											"key": "phone_number",
+											"value": "0821451",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Kudus",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseurl}}/profile",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "293"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"125-4pkw65Nfa2pOzF6HvvNNCPTwG0k\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:27:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success Update Data\",\n    \"data\": {\n        \"username\": \"BEKEL12211\",\n        \"name\": \"Syaiful\",\n        \"phone_number\": \"0821451\",\n        \"address\": \"Kudus\",\n        \"ref_code\": \"CQ0W9OE7\",\n        \"ref_code_friend\": null,\n        \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/1667204831365-8f2c5f3fdde03deee6c3caf623908fc2_Fds-tD00t.jpg\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/profile",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/profile",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "296"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"128-F/nutqg83Do2cDtHod0cD4fKVEE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 08:27:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"success get my profile\",\n    \"data\": {\n        \"username\": \"BEKEL12211\",\n        \"name\": \"Syaiful\",\n        \"phone_number\": \"0821451\",\n        \"address\": \"Kudus\",\n        \"ref_code\": \"CQ0W9OE7\",\n        \"ref_code_friend\": null,\n        \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/1667204831365-8f2c5f3fdde03deee6c3caf623908fc2_Fds-tD00t.jpg\"\n    }\n}"
+						}
+					]
 				}
 			]
 		},
@@ -253,7 +477,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompok1@\",\r\n    \"ref_code_friend\": \"PHXSEIQZ\"\r\n}",
+							"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompok1@\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -476,7 +700,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"kelompok1\",\r\n    \"password\": \"Kelompok1#\"\r\n}",
+							"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompok1@\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -494,128 +718,7 @@
 							]
 						}
 					},
-					"response": [
-						{
-							"name": "200",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompok1@\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseurl}}/auth/login",
-									"host": [
-										"{{baseurl}}"
-									],
-									"path": [
-										"auth",
-										"login"
-									]
-								}
-							},
-							"_postman_previewlanguage": null,
-							"header": null,
-							"cookie": [],
-							"body": null
-						},
-						{
-							"name": "401 doesnt match",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"qwer5*k43&?32\",\r\n    \"password\": \"Bekelompok1@\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseurl}}/auth/login",
-									"host": [
-										"{{baseurl}}"
-									],
-									"path": [
-										"auth",
-										"login"
-									]
-								}
-							},
-							"_postman_previewlanguage": null,
-							"header": null,
-							"cookie": [],
-							"body": null
-						},
-						{
-							"name": "400 username is missing",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"password\": \"Bekelompok1@\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseurl}}/auth/login",
-									"host": [
-										"{{baseurl}}"
-									],
-									"path": [
-										"auth",
-										"login"
-									]
-								}
-							},
-							"_postman_previewlanguage": null,
-							"header": null,
-							"cookie": [],
-							"body": null
-						},
-						{
-							"name": "400 password is missing",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"qwer5*k43&?32\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseurl}}/auth/login",
-									"host": [
-										"{{baseurl}}"
-									],
-									"path": [
-										"auth",
-										"login"
-									]
-								}
-							},
-							"_postman_previewlanguage": null,
-							"header": null,
-							"cookie": [],
-							"body": null
-						}
-					]
+					"response": []
 				},
 				{
 					"name": "Token",
@@ -737,7 +840,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": true,\n    \"message\": \"success get All data!\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"pemensan\",\n            \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\",\n            \"createdAt\": \"2022-10-20T01:13:52.466Z\",\n            \"updatedAt\": \"2022-10-20T01:13:52.466Z\"\n        }\n    ]\n}"
+							"body": "{\n    \"status\": true,\n    \"message\": \"success get All data!\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"pemensan\",\n            \"description\": \"1. Cari Produk yang kamu inginkan <br>\",\n            \"createdAt\": \"2022-10-20T01:13:52.466Z\",\n            \"updatedAt\": \"2022-10-20T01:13:52.466Z\"\n        }\n    ]\n}"
 						}
 					]
 				},
@@ -811,7 +914,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": true,\n    \"message\": \"success get All data!\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"pemensan\",\n        \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\",\n        \"createdAt\": \"2022-10-20T01:13:52.466Z\",\n        \"updatedAt\": \"2022-10-20T01:13:52.466Z\"\n    }\n}"
+							"body": "{\n    \"status\": true,\n    \"message\": \"success get All data!\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"pemensan\",\n        \"description\": \"1. Cari Produk yang kamu inginkan <br>\",\n        \"createdAt\": \"2022-10-20T01:13:52.466Z\",\n        \"updatedAt\": \"2022-10-20T01:13:52.466Z\"\n    }\n}"
 						},
 						{
 							"name": "get id",
@@ -894,7 +997,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"pemensan\",\r\n    \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
+							"raw": "{\r\n    \"title\": \"pemensan\",\r\n    \"description\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -919,7 +1022,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"title\": \"pemensan\",\r\n    \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
+									"raw": "{\r\n    \"title\": \"pemensan\",\r\n    \"description\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -974,7 +1077,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": true,\n    \"message\": \"Success created\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"pemensan\",\n        \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\",\n        \"updatedAt\": \"2022-10-20T01:04:02.056Z\",\n        \"createdAt\": \"2022-10-20T01:04:02.056Z\"\n    }\n}"
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success created\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"pemensan\",\n        \"description\": \"1. Cari Produk yang kamu inginkan <br>\",\n        \"updatedAt\": \"2022-10-20T01:04:02.056Z\",\n        \"createdAt\": \"2022-10-20T01:04:02.056Z\"\n    }\n}"
 						},
 						{
 							"name": "400",
@@ -983,7 +1086,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
+									"raw": "{\r\n    \"description\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1049,7 +1152,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"pemensan1\",\r\n    \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
+							"raw": "{\r\n    \"title\": \"pemensan1\",\r\n    \"description\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1075,7 +1178,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"title\": \"pemensan1\",\r\n    \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
+									"raw": "{\r\n    \"title\": \"pemensan1\",\r\n    \"description\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1140,7 +1243,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"title\": \"pemensan1\",\r\n    \"deskription\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
+									"raw": "{\r\n    \"title\": \"pemensan1\",\r\n    \"description\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1379,15 +1482,6 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "{{baseurl}}/cart",
 									"host": [
@@ -1902,15 +1996,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/api/v1/cart",
-									"protocol": "http",
+									"raw": "{{baseurl}}/cart",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3000",
 									"path": [
-										"api",
-										"v1",
 										"cart"
 									]
 								}
@@ -2135,15 +2225,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/api/v1/cart",
-									"protocol": "http",
+									"raw": "{{baseurl}}/cart",
 									"host": [
-										"localhost"
+										"{{baseurl}}"
 									],
-									"port": "3000",
 									"path": [
-										"api",
-										"v1",
 										"cart"
 									]
 								}
@@ -2257,21 +2343,204 @@
 			]
 		},
 		{
-			"name": "Order",
+			"name": "Category",
 			"item": [
 				{
-					"name": "Add Order",
+					"name": "get",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJrZWxvbXBvazEiLCJpYXQiOjE2NjcxODMxMTEsImV4cCI6MTY2NzI2OTUxMX0.eJb_veiOfh-IXVnaDEURcLb81x_kgYcRcqux0FGSeX8",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
 						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/category",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/v1/category",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1630"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"65e-d2knTXGDV1mKD2UBGVtLiNx3csM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 07:41:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"success get All data!\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"Buah\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/Buah-buah-an_ouZnn5ocs.jpeg?ik-sdk-version=javascript-1.4.3&updatedAt=1666605048298\",\n            \"createdAt\": \"2022-10-31T07:41:46.113Z\",\n            \"updatedAt\": \"2022-10-31T07:41:46.113Z\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"Bumbu\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/5-merek-bumbu-masak-ini-ternyata-buatan-anak-indonesia-DtuqK7iJWY_owJybDstFJ.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1666605187611\",\n            \"createdAt\": \"2022-10-31T07:41:46.113Z\",\n            \"updatedAt\": \"2022-10-31T07:41:46.113Z\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Sayur dan Kacang\",\n            \"thumbnail\": \"https://ik.imagekit.io/4jkjrz9tf/Importance-of-Green-Vegetables_D_xEEx2Rj.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1666338047405\",\n            \"createdAt\": \"2022-10-31T07:41:46.113Z\",\n            \"updatedAt\": \"2022-10-31T07:41:46.113Z\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Sembako\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/ee6ccad1dc03860daa67e4c413f9b683_omW_i-bwIo.jpeg?ik-sdk-version=javascript-1.4.3&updatedAt=1666605188514\",\n            \"createdAt\": \"2022-10-31T07:41:46.113Z\",\n            \"updatedAt\": \"2022-10-31T07:41:46.113Z\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"Lauk Olahan\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/kenyangmakan-20200830-104650-0-67eb4c84104311f114e7e38a2edf1147_600x400_yCQUGvJh4E.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1666605187383\",\n            \"createdAt\": \"2022-10-31T07:41:46.113Z\",\n            \"updatedAt\": \"2022-10-31T07:41:46.113Z\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"Ikan\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/5d3a73e2e11e9_I4vSfPLfue.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1666605187433\",\n            \"createdAt\": \"2022-10-31T07:41:46.113Z\",\n            \"updatedAt\": \"2022-10-31T07:41:46.113Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/category/:id",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"category",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/v1/category/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"category",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "289"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"121-QamnXM1tfL+gMRffF0vAlvNjgD0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 07:46:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"success get All data!\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"Buah\",\n        \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/Buah-buah-an_ouZnn5ocs.jpeg?ik-sdk-version=javascript-1.4.3&updatedAt=1666605048298\",\n        \"createdAt\": \"2022-10-31T07:41:46.113Z\",\n        \"updatedAt\": \"2022-10-31T07:41:46.113Z\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Add Order",
+					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -2301,7 +2570,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Kelompok1\",\r\n    \"phone_number\": \"05677231546\",\r\n    \"address\": \"Jl. Mangga 3\",\r\n    \"transaction_date\": \"2022-10-26 12:32:05\",\r\n    \"delivery_cost\": 3000,\r\n    \"note\": \"Something\",\r\n    \"user_id\": 1,\r\n    \"status\": \"Proses\",\r\n    \"order_items\": [\r\n        {\r\n            \"product_id\": 1,\r\n            \"qty\": 4\r\n        },\r\n        {\r\n            \"product_id\": 2,\r\n            \"qty\": 8\r\n        },\r\n        {\r\n            \"product_id\": 3,\r\n            \"qty\": 4\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n\t\"name\": \"Kelompok1\",\r\n\t\"phone_number\": \"05677231546\",\r\n\t\"address\": \"Jl. Mangga 3\",\r\n  \"transaction_date\": \"2022-10-26 12:32:05\",\r\n\t\"delivery_cost\": 3000,\r\n    \"note\": \"Something\",\r\n\t\"user_id\": 1,\r\n    \"status\": \"Proses\",\r\n\t\"order_items\": [{\r\n\t\t\"product_id\": 1,\r\n\t\t\"qty\": 4\r\n\t},\r\n\t{\r\n\t\t\"product_id\": 2,\r\n\t\t\"qty\": 8\r\n\t},{\r\n\t\t\"product_id\": 3,\r\n\t\t\"qty\": 4\r\n\t}]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2318,28 +2587,24 @@
 									]
 								}
 							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
 							"cookie": [],
-							"body": "{\r\n    \"status\": true,\r\n    \"message\": \"Order created\",\r\n    \"data\": {\r\n        \"id\": 20,\r\n        \"name\": \"Kelompok1\",\r\n        \"phone_number\": \"05677231546\",\r\n        \"address\": \"Jl. Mangga 3\",\r\n        \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n        \"delivery_cost\": 3000,\r\n        \"note\": \"Something\",\r\n        \"user_id\": 1,\r\n        \"status\": \"Proses\",\r\n        \"no_order\": \"OR-2022-10-26-20\",\r\n        \"total\": 171000,\r\n        \"sub_total\": 168000,\r\n        \"updatedAt\": \"2022-10-31T02:25:47.171Z\",\r\n        \"createdAt\": \"2022-10-31T02:25:47.171Z\",\r\n        \"order_items\": [\r\n            {\r\n                \"product_id\": 1,\r\n                \"qty\": 4,\r\n                \"product_name\": \"Kol\",\r\n                \"unit_per_qty\": \"1 kg\",\r\n                \"price\": 24000,\r\n                \"order_id\": 20\r\n            },\r\n            {\r\n                \"product_id\": 2,\r\n                \"qty\": 8,\r\n                \"product_name\": \"Belimbing\",\r\n                \"unit_per_qty\": \"1 kg\",\r\n                \"price\": 120000,\r\n                \"order_id\": 20\r\n            },\r\n            {\r\n                \"product_id\": 3,\r\n                \"qty\": 4,\r\n                \"product_name\": \"Wortel\",\r\n                \"unit_per_qty\": \"500 gr\",\r\n                \"price\": 24000,\r\n                \"order_id\": 20\r\n            }\r\n        ]\r\n    }\r\n}"
+							"body": "{\n    \"status\": true,\n    \"message\": \"Order created\",\n    \"data\": {\n        \"id\": 20,\n        \"name\": \"Kelompok1\",\n        \"phone_number\": \"05677231546\",\n        \"address\": \"Jl. Mangga 3\",\n        \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\n        \"delivery_cost\": 3000,\n        \"note\": \"Something\",\n        \"user_id\": 1,\n        \"status\": \"Proses\",\n        \"no_order\": \"OR-2022-10-26-20\",\n        \"total\": 171000,\n        \"sub_total\": 168000,\n        \"updatedAt\": \"2022-10-31T02:25:47.171Z\",\n        \"createdAt\": \"2022-10-31T02:25:47.171Z\",\n        \"order_items\": [\n            {\n                \"product_id\": 1,\n                \"qty\": 4,\n                \"product_name\": \"Kol\",\n                \"unit_per_qty\": \"1 kg\",\n                \"price\": 24000,\n                \"order_id\": 20\n            },\n            {\n                \"product_id\": 2,\n                \"qty\": 8,\n                \"product_name\": \"Belimbing\",\n                \"unit_per_qty\": \"1 kg\",\n                \"price\": 120000,\n                \"order_id\": 20\n            },\n            {\n                \"product_id\": 3,\n                \"qty\": 4,\n                \"product_name\": \"Wortel\",\n                \"unit_per_qty\": \"500 gr\",\n                \"price\": 24000,\n                \"order_id\": 20\n            }\n        ]\n    }\n}"
 						}
 					]
 				},
 				{
 					"name": "Get User Order Last 7 days",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJrZWxvbXBvazEiLCJpYXQiOjE2NjcxODMxMTEsImV4cCI6MTY2NzI2OTUxMX0.eJb_veiOfh-IXVnaDEURcLb81x_kgYcRcqux0FGSeX8",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2372,8 +2637,16 @@
 									]
 								}
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
 							"cookie": [],
 							"body": "{\r\n    \"status\": true,\r\n    \"message\": \"success get All data!\",\r\n    \"data\": [\r\n        {\r\n            \"id\": 5,\r\n            \"transaction_date\": \"2022-10-25 00:28:34.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-25-9\"\r\n        },\r\n        {\r\n            \"id\": 6,\r\n            \"transaction_date\": \"2022-10-25 03:43:07.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-25-10\"\r\n        },\r\n        {\r\n            \"id\": 7,\r\n            \"transaction_date\": \"2022-10-25 10:00:02.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-25-11\"\r\n        },\r\n        {\r\n            \"id\": 8,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-8\"\r\n        },\r\n        {\r\n            \"id\": 11,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-11\"\r\n        },\r\n        {\r\n            \"id\": 12,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-12\"\r\n        },\r\n        {\r\n            \"id\": 14,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-14\"\r\n        },\r\n        {\r\n            \"id\": 15,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-15\"\r\n        },\r\n        {\r\n            \"id\": 16,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-16\"\r\n        },\r\n        {\r\n            \"id\": 17,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-17\"\r\n        },\r\n        {\r\n            \"id\": 18,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-18\"\r\n        },\r\n        {\r\n            \"id\": 19,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-19\"\r\n        },\r\n        {\r\n            \"id\": 13,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-13\"\r\n        },\r\n        {\r\n            \"id\": 20,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-20\"\r\n        }\r\n    ]\r\n}"
 						}
@@ -2382,16 +2655,6 @@
 				{
 					"name": "Get Single User Order Detail By Id",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJrZWxvbXBvazEiLCJpYXQiOjE2NjcxODMxMTEsImV4cCI6MTY2NzI2OTUxMX0.eJb_veiOfh-IXVnaDEURcLb81x_kgYcRcqux0FGSeX8",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2426,8 +2689,16 @@
 									]
 								}
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
 							"cookie": [],
 							"body": "{\r\n    \"status\": true,\r\n    \"message\": \"success get All data!\",\r\n    \"data\": {\r\n        \"id\": 7,\r\n        \"name\": \"Kelompok1\",\r\n        \"phone_number\": \"041431\",\r\n        \"address\": \"Jl. Mangga 3\",\r\n        \"transaction_date\": \"2022-10-25 10:00:02.000 +00:00\",\r\n        \"sub_total\": 87000,\r\n        \"delivery_cost\": 3000,\r\n        \"total\": 90000,\r\n        \"note\": \"-\",\r\n        \"user_id\": 1,\r\n        \"status\": \"Batal\",\r\n        \"no_order\": \"OR-2022-10-25-11\",\r\n        \"createdAt\": \"2022-10-31T01:02:43.904Z\",\r\n        \"updatedAt\": \"2022-10-31T01:02:43.904Z\",\r\n        \"order_items\": [\r\n            {\r\n                \"id\": 9,\r\n                \"product_id\": 1,\r\n                \"product_name\": \"Kol\",\r\n                \"unit_per_qty\": \"1 kg\",\r\n                \"qty\": 5,\r\n                \"price\": 30000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            },\r\n            {\r\n                \"id\": 10,\r\n                \"product_id\": 2,\r\n                \"product_name\": \"Belimbing\",\r\n                \"unit_per_qty\": \"1 kg\",\r\n                \"qty\": 1,\r\n                \"price\": 15000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            },\r\n            {\r\n                \"id\": 11,\r\n                \"product_id\": 3,\r\n                \"product_name\": \"Wortel\",\r\n                \"unit_per_qty\": \"500 gr\",\r\n                \"qty\": 7,\r\n                \"price\": 42000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            }\r\n        ]\r\n    }\r\n}"
 						},
@@ -2437,20 +2708,28 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseurl}}/orders/700/detail/user",
+									"raw": "{{baseurl}}/orders/78/detail/user",
 									"host": [
 										"{{baseurl}}"
 									],
 									"path": [
 										"orders",
-										"700",
+										"78",
 										"detail",
 										"user"
 									]
 								}
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
 							"cookie": [],
 							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"Order with id '78' and user id '1' not found\",\r\n    \"data\": null\r\n}"
 						}
@@ -2459,16 +2738,6 @@
 				{
 					"name": "Update Order Status",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJrZWxvbXBvazEiLCJpYXQiOjE2NjcxODMxMTEsImV4cCI6MTY2NzI2OTUxMX0.eJb_veiOfh-IXVnaDEURcLb81x_kgYcRcqux0FGSeX8",
-									"type": "string"
-								}
-							]
-						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
@@ -2508,25 +2777,27 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseurl}}/orders/:id/status",
+									"raw": "{{baseurl}}/orders/7/status",
 									"host": [
 										"{{baseurl}}"
 									],
 									"path": [
 										"orders",
-										":id",
+										"7",
 										"status"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": null
-										}
 									]
 								}
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
 							"cookie": [],
 							"body": "{\r\n    \"status\": true,\r\n    \"message\": \"success get All data!\",\r\n    \"data\": {\r\n        \"id\": 7,\r\n        \"name\": \"Kelompok1\",\r\n        \"phone_number\": \"041431\",\r\n        \"address\": \"Jl. Mangga 3\",\r\n        \"transaction_date\": \"2022-10-25 10:00:02.000 +00:00\",\r\n        \"sub_total\": 87000,\r\n        \"delivery_cost\": 3000,\r\n        \"total\": 90000,\r\n        \"note\": \"-\",\r\n        \"user_id\": 1,\r\n        \"status\": \"Proses\",\r\n        \"no_order\": \"OR-2022-10-25-11\",\r\n        \"createdAt\": \"2022-10-31T01:02:43.904Z\",\r\n        \"updatedAt\": \"2022-10-31T02:29:14.878Z\",\r\n        \"order_items\": [\r\n            {\r\n                \"id\": 9,\r\n                \"product_id\": 1,\r\n                \"product_name\": \"Kol\",\r\n                \"unit_per_qty\": \"1 kg\",\r\n                \"qty\": 5,\r\n                \"price\": 30000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            },\r\n            {\r\n                \"id\": 10,\r\n                \"product_id\": 2,\r\n                \"product_name\": \"Belimbing\",\r\n                \"unit_per_qty\": \"1 kg\",\r\n                \"qty\": 1,\r\n                \"price\": 15000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            },\r\n            {\r\n                \"id\": 11,\r\n                \"product_id\": 3,\r\n                \"product_name\": \"Wortel\",\r\n                \"unit_per_qty\": \"500 gr\",\r\n                \"qty\": 7,\r\n                \"price\": 42000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            }\r\n        ]\r\n    }\r\n}"
 						},
@@ -2537,7 +2808,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"status\": false,\r\n    \"message\": \"Order with id '57' and user id '1' not found\",\r\n    \"data\": null\r\n}",
+									"raw": "{\r\n    \"status\": \"Proses\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2556,10 +2827,18 @@
 									]
 								}
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
 							"cookie": [],
-							"body": null
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"Order with id '57' and user id '1' not found\",\r\n    \"data\": null\r\n}"
 						}
 					]
 				}
@@ -2590,6 +2869,11 @@
 		{
 			"key": "baseurl",
 			"value": "http://localhost:8000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJCRUtFTDEyMjExIiwiaWF0IjoxNjY3MjAyMDE4LCJleHAiOjE2NjcyODg0MTh9.kyrY0lzrN-YNYWe8O2BJ1CPKjDGlO6e_YEjQwVUdWhU",
 			"type": "string"
 		}
 	]
