@@ -13,7 +13,7 @@ module.exports = {
   getCategoryById: async (req, res) => {
     try {
       const category_id = req.params.id;
-      const rslt = await productRepository.getByIdCategory(category_id);
+      const rslt = await categoryRepository.getByIdCategory(category_id);
       if (rslt) return res.respondGet(rslt);
       return res.respondNotFound(`not found category by id : ${category_id}`);
     } catch (err) {

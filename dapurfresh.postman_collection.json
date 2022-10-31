@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "00014171-120c-433d-b163-fdd249814a89",
+		"_postman_id": "58b61700-0309-4d89-92fa-9fa79e2a6927",
 		"name": "DapurFresh",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "22906795"
+		"_exporter_id": "13146980"
 	},
 	"item": [
 		{
@@ -237,7 +237,10 @@
 					"name": "New Request",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				}
@@ -253,7 +256,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompok1@\",\r\n    \"ref_code_friend\": \"PHXSEIQZ\"\r\n}",
+							"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompok1@\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1258,15 +1261,6 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "{{baseurl}}/cart",
 									"host": [
@@ -2126,6 +2120,191 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "get",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/category",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/category",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1630"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"65e-d2knTXGDV1mKD2UBGVtLiNx3csM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 07:41:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"success get All data!\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"Buah\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/Buah-buah-an_ouZnn5ocs.jpeg?ik-sdk-version=javascript-1.4.3&updatedAt=1666605048298\",\n            \"createdAt\": \"2022-10-31T07:41:46.113Z\",\n            \"updatedAt\": \"2022-10-31T07:41:46.113Z\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"Bumbu\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/5-merek-bumbu-masak-ini-ternyata-buatan-anak-indonesia-DtuqK7iJWY_owJybDstFJ.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1666605187611\",\n            \"createdAt\": \"2022-10-31T07:41:46.113Z\",\n            \"updatedAt\": \"2022-10-31T07:41:46.113Z\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Sayur dan Kacang\",\n            \"thumbnail\": \"https://ik.imagekit.io/4jkjrz9tf/Importance-of-Green-Vegetables_D_xEEx2Rj.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1666338047405\",\n            \"createdAt\": \"2022-10-31T07:41:46.113Z\",\n            \"updatedAt\": \"2022-10-31T07:41:46.113Z\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Sembako\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/ee6ccad1dc03860daa67e4c413f9b683_omW_i-bwIo.jpeg?ik-sdk-version=javascript-1.4.3&updatedAt=1666605188514\",\n            \"createdAt\": \"2022-10-31T07:41:46.113Z\",\n            \"updatedAt\": \"2022-10-31T07:41:46.113Z\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"Lauk Olahan\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/kenyangmakan-20200830-104650-0-67eb4c84104311f114e7e38a2edf1147_600x400_yCQUGvJh4E.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1666605187383\",\n            \"createdAt\": \"2022-10-31T07:41:46.113Z\",\n            \"updatedAt\": \"2022-10-31T07:41:46.113Z\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"Ikan\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/5d3a73e2e11e9_I4vSfPLfue.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1666605187433\",\n            \"createdAt\": \"2022-10-31T07:41:46.113Z\",\n            \"updatedAt\": \"2022-10-31T07:41:46.113Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/category/:id",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"category",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/category/:id",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"category",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "289"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"121-QamnXM1tfL+gMRffF0vAlvNjgD0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Oct 2022 07:46:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"success get All data!\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"Buah\",\n        \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/Buah-buah-an_ouZnn5ocs.jpeg?ik-sdk-version=javascript-1.4.3&updatedAt=1666605048298\",\n        \"createdAt\": \"2022-10-31T07:41:46.113Z\",\n        \"updatedAt\": \"2022-10-31T07:41:46.113Z\"\n    }\n}"
+						}
+					]
+				}
+			]
 		}
 	],
 	"event": [
@@ -2152,6 +2331,11 @@
 		{
 			"key": "baseurl",
 			"value": "http://localhost:8000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJCRUtFTDEyMjExIiwiaWF0IjoxNjY3MjAyMDE4LCJleHAiOjE2NjcyODg0MTh9.kyrY0lzrN-YNYWe8O2BJ1CPKjDGlO6e_YEjQwVUdWhU",
 			"type": "string"
 		}
 	]
