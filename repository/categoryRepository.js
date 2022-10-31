@@ -15,7 +15,6 @@ const getProductByCategory = async (id) => {
   const get = Product.findAll({ where: { category_id: id } });
   return get;
 };
-
 module.exports = {
   getCategory,
   getByIdCategory,
