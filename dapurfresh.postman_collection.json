@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "58b61700-0309-4d89-92fa-9fa79e2a6927",
+		"_postman_id": "d608ddd8-a46b-42f4-ae5a-7bb0be1ec566",
 		"name": "DapurFresh",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "13146980"
+		"_exporter_id": "23878865"
 	},
 	"item": [
 		{
@@ -2377,11 +2377,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseurl}}/category",
+									"raw": "http://localhost:8000/api/v1/category",
+									"protocol": "http",
 									"host": [
-										"{{baseurl}}"
+										"localhost"
 									],
+									"port": "8000",
 									"path": [
+										"api",
+										"v1",
 										"category"
 									]
 								}
@@ -2467,11 +2471,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseurl}}/category/:id",
+									"raw": "http://localhost:8000/api/v1/category/:id",
+									"protocol": "http",
 									"host": [
-										"{{baseurl}}"
+										"localhost"
 									],
+									"port": "8000",
 									"path": [
+										"api",
+										"v1",
 										"category",
 										":id"
 									],
@@ -2522,6 +2530,315 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": true,\n    \"message\": \"success get All data!\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"Buah\",\n        \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/Buah-buah-an_ouZnn5ocs.jpeg?ik-sdk-version=javascript-1.4.3&updatedAt=1666605048298\",\n        \"createdAt\": \"2022-10-31T07:41:46.113Z\",\n        \"updatedAt\": \"2022-10-31T07:41:46.113Z\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Add Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Kelompok1\",\r\n\t\"phone_number\": \"05677231546\",\r\n\t\"address\": \"Jl. Mangga 3\",\r\n  \"transaction_date\": \"2022-10-26 12:32:05\",\r\n\t\"delivery_cost\": 3000,\r\n    \"note\": \"Something\",\r\n\t\"user_id\": 1,\r\n    \"status\": \"Proses\",\r\n\t\"order_items\": [{\r\n\t\t\"product_id\": 1,\r\n\t\t\"qty\": 4\r\n\t},\r\n\t{\r\n\t\t\"product_id\": 2,\r\n\t\t\"qty\": 8\r\n\t},{\r\n\t\t\"product_id\": 3,\r\n\t\t\"qty\": 4\r\n\t}]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/orders",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"Kelompok1\",\r\n\t\"phone_number\": \"05677231546\",\r\n\t\"address\": \"Jl. Mangga 3\",\r\n  \"transaction_date\": \"2022-10-26 12:32:05\",\r\n\t\"delivery_cost\": 3000,\r\n    \"note\": \"Something\",\r\n\t\"user_id\": 1,\r\n    \"status\": \"Proses\",\r\n\t\"order_items\": [{\r\n\t\t\"product_id\": 1,\r\n\t\t\"qty\": 4\r\n\t},\r\n\t{\r\n\t\t\"product_id\": 2,\r\n\t\t\"qty\": 8\r\n\t},{\r\n\t\t\"product_id\": 3,\r\n\t\t\"qty\": 4\r\n\t}]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/orders",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Order created\",\n    \"data\": {\n        \"id\": 20,\n        \"name\": \"Kelompok1\",\n        \"phone_number\": \"05677231546\",\n        \"address\": \"Jl. Mangga 3\",\n        \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\n        \"delivery_cost\": 3000,\n        \"note\": \"Something\",\n        \"user_id\": 1,\n        \"status\": \"Proses\",\n        \"no_order\": \"OR-2022-10-26-20\",\n        \"total\": 171000,\n        \"sub_total\": 168000,\n        \"updatedAt\": \"2022-10-31T02:25:47.171Z\",\n        \"createdAt\": \"2022-10-31T02:25:47.171Z\",\n        \"order_items\": [\n            {\n                \"product_id\": 1,\n                \"qty\": 4,\n                \"product_name\": \"Kol\",\n                \"unit_per_qty\": \"1 kg\",\n                \"price\": 24000,\n                \"order_id\": 20\n            },\n            {\n                \"product_id\": 2,\n                \"qty\": 8,\n                \"product_name\": \"Belimbing\",\n                \"unit_per_qty\": \"1 kg\",\n                \"price\": 120000,\n                \"order_id\": 20\n            },\n            {\n                \"product_id\": 3,\n                \"qty\": 4,\n                \"product_name\": \"Wortel\",\n                \"unit_per_qty\": \"500 gr\",\n                \"price\": 24000,\n                \"order_id\": 20\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User Order Last 7 days",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/orders/user/lastsevendays",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"orders",
+								"user",
+								"lastsevendays"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/orders/user/lastsevendays",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders",
+										"user",
+										"lastsevendays"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": true,\r\n    \"message\": \"success get All data!\",\r\n    \"data\": [\r\n        {\r\n            \"id\": 5,\r\n            \"transaction_date\": \"2022-10-25 00:28:34.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-25-9\"\r\n        },\r\n        {\r\n            \"id\": 6,\r\n            \"transaction_date\": \"2022-10-25 03:43:07.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-25-10\"\r\n        },\r\n        {\r\n            \"id\": 7,\r\n            \"transaction_date\": \"2022-10-25 10:00:02.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-25-11\"\r\n        },\r\n        {\r\n            \"id\": 8,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-8\"\r\n        },\r\n        {\r\n            \"id\": 11,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-11\"\r\n        },\r\n        {\r\n            \"id\": 12,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-12\"\r\n        },\r\n        {\r\n            \"id\": 14,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-14\"\r\n        },\r\n        {\r\n            \"id\": 15,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-15\"\r\n        },\r\n        {\r\n            \"id\": 16,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-16\"\r\n        },\r\n        {\r\n            \"id\": 17,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-17\"\r\n        },\r\n        {\r\n            \"id\": 18,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-18\"\r\n        },\r\n        {\r\n            \"id\": 19,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-19\"\r\n        },\r\n        {\r\n            \"id\": 13,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-13\"\r\n        },\r\n        {\r\n            \"id\": 20,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-20\"\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Single User Order Detail By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/orders/7/detail/user",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"orders",
+								"7",
+								"detail",
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/orders/7/detail/user",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders",
+										"7",
+										"detail",
+										"user"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": true,\r\n    \"message\": \"success get All data!\",\r\n    \"data\": {\r\n        \"id\": 7,\r\n        \"name\": \"Kelompok1\",\r\n        \"phone_number\": \"041431\",\r\n        \"address\": \"Jl. Mangga 3\",\r\n        \"transaction_date\": \"2022-10-25 10:00:02.000 +00:00\",\r\n        \"sub_total\": 87000,\r\n        \"delivery_cost\": 3000,\r\n        \"total\": 90000,\r\n        \"note\": \"-\",\r\n        \"user_id\": 1,\r\n        \"status\": \"Batal\",\r\n        \"no_order\": \"OR-2022-10-25-11\",\r\n        \"createdAt\": \"2022-10-31T01:02:43.904Z\",\r\n        \"updatedAt\": \"2022-10-31T01:02:43.904Z\",\r\n        \"order_items\": [\r\n            {\r\n                \"id\": 9,\r\n                \"product_id\": 1,\r\n                \"product_name\": \"Kol\",\r\n                \"unit_per_qty\": \"1 kg\",\r\n                \"qty\": 5,\r\n                \"price\": 30000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            },\r\n            {\r\n                \"id\": 10,\r\n                \"product_id\": 2,\r\n                \"product_name\": \"Belimbing\",\r\n                \"unit_per_qty\": \"1 kg\",\r\n                \"qty\": 1,\r\n                \"price\": 15000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            },\r\n            {\r\n                \"id\": 11,\r\n                \"product_id\": 3,\r\n                \"product_name\": \"Wortel\",\r\n                \"unit_per_qty\": \"500 gr\",\r\n                \"qty\": 7,\r\n                \"price\": 42000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/orders/78/detail/user",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders",
+										"78",
+										"detail",
+										"user"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"Order with id '78' and user id '1' not found\",\r\n    \"data\": null\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Order Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Proses\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/orders/7/status",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"orders",
+								"7",
+								"status"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"Proses\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/orders/7/status",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders",
+										"7",
+										"status"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": true,\r\n    \"message\": \"success get All data!\",\r\n    \"data\": {\r\n        \"id\": 7,\r\n        \"name\": \"Kelompok1\",\r\n        \"phone_number\": \"041431\",\r\n        \"address\": \"Jl. Mangga 3\",\r\n        \"transaction_date\": \"2022-10-25 10:00:02.000 +00:00\",\r\n        \"sub_total\": 87000,\r\n        \"delivery_cost\": 3000,\r\n        \"total\": 90000,\r\n        \"note\": \"-\",\r\n        \"user_id\": 1,\r\n        \"status\": \"Proses\",\r\n        \"no_order\": \"OR-2022-10-25-11\",\r\n        \"createdAt\": \"2022-10-31T01:02:43.904Z\",\r\n        \"updatedAt\": \"2022-10-31T02:29:14.878Z\",\r\n        \"order_items\": [\r\n            {\r\n                \"id\": 9,\r\n                \"product_id\": 1,\r\n                \"product_name\": \"Kol\",\r\n                \"unit_per_qty\": \"1 kg\",\r\n                \"qty\": 5,\r\n                \"price\": 30000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            },\r\n            {\r\n                \"id\": 10,\r\n                \"product_id\": 2,\r\n                \"product_name\": \"Belimbing\",\r\n                \"unit_per_qty\": \"1 kg\",\r\n                \"qty\": 1,\r\n                \"price\": 15000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            },\r\n            {\r\n                \"id\": 11,\r\n                \"product_id\": 3,\r\n                \"product_name\": \"Wortel\",\r\n                \"unit_per_qty\": \"500 gr\",\r\n                \"qty\": 7,\r\n                \"price\": 42000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            }\r\n        ]\r\n    }\r\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"Proses\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/orders/57/status",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"orders",
+										"57",
+										"status"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"status\": false,\r\n    \"message\": \"Order with id '57' and user id '1' not found\",\r\n    \"data\": null\r\n}"
 						}
 					]
 				}

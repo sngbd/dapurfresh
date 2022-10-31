@@ -1,4 +1,4 @@
-const { Order, Order_Item, CartItem, sequelize } = require('../models'); 
+const { Order, Order_Item, CartItem, Product, Unit, sequelize } = require('../models'); 
 const { Transaction, Op } = require('sequelize');
 
 const createOrder = async (Orderjson) => {
@@ -6,7 +6,25 @@ const createOrder = async (Orderjson) => {
   // to create order, set to undefined
   Orderjson.order_items = undefined;
 
+
   try {
+    // assign product_name, unit_per_qty, price
+    // calculate sub_total and total cost
+    var sub_total = 0;
+    for (const order_item of order_itemsJson) {
+      const product = await Product.findOne({
+        where: { id: order_item.product_id },
+        include: [{ model: Unit, as: 'unit' }]
+      });
+      console.log(product);
+      order_item.product_name = product.title;
+      order_item.unit_per_qty = `${product.qty_unit} ${product.unit.title}`;
+      order_item.price = product.price * order_item.qty;
+      sub_total += order_item.price;
+    }
+    Orderjson.total = sub_total + Orderjson.delivery_cost;
+    Orderjson.sub_total = sub_total;
+    console.log(Orderjson);
     // Make a transaction
     var resultOrder = await sequelize.transaction({
       isolationLevel: Transaction.ISOLATION_LEVELS.READ_COMMITTED
@@ -51,6 +69,7 @@ const createOrder = async (Orderjson) => {
 
     return Orderjson;
   } catch (err) {
+    console.log(err);
     throw err;
   }
 }
@@ -62,7 +81,7 @@ const getUserOrderLast7Days = async (user_id) => {
 
   try {
     const orders = await Order.findAll({
-      attributes: ['id', 'transaction_date', "no_order"],
+      attributes: ['id', 'transaction_date', 'no_order'],
       where: {
         user_id,
         transaction_date: {
@@ -71,16 +90,7 @@ const getUserOrderLast7Days = async (user_id) => {
         }
       }
     });
-  
-    for (const order of orders) {
-      const orderItems = await Order_Item.findAll({
-        attributes: ['id', 'product_id'],
-        where: {
-          order_id: order.id
-        }
-      });
-      order.dataValues.orderItems = orderItems;
-    }  
+
     return orders;
   } catch (error) {
     throw error;
@@ -89,19 +99,31 @@ const getUserOrderLast7Days = async (user_id) => {
 
 const getUserOrderDetail = async (id, user_id) => {
   try {
-    const order = await Order.findOne({
-      where: { id, user_id }
+    const orders = await Order.findOne({
+      attributes: [
+        'id', 
+        'name', 
+        'phone_number',
+        'address',
+        'transaction_date', 
+        'sub_total',
+        'delivery_cost',
+        'total',
+        'note',
+        'user_id',
+        'status',
+        'no_order',
+        'createdAt',
+        'updatedAt'
+      ],
+      where: { id, user_id, },
+      include: [{
+        model: Order_Item,
+        as: 'order_items',
+        required: false,
+      }]
     });
-  
-    const orderItems = await Order_Item.findAll({
-      where: {
-        order_id: id,
-      }
-    });
-    if (order !== null) {
-      order.dataValues.orderItems = orderItems;
-    }
-    return order;
+    return orders;
   } catch (error) {
     throw error;
   }
@@ -110,23 +132,37 @@ const getUserOrderDetail = async (id, user_id) => {
 const updateUserOrderStatus = async (id, user_id, orderUpdateJson) => {
   try {
     const [updatedRowsCount] = await Order.update(
-      orderUpdateJson, {
-        where: { id, user_id }
-      }
+      orderUpdateJson, { where: { id, user_id } }
     );
     if (updatedRowsCount <= 0) {
       return null;
     }
-    
-    const updatedRows = await Order.findByPk(id);
-    const orderItems = await Order_Item.findAll({
-      where: {
-        order_id: id,
-      }
+
+    const updatedRows = await Order.findOne({
+      attributes: [
+        'id', 
+        'name', 
+        'phone_number',
+        'address',
+        'transaction_date', 
+        'sub_total',
+        'delivery_cost',
+        'total',
+        'note',
+        'user_id',
+        'status',
+        'no_order',
+        'createdAt',
+        'updatedAt'
+      ],
+      where: { id, user_id, },
+      include: [{
+        model: Order_Item,
+        as: 'order_items',
+        required: false,
+      }]
     });
-    if (updatedRows !== null) {
-      updatedRows.dataValues.orderItems = orderItems;
-    }
+
     return updatedRows;
   } catch (error) {
     throw error;

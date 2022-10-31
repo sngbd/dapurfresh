@@ -118,8 +118,8 @@ const test = async ()=> {
   }
   const newprod = await newProduct(item)
   console.log(newprod)
-}
-test()
+}                        
+// test()
 module.exports = {
   getProduct,
   getByIdProduct,
