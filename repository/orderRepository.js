@@ -16,7 +16,7 @@ const createOrder = async (Orderjson) => {
         where: { id: order_item.product_id },
         include: [{ model: Unit, as: 'unit' }]
       });
-      console.log(product);
+      // console.log(product);
       order_item.product_name = product.title;
       order_item.unit_per_qty = `${product.qty_unit} ${product.unit.title}`;
       order_item.price = product.price * order_item.qty;
@@ -24,7 +24,7 @@ const createOrder = async (Orderjson) => {
     }
     Orderjson.total = sub_total + Orderjson.delivery_cost;
     Orderjson.sub_total = sub_total;
-    console.log(Orderjson);
+    // console.log(Orderjson);
     // Make a transaction
     var resultOrder = await sequelize.transaction({
       isolationLevel: Transaction.ISOLATION_LEVELS.READ_COMMITTED
@@ -75,24 +75,41 @@ const createOrder = async (Orderjson) => {
 }
 
 const getUserOrderLast7Days = async (user_id) => {
-  const dateNow = new Date();
-  var date7DaysAgo = new Date();
-  date7DaysAgo.setUTCDate(dateNow.getUTCDate() - 7);
-
+  var dateNow = new Date();
+  var date7DaysAgo = new Date(dateNow);
+  date7DaysAgo.setUTCDate(-7);
+  
   try {
     const orders = await Order.findAll({
-      attributes: ['id', 'transaction_date', 'no_order'],
+      attributes: ['id', 'transaction_date', 'no_order', 'status'],
       where: {
         user_id,
         transaction_date: {
           [Op.lt]: dateNow,
           [Op.gt]: date7DaysAgo
         }
-      }
+      },
+      order: [['transaction_date']]
     });
-
-    return orders;
+    
+    const orderGroupByDay = {};
+    var dateSearch = new Date(dateNow);
+    for (let i = 0; i < 7; i++) {
+      dateSearch.setUTCDate(dateSearch.getUTCDate()-1);
+      const day = dateSearch.getUTCDate();
+      const y_m_d = dateSearch.getFullYear() + '-' + (dateSearch.getUTCMonth()+1) + '-' + day;
+      orderGroupByDay[y_m_d] = [];
+      for (const order of orders) {
+        var idx = order.transaction_date.indexOf('-')+1;
+        idx = order.transaction_date.indexOf('-', idx)+1;
+        if (order.transaction_date.startsWith(day, idx)) {
+          orderGroupByDay[y_m_d].push(order);
+        }
+      }
+    }
+    return orderGroupByDay;
   } catch (error) {
+    // console.log(error);
     throw error;
   }
 }
