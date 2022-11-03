@@ -4,6 +4,7 @@ const app = require('../app');
 const api = supertest(app);
 const { User, CartItem } = require('../models');
 const { not } = require('joi');
+const { initialCarts } = require('./cart_test_helper');
 
 let authorization;
 let userId;
@@ -68,7 +69,13 @@ describe('add a new cart', () => {
       .send(helper.validCart)
       .set(authorization)
       .expect(201);
-    
+
+    const newCarts = await api
+      .get('/api/v1/cart')
+      .set(authorization)
+      .expect(200)
+      
+    expect(newCarts.body.data).toHaveLength(helper.initialCarts.length + 1);
     expect(res.body.message).toBe('item added to the cart successfully');
   })
 
@@ -174,7 +181,21 @@ describe('delete a cart', () => {
       .send(toBeDeleted)
       .set(authorization)
       .expect(200);
-    
+
+    const newCarts = await api
+      .get('/api/v1/cart')
+      .set(authorization)
+      .expect(200)
+
+    const withoutDeletedCart = newCarts.body.data.map(c => {
+      const cart = {
+        product_id: c.product_id,
+        qty: c.qty
+      }
+      return cart;
+    })
+
+    expect(withoutDeletedCart).not.toContainEqual(helper.initialCarts[0]);
     expect(res.body.message).toBe('item deleted successfully');
   })
 
