@@ -3,12 +3,15 @@ const Joi = require('joi');
 const addUpdateProduct = async (req, res, next) => {
   const schema = Joi.object({
     category_id: Joi.number().required(),
-    title: Joi.string().min(6).regex(/[A-Z]/, 'uppercase').regex(/[a-z]/, 'lowercase')
+    price: Joi.number().positive().required(),
+    qty_unit: Joi.number().positive(),
+    title: Joi.string().min(2).regex(/[A-Z]/, 'uppercase').regex(/[a-z]/, 'lowercase')
       .regex(/[^\w]/, 'special character')
       .required(),
-    product_id: Joi.number().required(),
     stock: Joi.number().positive().required(),
-    unit_id: Joi.number().positive()
+    unit_id: Joi.number().positive().required(),
+    info:Joi.string(),
+    thumbnail: Joi.string()
   });
 
   try {

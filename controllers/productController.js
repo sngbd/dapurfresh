@@ -23,7 +23,7 @@ const getByIdProduct = async (req, res) => {
     return res.respondServerError(err.message);
   }
 };
-const UpdateProduct = async (req, res)=> {
+const updateProduct = async (req, res)=> {
   try {
     const product_id = req.params.id || req.body.product_id;
     const product = await productRepository.getByIdProduct(product_id);
@@ -35,18 +35,28 @@ const UpdateProduct = async (req, res)=> {
     return res.respondServerError(err.message);
   }
 }
-const InsertProduct = async (req, res)=> {
+const insertProduct = async (req, res)=> {
   try {
     const insert = await productRepository.newProduct(req.body);
-    return insert.dataValues;
+    return res.respondCreated(insert, "Success insert Product")
   }
-  catch {
-    return res.respondServerError(err.message)
+  catch (err){
+    return res.respondServerError(err.message);
+  }
+}
+const getPopularProduct = async(req, res)=> {
+  try {
+    const popular = await productRepository.getPopularProduct();
+    return res.respondGet(popular, "Success get Popular Product");
+  }
+  catch (err){
+    return res.respondServerError(err.message);
   }
 }
 module.exports = {
   getProduct,
   getByIdProduct,
-  UpdateProduct,
-  InsertProduct
+  updateProduct,
+  insertProduct,
+  getPopularProduct
 };

@@ -6,7 +6,9 @@ const validator = require('../middlewares/validation/validateProduct');
 
 // product
 router.route('/').get(product.getProduct);
+router.route('/popular').get(product.getPopularProduct);
 router.route('/:id').get(product.getByIdProduct);
-router.route('/newProduct').post(validator.addUpdateProduct, product.newProduct);
-router.route('/:id').put(validator.addUpdateProduct, product.UpdateProduct);
+router.route('/newProduct').post(product.insertProduct);
+router.route('/:id').put(product.updateProduct);
+
 module.exports = router;

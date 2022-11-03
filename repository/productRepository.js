@@ -1,6 +1,7 @@
 const { Product, Unit } = require('../models');
 const respondHelper = require('../helpers/response');
-
+const db = require('../models');
+const { QueryTypes } = require('sequelize');
 const getProduct = async () => {
   try {
     const get = await Product.findAll({
@@ -42,10 +43,10 @@ const updateProduct = async (product_id, newItem) => {
   try {
     const update = await Product.update(
       {
-        unit_id : newItem.unit_id,
-        title : newItem.title,
-        stock : newItem.stock,
-        promo : newItem.promo,
+        unit_id: newItem.unit_id,
+        title: newItem.title,
+        stock: newItem.stock,
+        promo: newItem.promo,
         updateAt: new Date()
       },
       { where: { id: product_id } }
@@ -77,25 +78,25 @@ item = {
 
 }
 */
-const newProduct = async (item)=> {
+const newProduct = async (item) => {
   try {
     const insert = await Product.create({
-      title : item.title,
-      category_id : item.category_id,
-      price : item.price,
-      stock : item.stock,
-      qty_unit : item.qty_unit,
-      unit_id : item.unit_id,
-      promo : item.promo,
-      max_promo : item.max_promo,
+      title: item.title,
+      category_id: item.category_id,
+      price: item.price,
+      stock: item.stock,
+      qty_unit: item.qty_unit,
+      unit_id: item.unit_id,
+      promo: item.promo,
+      max_promo: item.max_promo,
       info: item.info,
       thumbnail: item.thumbnail,
-      createdAt : new Date(),
-      updateAt : new Date()
+      createdAt: new Date(),
+      updateAt: new Date()
     });
     return insert;
   }
-  catch (err){
+  catch (err) {
     console.log(err);
   }
 }
@@ -115,9 +116,22 @@ const newProduct = async (item)=> {
 //   console.log(newprod)
 // }
 // test()
+const getPopularProduct = async () => {
+  const textquery = `SELECT * from "Products" where "Products".id in 
+(	
+  SELECT product_id from "Order_Items" as oi JOIN "Orders" as o ON o.id = oi.order_id
+  WHERE Status = 'Proses' OR Status = 'Selesai'
+  GROUP BY product_id
+  ORDER By COUNT(product_id) desc
+);`;
+  const get = db.sequelize.query(textquery, { type: QueryTypes.SELECT })
+  return get
+
+}
 module.exports = {
   getProduct,
   getByIdProduct,
   updateProduct,
-  newProduct
+  newProduct,
+  getPopularProduct
 };
