@@ -102,6 +102,7 @@ const getTokenAfterLogin = async (req, res) => {
       },
     });
   } catch (error) {
+    console.log(error);
     return res.respondServerError();
   }
 };

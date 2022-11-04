@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "d608ddd8-a46b-42f4-ae5a-7bb0be1ec566",
+		"_postman_id": "7b6bdab9-6099-42cd-88d6-174fbce84afa",
 		"name": "DapurFresh",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23878865"
+		"_exporter_id": "23956548"
 	},
 	"item": [
 		{
@@ -234,12 +234,55 @@
 					]
 				},
 				{
-					"name": "New Request",
+					"name": "Search Popular Product",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInVzZXJuYW1lIjoiQkVLRUwxMjIxMSIsImlhdCI6MTY2NzQ3NzA4MCwiZXhwIjoxNjY3NDk1MDgwfQ.HR3oWC5aLUNxe30ErPkvRdOf6IKwGbNrg5g9TZxE-Zg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "{{baseurl}}/product/popular",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"product",
+								"popular"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert New Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"Sayur Kol\",\n    \"stock\" : 7,\n    \"promo\" : 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{baseurl}/newProduct",
+							"host": [
+								"{baseurl}"
+							],
+							"path": [
+								"newProduct"
+							]
 						}
 					},
 					"response": []

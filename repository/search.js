@@ -1,19 +1,20 @@
 const { Product } = require('../models');
 const { Order } = require('../models');
 const { Order_Item } = require('../models');
+const { QueryTypes } = require('sequelize');
+const db = require ('../models');
+const textquery = `SELECT * from "Products" where "Products".id in 
+(	
+  SELECT product_id from "Order_Items" as oi JOIN "Orders" as o ON o.id = oi.order_id
+  WHERE Status = 'Proses' OR Status = 'Selesai'
+  GROUP BY product_id
+  ORDER By COUNT(product_id) desc
+);`
 const getResult = () => {
-  const get = Product.findAll(
-    {
-      attributes: ['product_id, title'],
-      where: {
-        [Op.and]: [
-
-        ]
-      }
-    }
-  )
+  const get = db.sequelize.query(textquery, {type : QueryTypes.SELECT})
   return get
 }
+
 module.exports = {
   getResult
 }
