@@ -1,9 +1,6 @@
 require('dotenv').config();
 
-const {
-  DB_USERNAME, DB_PASSWORD, DB_NAME, DB_HOST, DB_DIALECT,
-  DB_TEST_USERNAME, DB_TEST_PASSWORD, DB_TEST_NAME, DB_TEST_HOST, DB_TEST_DIALECT,
-} = process.env;
+const { DB_USERNAME, DB_PASSWORD, DB_NAME, DB_HOST, DB_DIALECT, DB_TEST_USERNAME, DB_TEST_PASSWORD, DB_TEST_NAME, DB_TEST_HOST, DB_TEST_DIALECT } = process.env;
 
 module.exports = {
   development: {
@@ -34,9 +31,9 @@ module.exports = {
     seederStoragePath: 'sequelize-data.json',
 
     // Use a different storage type. Default: sequelize
-    "migrationStorage": "json",
+    migrationStorage: 'json',
     // Use a different file name. Default: sequelize-meta.json
-    "migrationStoragePath": "sequelize-meta.json",
+    migrationStoragePath: 'sequelize-meta.json',
   },
   production: {
     use_env_variable: 'DATABASE_URL',
