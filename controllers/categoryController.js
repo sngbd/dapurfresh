@@ -25,7 +25,7 @@ const getCategoryById = async (req, res) => {
 const getProductByCategory = async (req, res) => {
   try {
     const category_id = req.params.id;
-    const rslt = await productRepository.getProductByCategory(category_id);
+    const rslt = await categoryRepository.getProductByCategory(category_id);
     if (rslt) return res.respondGet(rslt);
     return res.respondNotFound(`Category by id ${category_id} or product that has category ${category_id} doesn't exist`);
   } catch (err) {
