@@ -23,8 +23,40 @@ const getByIdProduct = async (req, res) => {
     return res.respondServerError(err.message);
   }
 };
-
+const updateProduct = async (req, res)=> {
+  try {
+    const product_id = req.params.id || req.body.product_id;
+    const product = await productRepository.getByIdProduct(product_id);
+    if (!product) return res.respondNotFound(`not found data with product_id = ${product_id}`);
+    const update = await productRepository.updateProduct(product_id, req.body);
+    return res.respondCreated(req.body, 'Product updated successfully')
+  }
+  catch (err){
+    return res.respondServerError(err.message);
+  }
+}
+const insertProduct = async (req, res)=> {
+  try {
+    const insert = await productRepository.newProduct(req.body);
+    return res.respondCreated(insert, "Success insert Product")
+  }
+  catch (err){
+    return res.respondServerError(err.message);
+  }
+}
+const getPopularProduct = async(req, res)=> {
+  try {
+    const popular = await productRepository.getPopularProduct();
+    return res.respondGet(popular, "Success get Popular Product");
+  }
+  catch (err){
+    return res.respondServerError(err.message);
+  }
+}
 module.exports = {
   getProduct,
   getByIdProduct,
+  updateProduct,
+  insertProduct,
+  getPopularProduct
 };
