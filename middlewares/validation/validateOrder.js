@@ -17,7 +17,7 @@ const validateAddOrder = async (req, res, next) => {
       Joi.object().keys({
         product_id: Joi.number().required(),
         qty: Joi.number().required(),
-        price: Joi.number().required(),
+        // price: Joi.number().required(),
       }).unknown(true)
     ).unique((a,b) => a.product_id === b.product_id),
   });

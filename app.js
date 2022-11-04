@@ -17,9 +17,11 @@ app.use(cookieParser());
 app.use(helper);
 app.use(`${process.env.BASE_URL}`, route);
 
-app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`App run on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    // eslint-disable-next-line no-console
+    console.log(`App run on port ${PORT}`);
+  });
+}
 
 module.exports = app;

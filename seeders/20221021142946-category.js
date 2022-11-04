@@ -21,14 +21,14 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          title: 'Bumbu',
-          thumbnail: 'https://ik.imagekit.io/1y88cfgc5/5-merek-bumbu-masak-ini-ternyata-buatan-anak-indonesia-DtuqK7iJWY_owJybDstFJ.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1666605187611',
+          title: 'Sayur dan Kacang',
+          thumbnail: 'https://ik.imagekit.io/4jkjrz9tf/Importance-of-Green-Vegetables_D_xEEx2Rj.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1666338047405',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          title: 'Sayur dan Kacang',
-          thumbnail: 'https://ik.imagekit.io/4jkjrz9tf/Importance-of-Green-Vegetables_D_xEEx2Rj.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1666338047405',
+          title: 'Bumbu',
+          thumbnail: 'https://ik.imagekit.io/1y88cfgc5/5-merek-bumbu-masak-ini-ternyata-buatan-anak-indonesia-DtuqK7iJWY_owJybDstFJ.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1666605187611',
           createdAt: new Date(),
           updatedAt: new Date(),
         },

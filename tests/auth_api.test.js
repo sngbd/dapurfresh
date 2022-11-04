@@ -1,15 +1,12 @@
 const supertest = require('supertest');
+const bcrypt = require('bcrypt');
 const helper = require('./auth_test_helper');
 const app = require('../app');
+const api = supertest(app);
 const { User } = require('../models');
 
-const bcrypt = require('bcrypt');
-const api = supertest(app);
-
 beforeEach(async () => {
-  await User.destroy({
-    where: {}
-  });
+  await User.destroy({ where: {} });
 
   const password = "Test123#";
   const password_hash = await bcrypt.hash(password, 10);
