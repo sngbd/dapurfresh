@@ -50,7 +50,7 @@ const updateUserOrderStatus = async (req, res) => {
   const { id } = req.params;
   const user_id = req.user.id;
   try {
-    const order = await orderRepository.updateUserOrderStatus(id, user_id, req.body);
+    const order = await orderRepository.updateUserOrderStatusToBatal(id, user_id);
     if (order === null) {
       return res.respondNotFound(`Order with id '${id}' and user id '${user_id}' not found`);
     }

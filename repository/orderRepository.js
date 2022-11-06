@@ -162,8 +162,10 @@ const getUserOrderLast7Days = async (user_id) => {
 
 const getUserOrderDetail = async (id, user_id) => getOrder(id, user_id);
 
-const updateUserOrderStatus = async (id, user_id, orderUpdateJson) => {
-  const [updatedRowsCount] = await Order.update(orderUpdateJson, { where: { id, user_id } });
+const updateUserOrderStatusToBatal = async (id, user_id) => {
+  const [updatedRowsCount] = await Order.update({
+    status: 'Batal',
+  }, { where: { id, user_id } });
   if (updatedRowsCount <= 0) {
     return null;
   }
@@ -175,5 +177,5 @@ module.exports = {
   createOrder,
   getUserOrderLast7Days,
   getUserOrderDetail,
-  updateUserOrderStatus,
+  updateUserOrderStatusToBatal,
 };

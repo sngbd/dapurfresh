@@ -30,19 +30,6 @@ const validateAddOrder = async (req, res, next) => {
   return next();
 };
 
-const validateUpdateOrderStatus = async (req, res, next) => {
-  const schemaUpdateOrder = Joi.object({
-    status: Joi.string().valid('Batal', 'Proses').required(),
-  });
-  try {
-    await schemaUpdateOrder.validateAsync(req.body);
-  } catch (err) {
-    return res.respondBadRequest(err.details[0].message);
-  }
-  return next();
-};
-
 module.exports = {
   validateAddOrder,
-  validateUpdateOrderStatus,
 };
