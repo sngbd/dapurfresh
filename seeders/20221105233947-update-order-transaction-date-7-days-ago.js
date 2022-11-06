@@ -11,9 +11,9 @@ module.exports = {
       const dateNow = new Date();
       const dateSearch = new Date(dateNow);
       while (true) {
-        console.log(dateSearch);
         bulkUpdatePromise.push(queryInterface.bulkUpdate('Orders', {
           transaction_date: new Date(dateSearch),
+          no_order: `OR-${dateSearch.getFullYear()}-${(dateSearch.getUTCMonth() + 1)}-${dateSearch.getUTCDate()}-${i}`,
         }, {
           id: i,
         }, {
