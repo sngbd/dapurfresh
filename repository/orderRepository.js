@@ -125,14 +125,14 @@ const createOrder = async (Orderjson) => {
 const getUserOrderLast7Days = async (user_id) => {
   const dateNow = new Date();
   const date7DaysAgo = new Date(dateNow);
-  date7DaysAgo.setUTCDate(dateNow.getUTCDate() - 1);
+  date7DaysAgo.setUTCDate(dateNow.getUTCDate() - 7);
 
   const orders = await Order.findAll({
     attributes: ['id', 'transaction_date', 'no_order', 'status'],
     where: {
       user_id,
       transaction_date: {
-        [Op.between]: [date7DaysAgo, dateNow],
+        [Op.gt]: date7DaysAgo,
       },
     },
     order: [['transaction_date']],
@@ -149,7 +149,7 @@ const getUserOrderLast7Days = async (user_id) => {
     month = (month < 10) ? `0${month}` : month;
 
     const y_m_d = `${dateSearch.getFullYear()}-${dateSearch.getUTCMonth() + 1}-${day}`;
-    const ordersInThatDay = orders.filter((order) => order.transaction_date.startsWith(day, 8));
+    const ordersInThatDay = orders.filter((order) => order.transaction_date.startsWith(y_m_d));
     ordersGroupByDay[y_m_d] = ordersInThatDay;
     if (i >= 7) break;
     else {
