@@ -3,7 +3,7 @@ const {
   Order, Order_Item, CartItem, Product, Unit, sequelize,
 } = require('../models');
 
-const getOrder = async (id, user_id) => {
+const getOrder = async (id, user_id, tr) => {
   const order = await Order.findOne({
     attributes: [
       'id',
@@ -46,6 +46,7 @@ const getOrder = async (id, user_id) => {
         }],
       }],
     }],
+    transaction: tr,
   });
 
   const { order_items } = order.dataValues;
@@ -162,15 +163,22 @@ const getUserOrderLast7Days = async (user_id) => {
 
 const getUserOrderDetail = async (id, user_id) => getOrder(id, user_id);
 
-const updateUserOrderStatusToBatal = async (id, user_id) => {
-  const [updatedRowsCount] = await Order.update({
-    status: 'Batal',
-  }, { where: { id, user_id } });
-  if (updatedRowsCount <= 0) {
-    return null;
-  }
+const updateUserOrderStatusToBatal = async (id, user_id, orderUpdateJson) => {
+  // Make a transaction: update, and get
+  const order = await sequelize.transaction({
+    isolationLevel: Transaction.ISOLATION_LEVELS.REPEATABLE_READ,
+  }, async (tr) => {
+    const [updatedRowsCount] = await Order.update(orderUpdateJson, {
+      where: { id, user_id },
+      transaction: tr,
+    });
+    if (updatedRowsCount <= 0) {
+      return null;
+    }
 
-  return getOrder(id, user_id);
+    return getOrder(id, user_id, tr);
+  });
+  return order;
 };
 
 module.exports = {
