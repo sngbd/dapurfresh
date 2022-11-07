@@ -13,5 +13,7 @@ module.exports = {
   rules: {
     camelcase: 'off',
     'no-param-reassign': 'off',
+    'linebreak-style': 'off',
+    // 'no-constant-condition': ['error', { checkLoops: false }],
   },
 };

@@ -1,8 +1,6 @@
-'use strict';
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface) {
     await queryInterface.bulkInsert(
       'Order_Items',
       [
@@ -14,7 +12,7 @@ module.exports = {
           price: 60000,
           order_id: 1,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         {
           product_id: 5,
@@ -24,7 +22,7 @@ module.exports = {
           price: 29000,
           order_id: 2,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         {
           product_id: 6,
@@ -34,7 +32,7 @@ module.exports = {
           price: 25800,
           order_id: 3,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         {
           product_id: 2,
@@ -44,7 +42,7 @@ module.exports = {
           price: 60000,
           order_id: 4,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         {
           product_id: 3,
@@ -54,7 +52,7 @@ module.exports = {
           price: 12000,
           order_id: 5,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         {
           product_id: 4,
@@ -64,7 +62,7 @@ module.exports = {
           price: 15000,
           order_id: 5,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         {
           product_id: 1,
@@ -74,7 +72,7 @@ module.exports = {
           price: 12000,
           order_id: 6,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         {
           product_id: 3,
@@ -84,7 +82,7 @@ module.exports = {
           price: 18000,
           order_id: 6,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         {
           product_id: 1,
@@ -104,7 +102,7 @@ module.exports = {
           price: 15000,
           order_id: 7,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         {
           product_id: 3,
@@ -114,13 +112,13 @@ module.exports = {
           price: 42000,
           order_id: 7,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
-      ]
+      ],
     );
   },
 
-  async down (queryInterface, Sequelize) {
-
-  }
+  async down() {
+    return null;
+  },
 };

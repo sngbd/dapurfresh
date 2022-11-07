@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
     /**
@@ -13,11 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Order.belongsTo(models.User, {
         foreignKey: 'user_id',
-        as: 'user'
+        as: 'user',
       });
       Order.hasMany(models.Order_Item, {
         foreignKey: 'order_id',
-        as: 'order_items'
+        as: 'order_items',
       });
     }
   }
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     note: DataTypes.STRING,
     user_id: DataTypes.INTEGER,
     status: DataTypes.STRING,
-    no_order: DataTypes.STRING
+    no_order: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Order',

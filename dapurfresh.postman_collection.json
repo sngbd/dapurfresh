@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "7b6bdab9-6099-42cd-88d6-174fbce84afa",
-		"name": "DapurFresh",
+		"_postman_id": "2cbe820e-74eb-48c5-abe2-857a0059417f",
+		"name": "Dapurfresh",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23956548"
+		"_exporter_id": "23878865"
 	},
 	"item": [
 		{
@@ -2584,11 +2584,21 @@
 				{
 					"name": "Add Order",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInVzZXJuYW1lIjoiQkVLRUwxMjIxMSIsImlhdCI6MTY2NzY3MjQyMiwiZXhwIjoxNjY3NzU4ODIyfQ.bfQGGyg_GgtS2aiHrbs9kR4yKoOnMOAKaQrLR56nmxY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"name\": \"Kelompok1\",\r\n\t\"phone_number\": \"05677231546\",\r\n\t\"address\": \"Jl. Mangga 3\",\r\n  \"transaction_date\": \"2022-10-26 12:32:05\",\r\n\t\"delivery_cost\": 3000,\r\n    \"note\": \"Something\",\r\n\t\"user_id\": 1,\r\n    \"status\": \"Proses\",\r\n\t\"order_items\": [{\r\n\t\t\"product_id\": 1,\r\n\t\t\"qty\": 4\r\n\t},\r\n\t{\r\n\t\t\"product_id\": 2,\r\n\t\t\"qty\": 8\r\n\t},{\r\n\t\t\"product_id\": 3,\r\n\t\t\"qty\": 4\r\n\t}]\r\n}",
+							"raw": "{\r\n\t\"name\": \"Kelompok1\",\r\n\t\"phone_number\": \"05677231546\",\r\n\t\"address\": \"Jl. Mangga 3\",\r\n    \"sub_total\": 168000,\r\n\t\"delivery_cost\": 3000,\r\n    \"total\": 171000,\r\n    \"note\": \"Something\",\r\n\t\"order_items\": [{\r\n\t\t\"product_id\": 1,\r\n\t\t\"qty\": 4,\r\n        \"price\": 24000\r\n\t},\r\n\t{\r\n\t\t\"product_id\": 2,\r\n\t\t\"qty\": 8,\r\n        \"price\": 120000\r\n\t},{\r\n\t\t\"product_id\": 3,\r\n\t\t\"qty\": 4,\r\n        \"price\": 24000\r\n\t}]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2613,7 +2623,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\t\"name\": \"Kelompok1\",\r\n\t\"phone_number\": \"05677231546\",\r\n\t\"address\": \"Jl. Mangga 3\",\r\n  \"transaction_date\": \"2022-10-26 12:32:05\",\r\n\t\"delivery_cost\": 3000,\r\n    \"note\": \"Something\",\r\n\t\"user_id\": 1,\r\n    \"status\": \"Proses\",\r\n\t\"order_items\": [{\r\n\t\t\"product_id\": 1,\r\n\t\t\"qty\": 4\r\n\t},\r\n\t{\r\n\t\t\"product_id\": 2,\r\n\t\t\"qty\": 8\r\n\t},{\r\n\t\t\"product_id\": 3,\r\n\t\t\"qty\": 4\r\n\t}]\r\n}",
+									"raw": "{\r\n\t\"name\": \"Kelompok1\",\r\n\t\"phone_number\": \"05677231546\",\r\n\t\"address\": \"Jl. Mangga 3\",\r\n    \"sub_total\": 168000,\r\n\t\"delivery_cost\": 3000,\r\n    \"total\": 171000,\r\n    \"note\": \"Something\",\r\n\t\"order_items\": [{\r\n\t\t\"product_id\": 1,\r\n\t\t\"qty\": 4,\r\n        \"price\": 24000\r\n\t},\r\n\t{\r\n\t\t\"product_id\": 2,\r\n\t\t\"qty\": 8,\r\n        \"price\": 120000\r\n\t},{\r\n\t\t\"product_id\": 3,\r\n\t\t\"qty\": 4,\r\n        \"price\": 24000\r\n\t}]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2641,13 +2651,23 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": true,\n    \"message\": \"Order created\",\n    \"data\": {\n        \"id\": 20,\n        \"name\": \"Kelompok1\",\n        \"phone_number\": \"05677231546\",\n        \"address\": \"Jl. Mangga 3\",\n        \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\n        \"delivery_cost\": 3000,\n        \"note\": \"Something\",\n        \"user_id\": 1,\n        \"status\": \"Proses\",\n        \"no_order\": \"OR-2022-10-26-20\",\n        \"total\": 171000,\n        \"sub_total\": 168000,\n        \"updatedAt\": \"2022-10-31T02:25:47.171Z\",\n        \"createdAt\": \"2022-10-31T02:25:47.171Z\",\n        \"order_items\": [\n            {\n                \"product_id\": 1,\n                \"qty\": 4,\n                \"product_name\": \"Kol\",\n                \"unit_per_qty\": \"1 kg\",\n                \"price\": 24000,\n                \"order_id\": 20\n            },\n            {\n                \"product_id\": 2,\n                \"qty\": 8,\n                \"product_name\": \"Belimbing\",\n                \"unit_per_qty\": \"1 kg\",\n                \"price\": 120000,\n                \"order_id\": 20\n            },\n            {\n                \"product_id\": 3,\n                \"qty\": 4,\n                \"product_name\": \"Wortel\",\n                \"unit_per_qty\": \"500 gr\",\n                \"price\": 24000,\n                \"order_id\": 20\n            }\n        ]\n    }\n}"
+							"body": "{\n    \"status\": true,\n    \"message\": \"Order created\",\n    \"data\": {\n        \"id\": 60,\n        \"name\": \"Kelompok1\",\n        \"phone_number\": \"05677231546\",\n        \"address\": \"Jl. Mangga 3\",\n        \"sub_total\": 168000,\n        \"delivery_cost\": 3000,\n        \"total\": 171000,\n        \"note\": \"Something\",\n        \"user_id\": 12,\n        \"no_order\": \"OR-2022-11-5-60\",\n        \"transaction_date\": \"2022-11-05T23:17:18.054Z\",\n        \"status\": \"Proses\",\n        \"createdAt\": \"2022-11-05T23:17:18.054Z\",\n        \"order_items\": [\n            {\n                \"product_id\": 1,\n                \"qty\": 4,\n                \"price\": 24000,\n                \"product_name\": \"Kol\",\n                \"unit_per_qty\": \"1 kg\"\n            },\n            {\n                \"product_id\": 2,\n                \"qty\": 8,\n                \"price\": 120000,\n                \"product_name\": \"Belimbing\",\n                \"unit_per_qty\": \"1 kg\"\n            },\n            {\n                \"product_id\": 3,\n                \"qty\": 4,\n                \"price\": 24000,\n                \"product_name\": \"Wortel\",\n                \"unit_per_qty\": \"500 gr\"\n            }\n        ]\n    }\n}"
 						}
 					]
 				},
 				{
 					"name": "Get User Order Last 7 days",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInVzZXJuYW1lIjoiQkVLRUwxMjIxMSIsImlhdCI6MTY2NzY3MjQyMiwiZXhwIjoxNjY3NzU4ODIyfQ.bfQGGyg_GgtS2aiHrbs9kR4yKoOnMOAKaQrLR56nmxY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2691,13 +2711,23 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\r\n    \"status\": true,\r\n    \"message\": \"success get All data!\",\r\n    \"data\": [\r\n        {\r\n            \"id\": 5,\r\n            \"transaction_date\": \"2022-10-25 00:28:34.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-25-9\"\r\n        },\r\n        {\r\n            \"id\": 6,\r\n            \"transaction_date\": \"2022-10-25 03:43:07.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-25-10\"\r\n        },\r\n        {\r\n            \"id\": 7,\r\n            \"transaction_date\": \"2022-10-25 10:00:02.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-25-11\"\r\n        },\r\n        {\r\n            \"id\": 8,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-8\"\r\n        },\r\n        {\r\n            \"id\": 11,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-11\"\r\n        },\r\n        {\r\n            \"id\": 12,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-12\"\r\n        },\r\n        {\r\n            \"id\": 14,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-14\"\r\n        },\r\n        {\r\n            \"id\": 15,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-15\"\r\n        },\r\n        {\r\n            \"id\": 16,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-16\"\r\n        },\r\n        {\r\n            \"id\": 17,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-17\"\r\n        },\r\n        {\r\n            \"id\": 18,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-18\"\r\n        },\r\n        {\r\n            \"id\": 19,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-19\"\r\n        },\r\n        {\r\n            \"id\": 13,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-13\"\r\n        },\r\n        {\r\n            \"id\": 20,\r\n            \"transaction_date\": \"2022-10-26 05:32:05.000 +00:00\",\r\n            \"no_order\": \"OR-2022-10-26-20\"\r\n        }\r\n    ]\r\n}"
+							"body": "{\r\n    \"status\": true,\r\n    \"message\": \"success get All data!\",\r\n    \"data\": {\r\n        \"2022-11-06\": [\r\n            {\r\n                \"id\": 1,\r\n                \"transaction_date\": \"2022-11-06T08:31:58.393+07:00\",\r\n                \"no_order\": \"OR-2022-9-8-1\",\r\n                \"status\": \"Batal\"\r\n            }\r\n        ],\r\n        \"2022-11-05\": [\r\n            {\r\n                \"id\": 29,\r\n                \"transaction_date\": \"2022-11-05 19:20:10.958 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-29\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 30,\r\n                \"transaction_date\": \"2022-11-05 19:22:24.046 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-30\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 31,\r\n                \"transaction_date\": \"2022-11-05 19:28:56.141 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-31\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 36,\r\n                \"transaction_date\": \"2022-11-05 19:35:01.794 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-36\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 37,\r\n                \"transaction_date\": \"2022-11-05 19:36:03.246 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-37\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 47,\r\n                \"transaction_date\": \"2022-11-05 19:47:17.485 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-47\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 50,\r\n                \"transaction_date\": \"2022-11-05 19:54:55.928 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-50\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 51,\r\n                \"transaction_date\": \"2022-11-05 19:55:10.683 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-51\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 52,\r\n                \"transaction_date\": \"2022-11-05 19:55:59.488 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-52\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 53,\r\n                \"transaction_date\": \"2022-11-05 19:57:43.057 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-53\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 54,\r\n                \"transaction_date\": \"2022-11-05 19:59:28.612 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-54\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 55,\r\n                \"transaction_date\": \"2022-11-05 19:59:35.882 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-55\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 56,\r\n                \"transaction_date\": \"2022-11-05 20:01:32.529 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-56\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 57,\r\n                \"transaction_date\": \"2022-11-05 20:02:04.032 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-57\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 58,\r\n                \"transaction_date\": \"2022-11-05 20:05:45.711 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-58\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 59,\r\n                \"transaction_date\": \"2022-11-05 22:48:46.387 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-59\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 60,\r\n                \"transaction_date\": \"2022-11-05 23:17:18.054 +00:00\",\r\n                \"no_order\": \"OR-2022-11-5-60\",\r\n                \"status\": \"Proses\"\r\n            },\r\n            {\r\n                \"id\": 2,\r\n                \"transaction_date\": \"2022-11-05T08:31:58.393+07:00\",\r\n                \"no_order\": \"OR-2022-10-18-2\",\r\n                \"status\": \"Batal\"\r\n            }\r\n        ],\r\n        \"2022-11-04\": [\r\n            {\r\n                \"id\": 3,\r\n                \"transaction_date\": \"2022-11-04T08:31:58.393+07:00\",\r\n                \"no_order\": \"OR-2022-10-19-3\",\r\n                \"status\": \"Batal\"\r\n            }\r\n        ],\r\n        \"2022-11-03\": [\r\n            {\r\n                \"id\": 4,\r\n                \"transaction_date\": \"2022-11-03T08:31:58.393+07:00\",\r\n                \"no_order\": \"OR-2022-10-23-7\",\r\n                \"status\": \"Proses\"\r\n            }\r\n        ],\r\n        \"2022-11-02\": [\r\n            {\r\n                \"id\": 5,\r\n                \"transaction_date\": \"2022-11-02T08:31:58.393+07:00\",\r\n                \"no_order\": \"OR-2022-10-25-9\",\r\n                \"status\": \"Batal\"\r\n            }\r\n        ],\r\n        \"2022-11-01\": [\r\n            {\r\n                \"id\": 6,\r\n                \"transaction_date\": \"2022-11-01T08:31:58.393+07:00\",\r\n                \"no_order\": \"OR-2022-10-25-10\",\r\n                \"status\": \"Proses\"\r\n            }\r\n        ],\r\n        \"2022-10-31\": [\r\n            {\r\n                \"id\": 7,\r\n                \"transaction_date\": \"2022-10-31T08:31:58.393+07:00\",\r\n                \"no_order\": \"OR-2022-10-25-11\",\r\n                \"status\": \"Proses\"\r\n            }\r\n        ],\r\n        \"2022-10-30\": [\r\n            {\r\n                \"id\": 8,\r\n                \"transaction_date\": \"2022-10-30T08:31:58.393+07:00\",\r\n                \"no_order\": \"OR-2022-10-26-8\",\r\n                \"status\": \"Proses\"\r\n            }\r\n        ]\r\n    }\r\n}"
 						}
 					]
 				},
 				{
 					"name": "Get Single User Order Detail By Id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInVzZXJuYW1lIjoiQkVLRUwxMjIxMSIsImlhdCI6MTY2NzY3MjQyMiwiZXhwIjoxNjY3NzU4ODIyfQ.bfQGGyg_GgtS2aiHrbs9kR4yKoOnMOAKaQrLR56nmxY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -2743,7 +2773,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\r\n    \"status\": true,\r\n    \"message\": \"success get All data!\",\r\n    \"data\": {\r\n        \"id\": 7,\r\n        \"name\": \"Kelompok1\",\r\n        \"phone_number\": \"041431\",\r\n        \"address\": \"Jl. Mangga 3\",\r\n        \"transaction_date\": \"2022-10-25 10:00:02.000 +00:00\",\r\n        \"sub_total\": 87000,\r\n        \"delivery_cost\": 3000,\r\n        \"total\": 90000,\r\n        \"note\": \"-\",\r\n        \"user_id\": 1,\r\n        \"status\": \"Batal\",\r\n        \"no_order\": \"OR-2022-10-25-11\",\r\n        \"createdAt\": \"2022-10-31T01:02:43.904Z\",\r\n        \"updatedAt\": \"2022-10-31T01:02:43.904Z\",\r\n        \"order_items\": [\r\n            {\r\n                \"id\": 9,\r\n                \"product_id\": 1,\r\n                \"product_name\": \"Kol\",\r\n                \"unit_per_qty\": \"1 kg\",\r\n                \"qty\": 5,\r\n                \"price\": 30000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            },\r\n            {\r\n                \"id\": 10,\r\n                \"product_id\": 2,\r\n                \"product_name\": \"Belimbing\",\r\n                \"unit_per_qty\": \"1 kg\",\r\n                \"qty\": 1,\r\n                \"price\": 15000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            },\r\n            {\r\n                \"id\": 11,\r\n                \"product_id\": 3,\r\n                \"product_name\": \"Wortel\",\r\n                \"unit_per_qty\": \"500 gr\",\r\n                \"qty\": 7,\r\n                \"price\": 42000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            }\r\n        ]\r\n    }\r\n}"
+							"body": "{\r\n    \"status\": true,\r\n    \"message\": \"success get All data!\",\r\n    \"data\": {\r\n        \"id\": 7,\r\n        \"name\": \"Kelompok1\",\r\n        \"phone_number\": \"041431\",\r\n        \"address\": \"Jl. Mangga 3\",\r\n        \"transaction_date\": \"2022-10-25 10:00:02.000 +00:00\",\r\n        \"sub_total\": 87000,\r\n        \"delivery_cost\": 3000,\r\n        \"total\": 90000,\r\n        \"note\": \"-\",\r\n        \"user_id\": 12,\r\n        \"status\": \"Proses\",\r\n        \"no_order\": \"OR-2022-10-25-11\",\r\n        \"createdAt\": \"2022-10-31T01:02:43.904Z\",\r\n        \"order_items\": [\r\n            {\r\n                \"id\": 9,\r\n                \"product_id\": 1,\r\n                \"qty\": 5,\r\n                \"price\": 30000,\r\n                \"product_name\": \"Kol\",\r\n                \"unit_per_qty\": \"1 kg\"\r\n            },\r\n            {\r\n                \"id\": 10,\r\n                \"product_id\": 2,\r\n                \"qty\": 1,\r\n                \"price\": 15000,\r\n                \"product_name\": \"Belimbing\",\r\n                \"unit_per_qty\": \"1 kg\"\r\n            },\r\n            {\r\n                \"id\": 11,\r\n                \"product_id\": 3,\r\n                \"qty\": 7,\r\n                \"price\": 42000,\r\n                \"product_name\": \"Wortel\",\r\n                \"unit_per_qty\": \"500 gr\"\r\n            }\r\n        ]\r\n    }\r\n}"
 						},
 						{
 							"name": "404",
@@ -2781,11 +2811,21 @@
 				{
 					"name": "Update Order Status",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInVzZXJuYW1lIjoiQkVLRUwxMjIxMSIsImlhdCI6MTY2NzY3MjQyMiwiZXhwIjoxNjY3NzU4ODIyfQ.bfQGGyg_GgtS2aiHrbs9kR4yKoOnMOAKaQrLR56nmxY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"status\": \"Proses\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2793,14 +2833,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseurl}}/orders/7/status",
+							"raw": "{{baseurl}}/orders/55/status/batal",
 							"host": [
 								"{{baseurl}}"
 							],
 							"path": [
 								"orders",
-								"7",
-								"status"
+								"55",
+								"status",
+								"batal"
 							]
 						}
 					},
@@ -2842,7 +2883,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\r\n    \"status\": true,\r\n    \"message\": \"success get All data!\",\r\n    \"data\": {\r\n        \"id\": 7,\r\n        \"name\": \"Kelompok1\",\r\n        \"phone_number\": \"041431\",\r\n        \"address\": \"Jl. Mangga 3\",\r\n        \"transaction_date\": \"2022-10-25 10:00:02.000 +00:00\",\r\n        \"sub_total\": 87000,\r\n        \"delivery_cost\": 3000,\r\n        \"total\": 90000,\r\n        \"note\": \"-\",\r\n        \"user_id\": 1,\r\n        \"status\": \"Proses\",\r\n        \"no_order\": \"OR-2022-10-25-11\",\r\n        \"createdAt\": \"2022-10-31T01:02:43.904Z\",\r\n        \"updatedAt\": \"2022-10-31T02:29:14.878Z\",\r\n        \"order_items\": [\r\n            {\r\n                \"id\": 9,\r\n                \"product_id\": 1,\r\n                \"product_name\": \"Kol\",\r\n                \"unit_per_qty\": \"1 kg\",\r\n                \"qty\": 5,\r\n                \"price\": 30000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            },\r\n            {\r\n                \"id\": 10,\r\n                \"product_id\": 2,\r\n                \"product_name\": \"Belimbing\",\r\n                \"unit_per_qty\": \"1 kg\",\r\n                \"qty\": 1,\r\n                \"price\": 15000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            },\r\n            {\r\n                \"id\": 11,\r\n                \"product_id\": 3,\r\n                \"product_name\": \"Wortel\",\r\n                \"unit_per_qty\": \"500 gr\",\r\n                \"qty\": 7,\r\n                \"price\": 42000,\r\n                \"order_id\": 7,\r\n                \"createdAt\": \"2022-10-31T01:02:43.912Z\",\r\n                \"updatedAt\": \"2022-10-31T01:02:43.912Z\"\r\n            }\r\n        ]\r\n    }\r\n}"
+							"body": "{\r\n    \"status\": true,\r\n    \"message\": \"success get All data!\",\r\n    \"data\": {\r\n        \"id\": 55,\r\n        \"name\": \"Kelompok1\",\r\n        \"phone_number\": \"05677231546\",\r\n        \"address\": \"Jl. Mangga 3\",\r\n        \"transaction_date\": \"2022-11-05 19:59:35.882 +00:00\",\r\n        \"sub_total\": 168000,\r\n        \"delivery_cost\": 3000,\r\n        \"total\": 171000,\r\n        \"note\": \"Something\",\r\n        \"user_id\": 12,\r\n        \"status\": \"Batal\",\r\n        \"no_order\": \"OR-2022-11-5-55\",\r\n        \"createdAt\": \"2022-11-05T19:59:35.882Z\",\r\n        \"order_items\": [\r\n            {\r\n                \"id\": 114,\r\n                \"product_id\": 1,\r\n                \"qty\": 4,\r\n                \"price\": 24000,\r\n                \"product_name\": \"Kol\",\r\n                \"unit_per_qty\": \"1 kg\"\r\n            },\r\n            {\r\n                \"id\": 115,\r\n                \"product_id\": 2,\r\n                \"qty\": 8,\r\n                \"price\": 120000,\r\n                \"product_name\": \"Belimbing\",\r\n                \"unit_per_qty\": \"1 kg\"\r\n            },\r\n            {\r\n                \"id\": 116,\r\n                \"product_id\": 3,\r\n                \"qty\": 4,\r\n                \"price\": 24000,\r\n                \"product_name\": \"Wortel\",\r\n                \"unit_per_qty\": \"500 gr\"\r\n            }\r\n        ]\r\n    }\r\n}"
 						},
 						{
 							"name": "404",
