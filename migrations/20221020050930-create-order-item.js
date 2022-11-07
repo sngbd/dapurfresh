@@ -18,6 +18,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      discount: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       order_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
