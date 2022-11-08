@@ -15,7 +15,8 @@ router.route('/user/lastsevendays').get(orderController.getUserOrderLast7Days);
 router.route('/:id/detail/user').get(orderController.getUserOrderDetail);
 
 // Update route status
-router.route('/:id/status/batal').patch(
+router.route('/:id/status').patch(
+  validateOrder.validateUpdateOrder,
   orderController.updateUserOrderStatus,
 );
 

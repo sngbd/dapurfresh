@@ -3,7 +3,7 @@ const {
   Order, Order_Item, CartItem, Product, Unit, sequelize,
 } = require('../models');
 
-const getOrder = async (id, user_id) => {
+const getOrder = async (id, user_id, tr) => {
   const order = await Order.findOne({
     attributes: [
       'id',
@@ -30,6 +30,7 @@ const getOrder = async (id, user_id) => {
         'product_id',
         'qty',
         'price',
+        'discount',
       ],
       include: [{
         model: Product,
@@ -46,6 +47,7 @@ const getOrder = async (id, user_id) => {
         }],
       }],
     }],
+    transaction: tr,
   });
 
   const { order_items } = order.dataValues;
@@ -66,14 +68,39 @@ const createOrder = async (Orderjson) => {
     isolationLevel: Transaction.ISOLATION_LEVELS.REPEATABLE_READ,
   }, async (tr) => {
     // assign product_name, unit_per_qty
-    order_itemsJson.forEach(async (order_item) => {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const order_item of order_itemsJson) {
+      // eslint-disable-next-line no-await-in-loop
       const product = await Product.findOne({
         where: { id: order_item.product_id },
         include: [{ model: Unit, as: 'unit' }],
+        transaction: tr,
       });
+      if (product === null) {
+        throw Error(`can't find product with id '${order_item.product_id}'`);
+      }
       order_item.product_name = product.title;
       order_item.unit_per_qty = `${product.qty_unit} ${product.unit.title}`;
-    });
+      const qty = product.stock - order_item.qty;
+      if (qty < 0) {
+        throw Error(`qty exceeds product's stock with id '${product.id}'`);
+      }
+
+      // update product stock
+      // eslint-disable-next-line no-await-in-loop
+      const productUpdatedRows = await Product.update({
+        stock: qty,
+      }, {
+        where: {
+          id: order_item.product_id,
+        },
+        transaction: tr,
+      });
+
+      if (productUpdatedRows[0] !== 1) {
+        throw Error(`error update product stock with id '${product.id}'`);
+      }
+    }
 
     // create tuple order in orders table
     const resultOrder = await Order.create(Orderjson, {
@@ -98,7 +125,7 @@ const createOrder = async (Orderjson) => {
 
     // create all order item in order_items table
     const order_itemsPromise = [];
-    order_itemsJson.forEach((order_item) => {
+    await order_itemsJson.forEach((order_item) => {
       // set order_id in every order item
       order_item.order_id = id;
       order_itemsPromise.push(Order_Item.create(order_item, {
@@ -117,6 +144,7 @@ const createOrder = async (Orderjson) => {
 
     resultOrder.dataValues.order_items = order_itemsJson;
     delete resultOrder.dataValues.updatedAt;
+
     return resultOrder;
   });
   return order;
@@ -141,6 +169,7 @@ const getUserOrderLast7Days = async (user_id) => {
   const ordersGroupByDay = {};
   const dateSearch = new Date(dateNow);
   let i = 0;
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     let day = dateSearch.getUTCDate();
     day = (day < 10) ? `0${day}` : day;
@@ -162,15 +191,22 @@ const getUserOrderLast7Days = async (user_id) => {
 
 const getUserOrderDetail = async (id, user_id) => getOrder(id, user_id);
 
-const updateUserOrderStatusToBatal = async (id, user_id) => {
-  const [updatedRowsCount] = await Order.update({
-    status: 'Batal',
-  }, { where: { id, user_id } });
-  if (updatedRowsCount <= 0) {
-    return null;
-  }
+const updateUserOrderStatusToBatal = async (id, user_id, orderUpdateJson) => {
+  // Make a transaction: update, and get
+  const order = await sequelize.transaction({
+    isolationLevel: Transaction.ISOLATION_LEVELS.REPEATABLE_READ,
+  }, async (tr) => {
+    const [updatedRowsCount] = await Order.update(orderUpdateJson, {
+      where: { id, user_id },
+      transaction: tr,
+    });
+    if (updatedRowsCount <= 0) {
+      return null;
+    }
 
-  return getOrder(id, user_id);
+    return getOrder(id, user_id, tr);
+  });
+  return order;
 };
 
 module.exports = {
