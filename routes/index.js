@@ -9,6 +9,7 @@ const unitRouter = require('./unit');
 const cartRouter = require('./cart');
 const profileRouter = require('./profile');
 const orderRouter = require('./order');
+const logout = require('./logout');
 const validateToken = require('../middlewares/validation/validateToken');
 
 // welcome
@@ -42,5 +43,8 @@ router.use('/orders', orderRouter);
 
 // profile
 router.use('/profile', profileRouter);
+
+// logout
+router.use('/auth/logout', logout);
 
 module.exports = router;
