@@ -44,6 +44,9 @@ module.exports = (req, res, next) => {
   res.respondSuccess = (data = null, message = 'success!') => {
     res.respond(data, message, 200);
   };
+  res.respondFail = (message = 'failed!', data = null) => {
+    res.respond(message, data, 200);
+  };
 
   res.notAuthorized = (message = 'youre not authorized!', data = null) => {
     res.respond(data, message, 401);

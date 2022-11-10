@@ -17,7 +17,11 @@ const registerUser = async (req, res) => {
     delete req.body.password_hash;
     const { ref_code_friend, thumbnail, ...body } = req.body;
     const response = {
-      id, ...body, ref_code, ref_code_friend, thumbnail,
+      id,
+      ...body,
+      ref_code,
+      ref_code_friend,
+      thumbnail,
     };
 
     return res.respondCreated(response, 'user successfully registered');
@@ -28,20 +32,20 @@ const registerUser = async (req, res) => {
 
 function createAccessToken(id, username) {
   const payload = { id, username };
-  return jwt.sign(
-    payload,
-    process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: process.env.ACCESS_TOKEN_EXPIRESIN },
-  );
+  return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_EXPIRESIN });
+}
+function createAccessTokenLogout(id, username) {
+  const payload = { id, username };
+  return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1s' });
 }
 
 function createRefreshToken(id, username) {
   const payload = { id, username };
-  return jwt.sign(
-    payload,
-    process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: process.env.REFRESH_TOKEN_EXPIRESIN },
-  );
+  return jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, { expiresIn: process.env.REFRESH_TOKEN_EXPIRESIN });
+}
+function createRefreshTokenLogout(id, username) {
+  const payload = { id, username };
+  return jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1s' });
 }
 
 function accessTokenJSON(accessToken) {
@@ -49,6 +53,13 @@ function accessTokenJSON(accessToken) {
     accessToken,
     token_type: 'Bearer',
     expiresIn: process.env.ACCESS_TOKEN_EXPIRESIN,
+  };
+}
+function accessTokenLogout(accessToken) {
+  return {
+    accessToken,
+    token_type: 'Bearer',
+    expiresIn: '1s',
   };
 }
 
@@ -78,9 +89,7 @@ const login = async (req, res, next) => {
 };
 
 const getTokenAfterLogin = async (req, res) => {
-  const {
-    id, username, name, phone_number, address, thumbnail,
-  } = req.user;
+  const { id, username, name, phone_number, address, thumbnail } = req.user;
 
   try {
     const accessToken = createAccessToken(id, username);
@@ -94,7 +103,12 @@ const getTokenAfterLogin = async (req, res) => {
     });
     return res.respondSuccess({
       user: {
-        id, username, name, phone_number, address, thumbnail,
+        id,
+        username,
+        name,
+        phone_number,
+        address,
+        thumbnail,
       },
       accessToken: accessTokenJSON(accessToken),
       refreshToken: {
@@ -125,9 +139,111 @@ const getAccessToken = async (req, res) => {
   return res.respondSuccess(accessTokenJSON(accessToken));
 };
 
+// const logout1 = async (req, res) => {
+//   // if (req.cookies?.jwt) {
+//   //   req.session = null;
+//   //   req.logout();
+//   //   return res.respondSuccess(null, 'success');
+//   // }
+//   // req.session = null;
+//   // req.logout;
+//   // return res.respondFail();
+//   // const { id, username } = req.user;
+//   // const authorizationHeader = req.headers.authorization;
+//   // const accessToken = authorizationHeader && authorizationHeader.split(' ')[1];
+//   // if (accessToken != accessToken) return res.notAuthorized();
+//   // req.session = null;
+//   // req.logout;
+//   // const date = new Date();
+//   // const refreshToken = createRefreshToken(id, username);
+
+//   // return res.respondSuccess({
+//   //   user: {
+//   //     id,
+//   //   },
+//   //   accessToken: accessTokenJSON(accessToken),
+//   //   refreshToken: {
+//   //     expiresIn: date,
+//   //   },
+//   // });
+
+//   const newToken = jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, { expiresIn: date });
+//   return res.respondFail();
+//   var authHeader = req.headers.authorization;
+//   var authHeader = (accessToken = authorizationHeader && authorizationHeader.split(' ')[1]);
+//   authHeader = '';
+//   jwt.sign(authHeader, '', { expiresIn: 1 }, (logout, err) => {
+//     if (logout) {
+//       res.send({ msg: 'You have been Logged Out' });
+//     } else {
+//       res.send({ msg: 'Error' });
+//     }
+//   });
+
+//   // return res.respondFail(authHeader);
+//   // try{
+//   //   const {refreshToken} = req.body
+//   //   if (!refreshToken) return res.respondBadRequest();
+//   //   const {userId} = await verifyRefreshToken(refreshToken)
+//   //   client.del()
+//   // } catch (error) {
+//   //   console.log(error);
+//   //   return res.respondServerError();
+//   // }
+// };
+
+// const logout = async (req, res) => {
+//   try {
+//     const authorizationHeader = req.headers.authorization;
+//     var authHeader = req.headers.authorization;
+//     const accessToken = authorizationHeader && authorizationHeader.split(' ')[1];
+//     // const token = req.user.tokens;
+//     jwt.sign(authHeader, accessToken, { expiresIn: process.env.ACCESS_TOKEN_LOGOUT }, (logout, err) => {
+//       if (logout) {
+//         return res.respondSuccess(accessToken, 'Success logout');
+//       } else {
+//         res.send({ msg: 'Error' });
+//       }
+//     });
+//     // authorizationHeader = authorizationHeader.filter((token) => {
+//     //   return token.token !== authorizationHeader;
+//     // });
+//     // await req.user.save();
+//     // res.send();
+//     // return res.respondSuccess('success', token);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+// const logout = async (req, res) => {
+//   const { id, username } = req.user;
+
+//   try {
+//     const accessToken = createAccessTokenLogout(id, username);
+//     const refreshToken = createRefreshTokenLogout(id, username);
+
+//     res.cookie('jwt', refreshToken, {
+//       httpOnly: true,
+//       sameSite: 'None',
+//       secure: true,
+//       maxAge: 24 * 60 * 60 * 1000,
+//     });
+//     return res.respondSuccess({
+//       accessToken: accessTokenLogout(accessToken),
+//       refreshToken: {
+//         expiresIn: '1s',
+//       },
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     return res.respondServerError();
+//   }
+// };
+
 module.exports = {
   registerUser,
   login,
   getTokenAfterLogin,
   getAccessToken,
+  // logout,
 };
