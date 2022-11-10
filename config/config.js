@@ -34,9 +34,9 @@ module.exports = {
     seederStoragePath: 'sequelize-data.json',
 
     // Use a different storage type. Default: sequelize
-    "migrationStorage": "json",
+    migrationStorage: 'json',
     // Use a different file name. Default: sequelize-meta.json
-    "migrationStoragePath": "sequelize-meta.json",
+    migrationStoragePath: 'sequelize-meta.json',
   },
   production: {
     use_env_variable: 'DATABASE_URL',
@@ -47,5 +47,14 @@ module.exports = {
         rejectUnauthorized: false,
       },
     },
+    // Use a different storage. Default: none
+    seederStorage: 'json',
+    // Use a different file name. Default: sequelize-data.json
+    seederStoragePath: 'sequelize-data.json',
+
+    // Use a different storage type. Default: sequelize
+    migrationStorage: 'json',
+    // Use a different file name. Default: sequelize-meta.json
+    migrationStoragePath: 'sequelize-meta.json',
   },
 };
