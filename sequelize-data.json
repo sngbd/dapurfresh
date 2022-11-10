@@ -4,6 +4,6 @@
   "20221012153704-product-seed.js",
   "20221014075837-user-seed.js",
   "20221021144226-order.js",
-  "20221025092030-order_item.js",
-  "20221105233947-update-order-transaction-date-7-days-ago.js"
+  "20221105233947-update-order-transaction-date-7-days-ago.js",
+  "20221110040634-help-seed.js"
 ]

@@ -17,7 +17,11 @@ const registerUser = async (req, res) => {
     delete req.body.password_hash;
     const { ref_code_friend, thumbnail, ...body } = req.body;
     const response = {
-      id, ...body, ref_code, ref_code_friend, thumbnail,
+      id,
+      ...body,
+      ref_code,
+      ref_code_friend,
+      thumbnail,
     };
 
     return res.respondCreated(response, 'user successfully registered');
@@ -28,20 +32,20 @@ const registerUser = async (req, res) => {
 
 function createAccessToken(id, username) {
   const payload = { id, username };
-  return jwt.sign(
-    payload,
-    process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: process.env.ACCESS_TOKEN_EXPIRESIN },
-  );
+  return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_EXPIRESIN });
+}
+function createAccessTokenLogout(id, username) {
+  const payload = { id, username };
+  return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1s' });
 }
 
 function createRefreshToken(id, username) {
   const payload = { id, username };
-  return jwt.sign(
-    payload,
-    process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: process.env.REFRESH_TOKEN_EXPIRESIN },
-  );
+  return jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, { expiresIn: process.env.REFRESH_TOKEN_EXPIRESIN });
+}
+function createRefreshTokenLogout(id, username) {
+  const payload = { id, username };
+  return jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1s' });
 }
 
 function accessTokenJSON(accessToken) {
@@ -49,6 +53,13 @@ function accessTokenJSON(accessToken) {
     accessToken,
     token_type: 'Bearer',
     expiresIn: process.env.ACCESS_TOKEN_EXPIRESIN,
+  };
+}
+function accessTokenLogout(accessToken) {
+  return {
+    accessToken,
+    token_type: 'Bearer',
+    expiresIn: '1s',
   };
 }
 
@@ -78,9 +89,7 @@ const login = async (req, res, next) => {
 };
 
 const getTokenAfterLogin = async (req, res) => {
-  const {
-    id, username, name, phone_number, address, thumbnail,
-  } = req.user;
+  const { id, username, name, phone_number, address, thumbnail } = req.user;
 
   try {
     const accessToken = createAccessToken(id, username);
@@ -94,7 +103,12 @@ const getTokenAfterLogin = async (req, res) => {
     });
     return res.respondSuccess({
       user: {
-        id, username, name, phone_number, address, thumbnail,
+        id,
+        username,
+        name,
+        phone_number,
+        address,
+        thumbnail,
       },
       accessToken: accessTokenJSON(accessToken),
       refreshToken: {
@@ -130,4 +144,5 @@ module.exports = {
   login,
   getTokenAfterLogin,
   getAccessToken,
+  // logout,
 };
