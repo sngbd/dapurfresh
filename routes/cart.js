@@ -10,4 +10,7 @@ router.get('/', cartController.getCart);
 router.put('/', validator.addUpdateItem, cartController.updateItem);
 router.delete('/', validator.deleteItem, cartController.deleteItem);
 
+// Get Count Item And price total Cart User
+router.route('/numOfItemsAndTotal').get(cartController.getNumItemsAndTotalPrice);
+
 module.exports = router;
