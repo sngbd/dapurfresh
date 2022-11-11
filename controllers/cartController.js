@@ -46,9 +46,20 @@ const deleteItem = async (req, res) => {
   }
 };
 
+const getNumItemsAndTotalPrice = async (req, res) => {
+  const user_id = req.user.id;
+  try {
+    const numItemsAndTotalPrice = await cartRepository.getNumItemsAndTotalPrice(user_id);
+    return res.respondGet(numItemsAndTotalPrice);
+  } catch (error) {
+    return res.respondServerError(error.message);
+  }
+};
+
 module.exports = {
   addItem,
   getCart,
   updateItem,
   deleteItem,
+  getNumItemsAndTotalPrice,
 };

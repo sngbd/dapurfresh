@@ -811,7 +811,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJCRUtFTDEyMjExIiwiaWF0IjoxNjY2NjAzNDYwLCJleHAiOjE2NjY2MTQyNjB9.m65S3YSDOBxWJpFAB-pLJ4BLxvyX_Ew4fg3jhHdXySw",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -819,13 +819,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseurl}}/help/",
+							"raw": "{{baseurl}}/help",
 							"host": [
 								"{{baseurl}}"
 							],
 							"path": [
-								"help",
-								""
+								"help"
 							]
 						}
 					},
@@ -1031,7 +1030,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJCRUtFTDEyMjExIiwiaWF0IjoxNjY2NjAzNDYwLCJleHAiOjE2NjY2MTQyNjB9.m65S3YSDOBxWJpFAB-pLJ4BLxvyX_Ew4fg3jhHdXySw",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -1040,7 +1039,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"pemensan\",\r\n    \"description\": \"1. Cari Produk yang kamu inginkan <br>\"\r\n}",
+							"raw": "{\r\n    \"title\": \"Cara Memesan Product\",\r\n    \"description\": \"1. Cari Produk yang kamu inginkan <br> 2. Tambahkan aja produknya dengan menekan tombol tambah <br> 3. Tekan keranjang yang ada dibawah layar kamu untuk masuk ke halaman checkout <br> 4. Pastikan data-data kamu valid yaa. Jika ada produk yang tidak ditemukan, kamu bisa tambahin di Catatan Tambahan <br> 5. Terakhir, tombol pesan dehh\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1493,7 +1492,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJCRUtFTDEyMjExIiwiaWF0IjoxNjY2NjAzNDYwLCJleHAiOjE2NjY2MTQyNjB9.m65S3YSDOBxWJpFAB-pLJ4BLxvyX_Ew4fg3jhHdXySw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJCRUtFTDEyMjExIiwiaWF0IjoxNjY4MTQxMjE2LCJleHAiOjE2NjgyMjc2MTZ9.9qCwEKTdXSwERhL1_rcEumAthvhChhHDGHf-MDLdRSM",
 									"type": "string"
 								}
 							]
@@ -1640,7 +1639,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJCRUtFTDEyMjExIiwiaWF0IjoxNjY2NjAzNDYwLCJleHAiOjE2NjY2MTQyNjB9.m65S3YSDOBxWJpFAB-pLJ4BLxvyX_Ew4fg3jhHdXySw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJCRUtFTDEyMjExIiwiaWF0IjoxNjY4MTQxMjE2LCJleHAiOjE2NjgyMjc2MTZ9.9qCwEKTdXSwERhL1_rcEumAthvhChhHDGHf-MDLdRSM",
 									"type": "string"
 								}
 							]
@@ -1649,7 +1648,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"product_id\": 1,\n    \"qty\": 10\n}",
+							"raw": "{\n    \"product_id\": 2,\n    \"qty\": 3\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2382,6 +2381,34 @@
 							"body": "{\n    \"status\": false,\n    \"message\": \"product_id not found on cart\",\n    \"data\": null\n}"
 						}
 					]
+				},
+				{
+					"name": "Get Num Of Items And Total Price",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJCRUtFTDEyMjExIiwiaWF0IjoxNjY4MTQxMjE2LCJleHAiOjE2NjgyMjc2MTZ9.9qCwEKTdXSwERhL1_rcEumAthvhChhHDGHf-MDLdRSM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/cart/numOfItemsAndTotal",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"cart",
+								"numOfItemsAndTotal"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -2723,7 +2750,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInVzZXJuYW1lIjoiQkVLRUwxMjIxMSIsImlhdCI6MTY2NzY3MjQyMiwiZXhwIjoxNjY3NzU4ODIyfQ.bfQGGyg_GgtS2aiHrbs9kR4yKoOnMOAKaQrLR56nmxY",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -2951,12 +2978,18 @@
 	"variable": [
 		{
 			"key": "baseurl",
-			"value": "http://localhost:8000/api/v1",
-			"type": "string"
+			"value": "https://dapurfresh-kel1.herokuapp.com/api/v1",
+			"type": "string",
+			"disabled": true
 		},
 		{
 			"key": "token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJCRUtFTDEyMjExIiwiaWF0IjoxNjY3MjAyMDE4LCJleHAiOjE2NjcyODg0MTh9.kyrY0lzrN-YNYWe8O2BJ1CPKjDGlO6e_YEjQwVUdWhU",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJCRUtFTDEyMjExIiwiaWF0IjoxNjY4MDUyNTY5LCJleHAiOjE2NjgxMzg5Njl9.3i8ZCUX00MCyGdwMbGKV7Qeit88g8RVb3MWyppzDkdA",
+			"type": "string"
+		},
+		{
+			"key": "baseurl",
+			"value": "http://localhost:8000/api/v1",
 			"type": "string"
 		}
 	]

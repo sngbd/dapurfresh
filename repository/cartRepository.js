@@ -1,4 +1,4 @@
-const { CartItem, Product } = require('../models');
+const { CartItem, Product, sequelize } = require('../models');
 
 const error = new Error();
 
@@ -104,9 +104,54 @@ const deleteItem = (async (item) => {
   return null;
 });
 
+const getNumItemsAndTotalPrice = async (user_id) => {
+  const numItems = await CartItem.findOne({
+    attributes: [
+      [sequelize.fn('COUNT', sequelize.col('*')), 'item'],
+    ],
+    where: {
+      user_id,
+    },
+  });
+
+  const priceEveryProductList = await CartItem.findAll({
+    attributes: [
+      [
+        sequelize.literal('qty * "Product".price'),
+        'totalPrice',
+      ],
+    ],
+    where: {
+      user_id,
+    },
+    include: [{
+      model: Product,
+      required: true,
+      attributes: [
+        'price',
+      ],
+    }],
+  });
+
+  // calculate total price every product
+  const total = priceEveryProductList.reduce(
+    (acc, priceEveryProduct) => acc
+      + priceEveryProduct.dataValues.totalPrice,
+    0,
+  );
+
+  const numItemsAndTotalPrice = {
+    item: parseInt(numItems.dataValues.item, 10),
+    total,
+  };
+
+  return numItemsAndTotalPrice;
+};
+
 module.exports = {
   addItemToCart,
   getCart,
   updateItem,
   deleteItem,
+  getNumItemsAndTotalPrice,
 };
