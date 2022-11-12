@@ -9,13 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ User, Unit, Category, Order_Item, CartItem }) {
       // define association here
-      Product.belongsTo(Unit, {
-        foreignKey: 'unit_id',
-        as: 'unit',
-      });
       Product.belongsTo(Category, {
         foreignKey: 'category_id',
-        targetKey : 'id'
+        targetKey: 'id',
       });
       Product.hasMany(Order_Item, {
         foreignKey: 'product_id',
@@ -32,8 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       category_id: DataTypes.INTEGER,
       price: DataTypes.INTEGER,
       stock: DataTypes.INTEGER,
-      qty_unit: DataTypes.INTEGER,
-      unit_id: DataTypes.INTEGER,
+      unit: DataTypes.TEXT,
       promo: DataTypes.INTEGER,
       max_promo: DataTypes.INTEGER,
       info: DataTypes.TEXT,
@@ -45,5 +40,4 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   return Product;
-
 };

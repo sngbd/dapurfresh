@@ -4,15 +4,7 @@ const db = require('../models');
 const { QueryTypes } = require('sequelize');
 const getProduct = async () => {
   try {
-    const get = await Product.findAll({
-      include: [
-        {
-          model: Unit,
-          as: 'unit',
-          attributes: ['title'],
-        },
-      ],
-    });
+    const get = await Product.findAll({});
 
     return get;
   } catch (err) {
@@ -39,30 +31,28 @@ const getByIdProduct = async (id) => {
 //   thumbnail
 //}
 const updateProduct = async (product_id, newItem) => {
-
   try {
     const update = await Product.update(
       {
-        unit_id: newItem.unit_id,
+        unit: newItem.unit,
         title: newItem.title,
         stock: newItem.stock,
         promo: newItem.promo,
-        updateAt: new Date()
+        updateAt: new Date(),
       },
       { where: { id: product_id } }
-    )
-    console.log(`Update : ${update}`)
+    );
+    console.log(`Update : ${update}`);
     const rsltupdate = await Product.findOne({
       where: {
-        id: 1
-      }
-    })
+        id: 1,
+      },
+    });
     return rsltupdate.dataValues;
+  } catch (error) {
+    console.log(error.message);
   }
-  catch (error) {
-    console.log(error.message)
-  }
-}
+};
 /* untuk insert
 item = {
   title
@@ -85,21 +75,19 @@ const newProduct = async (item) => {
       category_id: item.category_id,
       price: item.price,
       stock: item.stock,
-      qty_unit: item.qty_unit,
-      unit_id: item.unit_id,
+      unit: item.unit,
       promo: item.promo,
       max_promo: item.max_promo,
       info: item.info,
       thumbnail: item.thumbnail,
       createdAt: new Date(),
-      updateAt: new Date()
+      updateAt: new Date(),
     });
     return insert;
-  }
-  catch (err) {
+  } catch (err) {
     console.log(err);
   }
-}
+};
 // const test = async ()=> {
 //   const item = {
 //     title: 'Kangkung',
@@ -124,14 +112,13 @@ const getPopularProduct = async () => {
   GROUP BY product_id
   ORDER By COUNT(product_id) desc
 );`;
-  const get = db.sequelize.query(textquery, { type: QueryTypes.SELECT })
-  return get
-
-}
+  const get = db.sequelize.query(textquery, { type: QueryTypes.SELECT });
+  return get;
+};
 module.exports = {
   getProduct,
   getByIdProduct,
   updateProduct,
   newProduct,
-  getPopularProduct
+  getPopularProduct,
 };
