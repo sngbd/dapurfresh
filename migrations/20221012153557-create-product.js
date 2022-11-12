@@ -20,11 +20,8 @@ module.exports = {
       stock: {
         type: Sequelize.INTEGER,
       },
-      qty_unit: {
-        type: Sequelize.INTEGER,
-      },
-      unit_id: {
-        type: Sequelize.INTEGER,
+      unit: {
+        type: Sequelize.TEXT,
       },
       promo: {
         type: Sequelize.INTEGER,
