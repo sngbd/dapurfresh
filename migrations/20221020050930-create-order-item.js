@@ -9,6 +9,7 @@ module.exports = {
       },
       product_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
       },
       qty: {
         type: Sequelize.INTEGER,
