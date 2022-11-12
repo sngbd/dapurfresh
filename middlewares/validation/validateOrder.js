@@ -33,7 +33,7 @@ const validateAddOrder = async (req, res, next) => {
 
 const validateUpdateOrder = async (req, res, next) => {
   const schemaUpdateOrder = Joi.object({
-    status: Joi.string().valid('Batal', 'Proses', 'Selesai').required(),
+    status: Joi.string().required(),
   });
 
   try {
