@@ -5,6 +5,7 @@ module.exports = {
       'Orders',
       [
         {
+          id: 1,
           name: 'Kelompok1',
           phone_number: '8745623',
           address: 'Jl. Mangga 3',
@@ -20,6 +21,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 2,
           name: 'Kelompok1',
           phone_number: '8745623',
           address: 'Jl. Mangga 3',
@@ -35,6 +37,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 3,
           name: 'Kelompok1',
           phone_number: '8745623',
           address: 'Jl. Mangga 3',
@@ -50,6 +53,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 4,
           name: 'Kelompok1',
           phone_number: '86536425',
           address: 'Jl. Mangga 3',
@@ -65,6 +69,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 5,
           name: 'Kelompok1',
           phone_number: '85364274',
           address: 'Jl. Mangga 3',
@@ -80,6 +85,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 6,
           name: 'Kelompok1',
           phone_number: '7632542',
           address: 'Jl. Mangga 3',
@@ -95,6 +101,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 7,
           name: 'Kelompok1',
           phone_number: '041431',
           address: 'Jl. Mangga 3',

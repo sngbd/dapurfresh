@@ -5,6 +5,7 @@ module.exports = {
       'Order_Items',
       [
         {
+          id: 1,
           product_id: 7,
           qty: 4,
           price: 60000,
@@ -14,6 +15,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 2,
           product_id: 5,
           qty: 1,
           price: 29000,
@@ -23,6 +25,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 3,
           product_id: 6,
           qty: 2,
           price: 25800,
@@ -32,6 +35,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 4,
           product_id: 2,
           qty: 4,
           price: 60000,
@@ -41,6 +45,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 5,
           product_id: 3,
           qty: 2,
           price: 12000,
@@ -50,6 +55,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 6,
           product_id: 4,
           qty: 5,
           price: 15000,
@@ -59,6 +65,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 7,
           product_id: 1,
           qty: 2,
           price: 12000,
@@ -68,6 +75,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 8,
           product_id: 3,
           qty: 3,
           price: 18000,
@@ -77,6 +85,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 9,
           product_id: 1,
           qty: 5,
           price: 30000,
@@ -86,6 +95,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 10,
           product_id: 2,
           qty: 1,
           price: 15000,
@@ -95,6 +105,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 11,
           product_id: 3,
           qty: 7,
           price: 42000,

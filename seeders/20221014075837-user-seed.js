@@ -17,6 +17,7 @@ module.exports = {
       'Users',
       [
         {
+          id: 1,
           username: 'BEKEL12211',
           password_hash: await bcrypt.hash("Bekelompok1@", 10),
           ref_code: "EFGH",
@@ -24,6 +25,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 2,
           username: 'kel1',
           password_hash: await bcrypt.hash("Kelompok1#$", 10),
           name: 'Kelompok 1',
