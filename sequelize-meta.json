@@ -1,12 +1,11 @@
 [
   "20221012151520-create-user.js",
   "20221012153557-create-product.js",
-  "20221017140745-create-unit.js",
   "20221017140811-create-help.js",
   "20221020012345-create-category.js",
   "20221020050710-create-cart-item.js",
-  "20221020051105-create-order.js",
   "20221020050930-create-order-item.js",
+  "20221020051105-create-order.js",
   "20221028223458-add-fk-order-to-user.js",
   "20221028224344-add-fk-order-item-to-product.js",
   "20221028224355-add-fk-order-item-to-order.js"

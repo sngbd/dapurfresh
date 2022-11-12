@@ -1,11 +1,301 @@
 {
 	"info": {
-		"_postman_id": "2cbe820e-74eb-48c5-abe2-857a0059417f",
+		"_postman_id": "71078f7e-4c93-48e1-aa54-d992a78ceb19",
 		"name": "Dapurfresh",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23878865"
+		"_exporter_id": "13146980"
 	},
 	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompok1@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/auth/register",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompok1@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/auth/register",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "118"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"76-MN4ccWSFqAmQxqYcco8nNSypURU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Oct 2022 15:09:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"user successfully registered\",\n    \"data\": {\n        \"id\": 3,\n        \"username\": \"BEKEL12211\",\n        \"ref_code\": \"MNREOQYD\"\n    }\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n    \"password\": \"Bekelompok1@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/auth/register",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-P/G6jVzYYrHdZ+dV68ZXDaCpcJE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Oct 2022 15:09:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"\\\"username\\\" is required\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "400 password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/auth/register",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "123"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7b-oBUWyVE2Z1+H7CipGlymLVcAPY8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Oct 2022 15:10:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"\\\"password\\\" with value \\\"Bekelompo\\\" fails to match the special character pattern\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompok1@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/auth/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJrZWwxIiwiaWF0IjoxNjY2MDIwMjk5LCJleHAiOjE2NjYxMDY2OTl9.z-J-zBvliJQFJMYxCl44vmHJe-GcQvz5wKIe4pAQWng",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseurl}}/auth/token",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"auth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Product",
 			"item": [
@@ -17,7 +307,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJCRUtFTDEyMjExIiwiaWF0IjoxNjY2NjAzNDYwLCJleHAiOjE2NjY2MTQyNjB9.m65S3YSDOBxWJpFAB-pLJ4BLxvyX_Ew4fg3jhHdXySw",
+									"value": "{{token}}",
 									"type": "string"
 								}
 							]
@@ -41,16 +331,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://dapurfresh-kel1.herokuapp.com/api/v1/product",
-									"protocol": "https",
+									"raw": "{{baseurl}}/product",
 									"host": [
-										"dapurfresh-kel1",
-										"herokuapp",
-										"com"
+										"{{baseurl}}"
 									],
 									"path": [
-										"api",
-										"v1",
 										"product"
 									]
 								}
@@ -73,15 +358,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "323"
+									"value": "2070"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"143-8O1GANcP8M0YjPyXgB+fY1k12xo\""
+									"value": "W/\"816-2xIiiT5Y8cBe3fZbk0cqu21Eq9k\""
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 17 Oct 2022 13:53:40 GMT"
+									"value": "Sat, 12 Nov 2022 03:02:52 GMT"
 								},
 								{
 									"key": "Connection",
@@ -93,7 +378,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": true,\n    \"message\": \"success get All data!\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"Kol\",\n            \"category_id\": 1,\n            \"price\": 2000,\n            \"stock\": 5,\n            \"unit\": \"1x buah\",\n            \"promo\": 2,\n            \"max_promo\": 3,\n            \"info\": \"Kul segar\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/kul_IboP2NDGW.jpg\",\n            \"createdAt\": \"2022-10-14T07:38:22.486Z\",\n            \"updatedAt\": \"2022-10-14T07:38:22.486Z\"\n        }\n    ]\n}"
+							"body": "{\n    \"status\": true,\n    \"message\": \"success get All data!\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"Kol\",\n            \"category_id\": 2,\n            \"price\": 6000,\n            \"stock\": 5,\n            \"unit\": \"1 kg\",\n            \"promo\": 2,\n            \"max_promo\": 3,\n            \"info\": \"1 buah kol setara 1 kg\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/kul_IboP2NDGW.jpg\",\n            \"createdAt\": \"2022-11-12T03:00:24.307Z\",\n            \"updatedAt\": \"2022-11-12T03:00:24.307Z\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"Belimbing\",\n            \"category_id\": 1,\n            \"price\": 15000,\n            \"stock\": 2,\n            \"unit\": \"90 gr\",\n            \"promo\": 2,\n            \"max_promo\": 3,\n            \"info\": \"1 buah belimbing setara 90 gr\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/belimbing_eKQI4HXnC.jpg\",\n            \"createdAt\": \"2022-11-12T03:00:24.307Z\",\n            \"updatedAt\": \"2022-11-12T03:00:24.307Z\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Wortel\",\n            \"category_id\": 2,\n            \"price\": 6000,\n            \"stock\": 12,\n            \"unit\": \"100 gr\",\n            \"promo\": 2,\n            \"max_promo\": 3,\n            \"info\": \"1 buah wortel setara 100 gr\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/wortel_JeEMob6Dg.jpg\",\n            \"createdAt\": \"2022-11-12T03:00:24.307Z\",\n            \"updatedAt\": \"2022-11-12T03:00:24.307Z\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Kangkung\",\n            \"category_id\": 2,\n            \"price\": 3000,\n            \"stock\": 5,\n            \"unit\": \"250 gr\",\n            \"promo\": 2,\n            \"max_promo\": 3,\n            \"info\": \"1 ikat kangkung setara 250 gr\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/kangkung_8Zo-Lsqh_.jpg\",\n            \"createdAt\": \"2022-11-12T03:00:24.307Z\",\n            \"updatedAt\": \"2022-11-12T03:00:24.307Z\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"Apel\",\n            \"category_id\": 1,\n            \"price\": 29000,\n            \"stock\": 6,\n            \"unit\": \"200 gr\",\n            \"promo\": 2,\n            \"max_promo\": 3,\n            \"info\": \"1 buah apel setara 200 gr\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/apel_EHvAlg9np.jpg\",\n            \"createdAt\": \"2022-11-12T03:00:24.307Z\",\n            \"updatedAt\": \"2022-11-12T03:00:24.307Z\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"Nanas\",\n            \"category_id\": 1,\n            \"price\": 12900,\n            \"stock\": 18,\n            \"unit\": \"550 g\",\n            \"promo\": 2,\n            \"max_promo\": 3,\n            \"info\": \"1 buah nanas setara 550 g\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/nanas_04J5I7ASd.jpg\",\n            \"createdAt\": \"2022-11-12T03:00:24.307Z\",\n            \"updatedAt\": \"2022-11-12T03:00:24.307Z\"\n        },\n        {\n            \"id\": 7,\n            \"title\": \"Pepaya\",\n            \"category_id\": 1,\n            \"price\": 15000,\n            \"stock\": 15,\n            \"unit\": \"500 gr\",\n            \"promo\": 2,\n            \"max_promo\": 3,\n            \"info\": \"1 buah pepaya setara 500 gr\",\n            \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/pepaya_Ad-mWqvaD.jpg\",\n            \"createdAt\": \"2022-11-12T03:00:24.307Z\",\n            \"updatedAt\": \"2022-11-12T03:00:24.307Z\"\n        }\n    ]\n}"
 						}
 					]
 				},
@@ -173,7 +458,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": true,\n    \"message\": \"Success get data by 1\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"Kol\",\n        \"category_id\": 1,\n        \"price\": 2000,\n        \"stock\": 5,\n        \"unit\": \"1x buah\",\n        \"promo\": 2,\n        \"max_promo\": 3,\n        \"info\": \"Kul segar\",\n        \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/kul_IboP2NDGW.jpg\",\n        \"createdAt\": \"2022-10-14T07:38:22.486Z\",\n        \"updatedAt\": \"2022-10-14T07:38:22.486Z\"\n    }\n}"
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success get data by 1\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"Kol\",\n        \"category_id\": 1,\n        \"price\": 2000,\n        \"stock\": 5,\n          \"unit\": \"1 kg\",\n        \"promo\": 2,\n        \"max_promo\": 3,\n        \"info\": \"Kul segar\",\n        \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/kul_IboP2NDGW.jpg\",\n        \"createdAt\": \"2022-10-14T07:38:22.486Z\",\n        \"updatedAt\": \"2022-10-14T07:38:22.486Z\"\n    }\n}"
 						},
 						{
 							"name": "404",
@@ -507,296 +792,6 @@
 							"body": "{\n    \"status\": true,\n    \"message\": \"success get my profile\",\n    \"data\": {\n        \"username\": \"BEKEL12211\",\n        \"name\": \"Syaiful\",\n        \"phone_number\": \"0821451\",\n        \"address\": \"Kudus\",\n        \"ref_code\": \"CQ0W9OE7\",\n        \"ref_code_friend\": null,\n        \"thumbnail\": \"https://ik.imagekit.io/1y88cfgc5/1667204831365-8f2c5f3fdde03deee6c3caf623908fc2_Fds-tD00t.jpg\"\n    }\n}"
 						}
 					]
-				}
-			]
-		},
-		{
-			"name": "Authentication",
-			"item": [
-				{
-					"name": "Register",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompok1@\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/auth/register",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"auth",
-								"register"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "200",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompok1@\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseurl}}/auth/register",
-									"host": [
-										"{{baseurl}}"
-									],
-									"path": [
-										"auth",
-										"register"
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "118"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"76-MN4ccWSFqAmQxqYcco8nNSypURU\""
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 17 Oct 2022 15:09:35 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": true,\n    \"message\": \"user successfully registered\",\n    \"data\": {\n        \"id\": 3,\n        \"username\": \"BEKEL12211\",\n        \"ref_code\": \"MNREOQYD\"\n    }\n}"
-						},
-						{
-							"name": "400",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\r\n    \"password\": \"Bekelompok1@\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseurl}}/auth/register",
-									"host": [
-										"{{baseurl}}"
-									],
-									"path": [
-										"auth",
-										"register"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "65"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"41-P/G6jVzYYrHdZ+dV68ZXDaCpcJE\""
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 17 Oct 2022 15:09:50 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": false,\n    \"message\": \"\\\"username\\\" is required\",\n    \"data\": null\n}"
-						},
-						{
-							"name": "400 password",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompo\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseurl}}/auth/register",
-									"host": [
-										"{{baseurl}}"
-									],
-									"path": [
-										"auth",
-										"register"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "123"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"7b-oBUWyVE2Z1+H7CipGlymLVcAPY8\""
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 17 Oct 2022 15:10:05 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": false,\n    \"message\": \"\\\"password\\\" with value \\\"Bekelompo\\\" fails to match the special character pattern\",\n    \"data\": null\n}"
-						}
-					]
-				},
-				{
-					"name": "Login",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"BEKEL12211\",\r\n    \"password\": \"Bekelompok1@\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/auth/login",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Token",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJrZWwxIiwiaWF0IjoxNjY2MDIwMjk5LCJleHAiOjE2NjYxMDY2OTl9.z-J-zBvliJQFJMYxCl44vmHJe-GcQvz5wKIe4pAQWng",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{baseurl}}/auth/token",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"auth",
-								"token"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -2984,7 +2979,7 @@
 		},
 		{
 			"key": "token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcm5hbWUiOiJCRUtFTDEyMjExIiwiaWF0IjoxNjY4MDUyNTY5LCJleHAiOjE2NjgxMzg5Njl9.3i8ZCUX00MCyGdwMbGKV7Qeit88g8RVb3MWyppzDkdA",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJCRUtFTDEyMjExIiwiaWF0IjoxNjY4MjIyMTQ0LCJleHAiOjE2NjgzMDg1NDR9.DClYYL9pU0yDyVIHY9QFcTxYIulKB_W0k_AxeCRmUv4",
 			"type": "string"
 		},
 		{

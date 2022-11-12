@@ -45,7 +45,7 @@ module.exports = {
           category_id: 2,
           price: 6000,
           stock: 12,
-          utit: '100 gr',
+          unit: '100 gr',
           promo: 2,
           max_promo: 3,
           info: '1 buah wortel setara 100 gr',
