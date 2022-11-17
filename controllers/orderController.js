@@ -17,8 +17,12 @@ const createOrder = async (req, res) => {
     // by creating order in "Orders" table,
     // creating order item in "Order_Items" table,
     // and deleting user cart in Carts table
-    const order = await orderRepository.createOrder(req.body);
-    return res.respondCreated(order, 'Order created');
+    const response = await orderRepository.createOrder(req.body);
+    if (response.dataValues === undefined) {
+      return res.status(response.status).json(response);
+    }
+
+    return res.respondCreated(response, 'Order created');
   } catch (error) {
     return res.respondServerError(error.message);
   }
