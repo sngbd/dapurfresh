@@ -1,9 +1,22 @@
 const { Transaction, Op } = require('sequelize');
 const {
-  Order, Order_Item, CartItem, Product, Unit, sequelize,
+  Order, Order_Item, CartItem, Product, sequelize,
 } = require('../models');
 
 const getOrder = async (id, user_id, tr) => {
+  /*
+    select id, name, phone_number, address,
+    transaction_date, sub_total, delivery_cost,
+    total, note, user_id, status, no_order,
+    createdAt,
+    order_items.id, order_items.product_id,
+    order_items.qty, order_items.price, order_items.discount,
+    Products.title, Products.unit
+    from Orders
+    left outer join Order_Items as order_items on order_items.order_id = id
+    inner join Products on order_items.product_id = Products.id
+    where id=id, user_id=user_id
+  */
   const order = await Order.findOne({
     attributes: [
       'id',
@@ -37,68 +50,76 @@ const getOrder = async (id, user_id, tr) => {
         required: true,
         attributes: [
           'title',
-          'qty_unit',
+          'unit',
         ],
-        include: [{
-          model: Unit,
-          as: 'unit',
-          required: true,
-          attributes: ['title'],
-        }],
       }],
     }],
     transaction: tr,
   });
 
-  const { order_items } = order.dataValues;
-  order_items.forEach((order_item) => {
-    const product = order_item.dataValues.Product;
-    order_item.dataValues.product_name = product.title;
-    order_item.dataValues.unit_per_qty = `${product.qty_unit} ${product.unit.title}`;
-    delete order_item.dataValues.Product;
-  });
+  // if order has found, add product_name and unit to every order_item
+  if (order !== null) {
+    const { order_items } = order.dataValues;
+    order_items.forEach((order_item) => {
+      const product = order_item.dataValues.Product;
+      order_item.dataValues.product_name = product.title;
+      order_item.dataValues.unit = `${product.unit}`;
+      delete order_item.dataValues.Product;
+    });
+  }
   return order;
 };
 
 const createOrder = async (Orderjson) => {
   const order_itemsJson = Orderjson.order_items;
 
+  const productsStock = {};
+  // eslint-disable-next-line no-restricted-syntax
+  for (const order_item of order_itemsJson) {
+    // eslint-disable-next-line no-await-in-loop
+    const product = await Product.findOne({
+      where: { id: order_item.product_id },
+    });
+    if (product === null) {
+      return {
+        status: 404,
+        message: `can't find product with id '${order_item.product_id}'`,
+        data: null,
+      };
+    }
+    // assign product name and unit to order_item for responses
+    order_item.product_name = product.title;
+    order_item.unit = `${product.unit}`;
+
+    // decrease stock of product
+    const stock = product.stock - order_item.qty;
+    if (stock < 0) {
+      return {
+        status: 404,
+        message: `qty exceeds product's stock with id '${product.id}'`,
+        data: null,
+      };
+    }
+    productsStock[order_item.product_id] = stock;
+  }
+
   // Make a transaction
   const order = await sequelize.transaction({
     isolationLevel: Transaction.ISOLATION_LEVELS.REPEATABLE_READ,
   }, async (tr) => {
-    // assign product_name, unit_per_qty
+    // update product stock
     // eslint-disable-next-line no-restricted-syntax
     for (const order_item of order_itemsJson) {
       // eslint-disable-next-line no-await-in-loop
-      const product = await Product.findOne({
-        where: { id: order_item.product_id },
-        include: [{ model: Unit, as: 'unit' }],
-        transaction: tr,
-      });
-      if (product === null) {
-        throw Error(`can't find product with id '${order_item.product_id}'`);
-      }
-      order_item.product_name = product.title;
-      order_item.unit_per_qty = `${product.qty_unit} ${product.unit.title}`;
-      const qty = product.stock - order_item.qty;
-      if (qty < 0) {
-        throw Error(`qty exceeds product's stock with id '${product.id}'`);
-      }
-
-      // update product stock
-      // eslint-disable-next-line no-await-in-loop
-      const productUpdatedRows = await Product.update({
-        stock: qty,
+      const [updatedRowsProduct] = await Product.update({
+        stock: productsStock[order_item.product_id],
       }, {
-        where: {
-          id: order_item.product_id,
-        },
+        where: { id: order_item.product_id },
         transaction: tr,
       });
 
-      if (productUpdatedRows[0] !== 1) {
-        throw Error(`error update product stock with id '${product.id}'`);
+      if (updatedRowsProduct !== 1) {
+        throw Error(`error update product's stock with id '${order_item.product_id}'`);
       }
     }
 
@@ -107,19 +128,26 @@ const createOrder = async (Orderjson) => {
       transaction: tr,
     });
 
+    // get id of order that has been created
     const { id } = resultOrder;
+    // assign to transaction_date
     const transaction_date = resultOrder.createdAt;
+    // add id of order to no_order
     const no_order = Orderjson.no_order + id;
-    const orderUpdatedRows = await Order.update({
+
+    // update no_order and transaction_date
+    const [updatedRowsOrder] = await Order.update({
       no_order,
       transaction_date,
     }, {
       where: { id },
       transaction: tr,
     });
-    if (orderUpdatedRows[0] !== 1) {
+    if (updatedRowsOrder !== 1) {
       throw Error('error create order');
     }
+
+    // add no_order and transaction date to response order
     resultOrder.no_order = no_order;
     resultOrder.transaction_date = transaction_date;
 
@@ -135,26 +163,35 @@ const createOrder = async (Orderjson) => {
     });
     await Promise.all(order_itemsPromise);
 
-    // delete user cart
+    // delete all user cart
     await CartItem.destroy({
       where: { user_id: Orderjson.user_id },
     }, {
       transaction: tr,
     });
 
+    // add order_items to order
     resultOrder.dataValues.order_items = order_itemsJson;
+
     delete resultOrder.dataValues.updatedAt;
 
     return resultOrder;
   });
+
   return order;
 };
 
 const getUserOrderLast7Days = async (user_id) => {
   const dateNow = new Date();
   const date7DaysAgo = new Date(dateNow);
-  date7DaysAgo.setUTCDate(dateNow.getUTCDate() - 7);
 
+  // set date 7 days ago
+  date7DaysAgo.setUTCDate(dateNow.getUTCDate() - 7);
+  /*
+    select id, transaction_date, no_order, status
+    from orders where transaction_date >= date7DaysAgo
+    order by transaction_date desc
+  */
   const orders = await Order.findAll({
     attributes: ['id', 'transaction_date', 'no_order', 'status'],
     where: {
@@ -163,25 +200,38 @@ const getUserOrderLast7Days = async (user_id) => {
         [Op.gt]: date7DaysAgo,
       },
     },
-    order: [['transaction_date']],
+    order: [['transaction_date', 'DESC']],
   });
 
+  // Group all orders by day in 7 days
   const ordersGroupByDay = {};
   const dateSearch = new Date(dateNow);
   let i = 0;
   // eslint-disable-next-line no-constant-condition
   while (true) {
+    // convert day to 2 digits
     let day = dateSearch.getUTCDate();
     day = (day < 10) ? `0${day}` : day;
 
+    // convert month to 2 digits
     let month = dateSearch.getMonth();
     month = (month < 10) ? `0${month}` : month;
 
+    // yy-mm-dd formats
     const y_m_d = `${dateSearch.getFullYear()}-${dateSearch.getUTCMonth() + 1}-${day}`;
+
+    // search transaction_date who year, month, and day is yy-mm-dd
     const ordersInThatDay = orders.filter((order) => order.transaction_date.startsWith(y_m_d));
-    ordersGroupByDay[y_m_d] = ordersInThatDay;
+
+    // if there is any transaction_date in that day
+    if (ordersInThatDay.length > 0) {
+      ordersGroupByDay[y_m_d] = ordersInThatDay;
+    }
+
+    // if already 7 days ago
     if (i >= 7) break;
     else {
+      // decrease 1 day
       dateSearch.setUTCDate(dateSearch.getUTCDate() - 1);
       i += 1;
     }
@@ -200,7 +250,8 @@ const updateUserOrderStatusToBatal = async (id, user_id, orderUpdateJson) => {
       where: { id, user_id },
       transaction: tr,
     });
-    if (updatedRowsCount <= 0) {
+    // if there is no updated rows / order not found
+    if (updatedRowsCount !== 1) {
       return null;
     }
 
