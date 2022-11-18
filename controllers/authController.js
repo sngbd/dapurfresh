@@ -32,7 +32,11 @@ const registerUser = async (req, res) => {
 
 function createAccessToken(id, username) {
   const payload = { id, username };
-  return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_EXPIRESIN });
+  return jwt.sign(
+    payload,
+    process.env.ACCESS_TOKEN_SECRET,
+    { expiresIn: process.env.ACCESS_TOKEN_EXPIRESIN },
+  );
 }
 function createAccessTokenLogout(id, username) {
   const payload = { id, username };
@@ -41,7 +45,11 @@ function createAccessTokenLogout(id, username) {
 
 function createRefreshToken(id, username) {
   const payload = { id, username };
-  return jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, { expiresIn: process.env.REFRESH_TOKEN_EXPIRESIN });
+  return jwt.sign(
+    payload,
+    process.env.REFRESH_TOKEN_SECRET,
+    { expiresIn: process.env.REFRESH_TOKEN_EXPIRESIN },
+  );
 }
 function createRefreshTokenLogout(id, username) {
   const payload = { id, username };
@@ -89,7 +97,9 @@ const login = async (req, res, next) => {
 };
 
 const getTokenAfterLogin = async (req, res) => {
-  const { id, username, name, phone_number, address, thumbnail } = req.user;
+  const {
+    id, username, name, phone_number, address, thumbnail,
+  } = req.user;
 
   try {
     const accessToken = createAccessToken(id, username);
@@ -116,7 +126,6 @@ const getTokenAfterLogin = async (req, res) => {
       },
     });
   } catch (error) {
-    console.log(error);
     return res.respondServerError();
   }
 };
@@ -129,14 +138,16 @@ const getAccessToken = async (req, res) => {
     return res.notAcceptable('Unauthorized');
   }
 
-  const accessToken = async (err, user) => {
-    if (err) return res.forbidden(err.message);
-    return createAccessToken(user.id, user.username);
-  };
+  return jwt.verify(
+    refreshToken,
+    process.env.REFRESH_TOKEN_SECRET,
+    async (err, user) => {
+      if (err) return res.forbidden(err.message);
 
-  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, accessToken);
-
-  return res.respondSuccess(accessTokenJSON(accessToken));
+      const accessToken = createAccessToken(user.id, user.username);
+      return res.respondSuccess(accessTokenJSON(accessToken));
+    },
+  );
 };
 
 module.exports = {
