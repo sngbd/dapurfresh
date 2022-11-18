@@ -90,7 +90,7 @@ const login = async (req, res, next) => {
 
     req.user = user;
   } catch (error) {
-    return res.respondServerError();
+    return res.respondServerError(error.message);
   }
 
   return next();
@@ -126,7 +126,7 @@ const getTokenAfterLogin = async (req, res) => {
       },
     });
   } catch (error) {
-    return res.respondServerError();
+    return res.respondServerError(error.message);
   }
 };
 
@@ -138,16 +138,20 @@ const getAccessToken = async (req, res) => {
     return res.notAcceptable('Unauthorized');
   }
 
-  return jwt.verify(
-    refreshToken,
-    process.env.REFRESH_TOKEN_SECRET,
-    async (err, user) => {
-      if (err) return res.forbidden(err.message);
+  try {
+    return jwt.verify(
+      refreshToken,
+      process.env.REFRESH_TOKEN_SECRET,
+      async (err, user) => {
+        if (err) return res.forbidden(err.message);
 
-      const accessToken = createAccessToken(user.id, user.username);
-      return res.respondSuccess(accessTokenJSON(accessToken));
-    },
-  );
+        const accessToken = createAccessToken(user.id, user.username);
+        return res.respondSuccess(accessTokenJSON(accessToken));
+      },
+    );
+  } catch (error) {
+    return res.respondServerError(error.message);
+  }
 };
 
 module.exports = {
